@@ -1,6 +1,6 @@
 import handler from "../../libs/handler-lib"
 import dynamoDB from "../../libs/dynamodb-lib";
-import {twoDaysAgo} from "../../libs/helpers-lib";
+import {twoDaysAgo} from "../../libs/timestamp-helpers-lib";
 
 export const main = handler(async (event, context) => {
     const twoDaysPrior = twoDaysAgo();

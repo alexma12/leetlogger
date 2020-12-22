@@ -4,7 +4,7 @@ import dynamoDB from "../../libs/dynamodb-lib";
 export const main = handler(async (event, context) => {
 
     const params = {
-        TableName: process.env.questionTable,
+        TableName: process.env.questionTable,   
         KeyConditionExpression: "userID = :userID",
         FilterExpression: "contains(questionType, :type)",
         ExpressionAttributeValues: {

@@ -1,4 +1,3 @@
-
 import dynamoDB from "../../libs/dynamodb-lib";
 import handler from "../../libs/handler-lib";
 

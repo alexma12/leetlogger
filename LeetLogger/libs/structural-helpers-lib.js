@@ -26,8 +26,3 @@ export const convertEntryToDBStruct = (jsonData) => {
     data["title"] = tempTitle;
     return data;
 }
-export const twoDaysAgo = () => {
-    const today = Date.now();
-    const twoDaysAgo = today - (2 * 24 * 60 * 60 * 1000)
-    return twoDaysAgo;
-}

@@ -6,8 +6,7 @@ export const main = handler(async (event, context) => {
     const params = {
         TableName: process.env.questionTable,
         IndexName: "userID-revisionDate-index",
-        KeyConditionExpression: "userID = :userID and revisionDate > :zero",
-        FilterExpression: "contains(questionType, :type)",
+        KeyConditionExpression: "userID = :userID and revisionDate >= :zero",
         ExpressionAttributeValues: {
             ":userID": "123",
             ":zero": 0

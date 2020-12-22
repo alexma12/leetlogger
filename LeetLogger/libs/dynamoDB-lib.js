@@ -11,4 +11,4 @@ export default {
     batchGet: (params) => dynamoDB.batchGet(params).promise(),
     batchWrite: (params) => dynamoDB.batchWrite(params).promise()
 
-}
+} 
