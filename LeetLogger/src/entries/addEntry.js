@@ -15,7 +15,8 @@ export const main = handler(async (event, context) => {
             type: data.type,
             submittedAt: Date.now(),
             approxCompletionMins: data.approxCompletionMins,
-            difficulty: data.difficulty
+            difficulty: data.difficulty,
+            solutionSummary: data.solutionSummary
         }
     }
 

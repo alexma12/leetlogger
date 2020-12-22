@@ -1,22 +1,17 @@
 import dynamoDB from "../../libs/dynamoDB-lib";
 import handler from "../../libs/handler-lib";
-import { convertEntryToDBStruct } from "../../libs/helpers-lib"
 
 export const main = handler(async (event, context) => {
-    const data = convertEntryToDBStruct(event.body);
- 
     const params = {
         TableName: process.env.questionTable,
+        IndexName: "userID-title-index",
         Key: {
             userID: "123",
             questionID: event.pathParameters.questionId,
         },
-        UpdateExpression: "SET title = :title, type = :type, revisionDate = :revisionDate, difficulty = :difficulty, entryCount = :entryCount",
+        UpdateExpression: "SET entryCount = entryCount + :incr",
         ExpressionAttributeValues: {
-            ":title": data.title || null,
-            ":type": data.type || null,
-            ":revisionDate": data.revisionDate || null,
-            ":difficulty": data.difficulty || null,
+            ":incr": 1
         },
         ReturnValues: "ALL_NEW"
 

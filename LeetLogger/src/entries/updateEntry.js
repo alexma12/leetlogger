@@ -11,12 +11,13 @@ export const main = handler(async (event, context) => {
             userID: "123",
             entryID: event.pathParameters.entryId,
         },
-        UpdateExpression: "SET title = :title, type = :type, approxCompletionMins: :completion, difficulty = :difficulty",
+        UpdateExpression: "SET title = :title, type = :type, approxCompletionMins = :completion, difficulty = :difficult, solutionSummary = :solutionSummary",
         ExpressionAttributeValues: {
             ":title": data.title || null,
             ":type": data.type || null,
             ":completion": data.approxCompletionMins || null,
-            ":difficulty": data.difficulty || null
+            ":difficulty": data.difficulty || null,
+            ":solutionSummary": data.solutionSummary || null
         },
         ReturnValues: "ALL_NEW"
 
