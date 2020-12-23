@@ -96,10 +96,101 @@ functions:
             method: get 
             cors: true 
   
-  listEntriesByType:
-      handler: src/entries/listEntriesByType.main
+  listEntriesByTitle:
+      handler: src/entries/listEntriesByTitle.main
       events: 
         - http:
-            path: entries/list/type/{type}
+            path: entries/list/{title}
             method: get 
             cors: true
+
+  addQuestion: 
+    handler: src/questions/addQuestion.main
+    events:
+      - http:
+          path: questions
+          method: post
+          cors: true
+
+  deleteQuestion:
+    handler: src/questions/deleteQuestion.main
+    events: 
+      - http: 
+          path: questions/{questionId}
+          method: delete
+          cors: true
+  
+
+  getQuestion:
+    handler: src/questions/getQuestion.main 
+    events: 
+      - http: 
+          path: questions/{questionId}/{noteId}
+          method: get
+          cors: true
+
+
+  listQuestionAll:
+      handler: src/questions/listQuestionAll.main
+      events: 
+        - http:
+            path: questions/list
+            method: get 
+            cors: true 
+  
+  listQuestionByType:
+    handler: src/questions/listQuestionByType.main
+    events:
+      - http:
+         path: questions/list/{type}
+         method: get 
+         cors: true 
+  
+  listSortedRevisionQuestions:
+      handler: src/questions/listSortedRevisionQuestions.main
+      events:
+        - http: 
+            path: questions/list/revisionQuestions 
+            method: get 
+            cors: true 
+
+  expediteRevisionDate:
+      handler: src/questions/expediteRevisionDate.main
+      events: 
+          - http: 
+              path: questions/{questionId}/expedite
+              method: post 
+              cors: true
+
+  postponeRevisionDate:
+      handler: src/questions/postponeRevisionDate.main
+      events: 
+          - http: 
+              path: questions/{questionId}/postpone
+              method: post 
+              cors: true
+
+  completeRevisionQuestion:
+    handler: src/questions/completeRevisionQuestion.main
+    events: 
+      - http: 
+          path: questions/{questionId}/complete
+          method: post 
+          cors: true
+
+  incQuestionEntryCount:
+      handler: src/questions/incQuestionEntryCount.main
+      events: 
+          - http: 
+              path: questions/inc
+              method: post
+              cors: true 
+
+  decQuestionEntryCount:
+      handler: src/questions/decQuestionEntryCount.main
+      events: 
+          - http: 
+              path: questions/dec
+              method: post
+              cors: true 
+  

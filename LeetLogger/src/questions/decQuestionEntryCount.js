@@ -20,6 +20,6 @@ export const main = handler(async (event, context) => {
     const updatedEntry = await dynamoDB.update(params);
     return {
         title: updatedEntry.title,
-        updatedEntryCount = updatedEntry.entryCount
+        updatedEntryCount: updatedEntry.entryCount
     };
 }); 

@@ -9,7 +9,7 @@ export const main = handler(async (event, context) => {
         FilterExpression: "contains(questionType, :type)",
         ExpressionAttributeValues: {
             ":userID": "123",
-            ":type": event.pathParameters.type
+            ":type": event.queryStringParameter.type
         },
     }
     const questions = await dynamoDB.query(params);

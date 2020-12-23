@@ -13,8 +13,8 @@ export const main = handler(async (event, context) => {
     }
     const questions = await dynamoDB.get(dbParams);
     let  expression = "select * from s3object s"
-    if(event.queryStringParameters && event.queryStringParameters.noteTitle && event.queryStringParameters.noteTitle !== ""){
-        expression = "select * from S3Object[*][*] s where s.noteTitle =  '" + event["queryStringParameters"]['noteTitle'] + "'";
+    if(event.queryStringParameters && event.queryStringParameters.noteId && event.queryStringParameters.noteId !== ""){
+        expression = "select * from S3Object[*][*] s where s.noteID =  '" + event["queryStringParameters"]['noteID'] + "'";
     }
 
     const s3Params = {

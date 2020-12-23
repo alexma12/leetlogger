@@ -9,7 +9,7 @@ export const main = handler(async (event, context) => {
         IndexName: "userID-title-index",
         Key: {
             userID: "123",
-            title: data.title
+            title: queryStringParameters.title
         },
         UpdateExpression: "SET entryCount = entryCount + :incr",
         ExpressionAttributeValues: {
@@ -21,6 +21,6 @@ export const main = handler(async (event, context) => {
     const updatedEntry = await dynamoDB.update(params);
     return {
         title: updatedEntry.title,
-        updatedEntryCount = updatedEntry.entryCount
+        updatedEntryCount: updatedEntry.entryCount
     };
 }); 
