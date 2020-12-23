@@ -3,8 +3,8 @@ import dynamoDB from "../../libs/dynamodb-lib";
 
 export const main = handler(async (event, context) => {
 
-    if(!event.queryParameters || !event.queryStringParameters.title){
-        throw new Error("No title in queryStringParameter")
+    if(!event.queryStringParameters || !event.queryStringParameters.title){
+        throw new Error("No title in queryStringParameters")
     }
 
     const params = {

@@ -1,7 +1,7 @@
 import dynamoDB from "../../libs/dynamoDB-lib";
 import handler from "../../libs/handler-lib";
 import * as uuid from "uuid";
-import { convertEntryToDBStruct } from "../../libs/structural-helpers-lib";
+import { convertEntryToDBStruct } from "../../libs/helpers-lib";
 
 export const main = handler(async (event, context) => {
     const data = convertEntryToDBStruct(event.body);

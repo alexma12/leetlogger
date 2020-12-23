@@ -60,6 +60,9 @@ export const calculateExpeditedRevisionDate = (timeSpan, revisionDate) => {
     }
 }
 
+export const currentDateString = () => {
+    return new Date().toDateString();
+}
 // export const getRevisionDate = (timeSpan) => {
 //     const msToAdd = timeSpanToMs(timeSpan);
 //     const revisonDate = new Date(Date.now() + msToAdd);
