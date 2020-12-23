@@ -1,6 +1,6 @@
-import dynamoDB from "../../libs/dynamoDB-lib";
-import handler from "../../libs/handler-lib";
-import { convertEntryToDBStruct } from "../../libs/structural-helpers-lib"
+import dynamoDB from "../LeetLogger/libs/dynamoDB-lib";
+import handler from "../LeetLogger/libs/handler-lib";
+import { convertEntryToDBStruct } from "../LeetLogger/libs/structural-helpers-lib"
 
 export const main = handler(async (event, context) => {
     const data = convertEntryToDBStruct(event.body);

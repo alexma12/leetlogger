@@ -15,6 +15,18 @@ export const main = handler(async (event, context) => {
     if(!deletedEntry){
         throw new Error("Item not found")
     }
+
+    if(!event.queryParameters || !event.queryStringParameters.noteId){
+        throw new Error("No noteID in queryStringParameter")
+    }
+
+    const s3Params = { 
+        Bucket: process.env.s3BucketName,
+        Key: event.pathParameters.noteId
+    }
+    await s3.delete(s3Params);
+
     return deletedEntry;
+   
     
 });

@@ -12,11 +12,10 @@ export const main = handler(async (event, context) => {
             userID: "123",
             questionID: uuid.v4(),
             title: data.title,
-            type: data.type, //type algorithm 
+            questionType: data.questionType, //type algorithm 
             revisionDate: data.revisionDate || -1,
             difficulty: data.difficulty,
-            entryCount: 1,
-            onTime: true,
+            entryCount: 1
         }
     }
 

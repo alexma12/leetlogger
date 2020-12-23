@@ -1,5 +1,5 @@
-import handler from "../../libs/handler-lib"
-import dynamoDB from "../../libs/dynamodb-lib";
+import handler from "../LeetLogger/libs/handler-lib"
+import dynamoDB from "../LeetLogger/libs/dynamodb-lib";
 
 export const main = handler(async (event, context) => {
 

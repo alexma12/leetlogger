@@ -8,10 +8,9 @@ export const main = handler(async (event, context) => {
             userID: "123",
             questionID: event.pathParameters.questionId,
         },
-        UpdateExpression: "SET revisionDate = :noRevision, onTime = :true",
+        UpdateExpression: "SET revisionDate = :noRevision",
         ExpressionAttributeValues: {
             ":noRevision": -1,
-            ":true": true
         },
         ReturnValues: "ALL_NEW"
     }

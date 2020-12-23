@@ -2,12 +2,18 @@ import handler from "../../libs/handler-lib"
 import dynamoDB from "../../libs/dynamodb-lib";
 
 export const main = handler(async (event, context) => {
+
+    if(!event.queryParameters || !event.queryStringParameters.title){
+        throw new Error("No title in queryStringParameter")
+    }
+
     const params = {
         TableName: process.env.entryTable,
-        KeyConditionExpression: "userID = :userID and difficulty = :difficulty",
+        IndexName: "userID-title-index",
+        KeyConditionExpression: "userID = :userID and title = :title",
         ExpressionAttributeValues: {
            ":userID": "123",
-           ":difficulty": event.pathParameters.difficulty
+           ":title": event.queryStringParameters.title
         },
     }
     const entries = await dynamoDB.query(params);

@@ -27,6 +27,7 @@ provider:
   environment:
     questionTable: leetlogger-questions
     entryTable: leetlogger-entries 
+    s3BucketName: leetlogger-notes-and-solutions
 
   iamRoleStatements:
     - Effect: "Allow"
