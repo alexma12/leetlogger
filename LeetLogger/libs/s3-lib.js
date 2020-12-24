@@ -1,18 +1,19 @@
 import AWS from "aws-sdk";
-
+import {isEmptyObject} from "./helpers-lib"
 const s3 = new AWS.S3();
 
 export default {
     get: (params) => s3.getObject(params).promise(),
     put: (params) => s3.putObject(params).promise(),
+    upload: (params) => s3.upload(params).promise(),
     s3SelectList: async  (params) => {
         return new Promise((resolve, reject) => {
           s3.selectObjectContent(params, (err, data) => {
             if (err) { reject(err); }
-            if (!data) {
-              reject('Empty data object');
+            if (data === null || isEmptyObject(data)) {
+              return reject('Empty data object');
             }
-            const records = []
+            const records = [];
             data.Payload.on('data', (event) => {
               if (event.Records) {
                 records.push(event.Records.Payload);
@@ -24,7 +25,7 @@ export default {
             .on('end', () => {
               let dataString = Buffer.concat(records).toString('utf8');
               dataString = dataString.replace(/\,$/, '');
-              dataString = `[${planetString}]`;
+              dataString = `[${dataString}]`;
       
               try {
                 const data = JSON.parse(dataString);
@@ -37,6 +38,7 @@ export default {
         })
       },
     delete: (params) => s3.deleteObject(params).promise(),
+
 
 }
 

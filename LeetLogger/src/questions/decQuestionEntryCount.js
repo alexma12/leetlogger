@@ -2,13 +2,12 @@ import dynamoDB from "../../libs/dynamoDB-lib";
 import handler from "../../libs/handler-lib";
 
 export const main = handler(async (event, context) => {
-    const data = JSON.parse(event.body);
+
     const params = {
         TableName: process.env.questionTable,
-        IndexName: "userID-title-index",
         Key: {
             userID: "123",
-            title: data.title
+            questionID: event.pathParameters.questionId
         },
         UpdateExpression: "SET entryCount = entryCount - :decr",
         ExpressionAttributeValues: {
@@ -18,8 +17,5 @@ export const main = handler(async (event, context) => {
 
     }
     const updatedEntry = await dynamoDB.update(params);
-    return {
-        title: updatedEntry.title,
-        updatedEntryCount: updatedEntry.entryCount
-    };
+    return updatedEntry
 }); 

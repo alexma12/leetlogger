@@ -1,10 +1,10 @@
 import dynamoDB from "../../libs/dynamoDB-lib";
 import handler from "../../libs/handler-lib";
 import * as uuid from "uuid";
-import { convertEntryToDBStruct } from "../../libs/helpers-lib";
+
 
 export const main = handler(async (event, context) => {
-    const data = convertEntryToDBStruct(event.body);
+    const data = JSON.parse(event.body);
     
     const params = { 
         TableName: process.env.questionTable,
@@ -12,7 +12,7 @@ export const main = handler(async (event, context) => {
             userID: "123",
             questionID: uuid.v4(),
             title: data.title,
-            questionType: data.questionType, //type algorithm 
+            questionType: data.questionType, 
             revisionDate: data.revisionDate || -1,
             difficulty: data.difficulty,
             entryCount: 1

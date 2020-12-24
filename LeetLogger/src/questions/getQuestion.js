@@ -5,23 +5,24 @@ import s3 from "../../libs/s3-lib"
 export const main = handler(async (event, context) => {
     const dbParams = {
         TableName: process.env.questionTable,
-        KeyConditionExpression: "userID = :userID, questionID = :questionID",
-        ExpressionAttributeValues: {
-           ":userID": "123",
-           ":questionID": event.pathParameters.questionID
+        Key: {
+           "userID": "123",
+           "questionID": event.pathParameters.questionId
         },
     }
     const questions = await dynamoDB.get(dbParams);
-    let  expression = "select * from s3object s"
-    if(event.queryStringParameters && event.queryStringParameters.noteId && event.queryStringParameters.noteId !== ""){
-        expression = "select * from S3Object[*][*] s where s.noteID =  '" + event["queryStringParameters"]['noteID'] + "'";
+  
+    if(!event.queryStringParameters || !event.queryStringParameters.title){
+      throw new Error("title not in queryStringParameters")
     }
+    const expression = "select * from S3Object[*] s where s.title =  '" + event["queryStringParameters"]["title"] + "'";
+    
 
     const s3Params = {
         Bucket: process.env.s3BucketName,
         Expression: expression,
         ExpressionType: 'SQL',
-        Key: fileName,
+        Key: event.pathParameters.questionId,
         InputSerialization: {
           JSON: {
             Type: 'DOCUMENT',
@@ -34,7 +35,7 @@ export const main = handler(async (event, context) => {
         }
     }
 
-    const s3Data = await s3.s3SelectList(params).promise();
+    const s3Data = await s3.s3SelectList(s3Params);
         
-    return {...questions.Items, ...s3Data }
+    return {...questions, ...s3Data }
 });

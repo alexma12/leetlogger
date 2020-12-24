@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "../../../src/entries/updateEntry.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "../../../src/entries/deleteEntry.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -222,12 +222,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(source_map_support_register__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var aws_sdk__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! aws-sdk */ "aws-sdk");
 /* harmony import */ var aws_sdk__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(aws_sdk__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _helpers_lib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers-lib */ "../../../libs/helpers-lib.js");
+
 
 
 const s3 = new aws_sdk__WEBPACK_IMPORTED_MODULE_1___default.a.S3();
 /* harmony default export */ __webpack_exports__["default"] = ({
   get: params => s3.getObject(params).promise(),
   put: params => s3.putObject(params).promise(),
+  upload: params => s3.upload(params).promise(),
   s3SelectList: async params => {
     return new Promise((resolve, reject) => {
       s3.selectObjectContent(params, (err, data) => {
@@ -235,8 +238,8 @@ const s3 = new aws_sdk__WEBPACK_IMPORTED_MODULE_1___default.a.S3();
           reject(err);
         }
 
-        if (!data) {
-          reject('Empty data object');
+        if (data === null || Object(_helpers_lib__WEBPACK_IMPORTED_MODULE_2__["isEmptyObject"])(data)) {
+          return reject('Empty data object');
         }
 
         const records = [];
@@ -249,7 +252,7 @@ const s3 = new aws_sdk__WEBPACK_IMPORTED_MODULE_1___default.a.S3();
         }).on('end', () => {
           let dataString = Buffer.concat(records).toString('utf8');
           dataString = dataString.replace(/\,$/, '');
-          dataString = `[${planetString}]`;
+          dataString = `[${dataString}]`;
 
           try {
             const data = JSON.parse(dataString);
@@ -266,105 +269,9 @@ const s3 = new aws_sdk__WEBPACK_IMPORTED_MODULE_1___default.a.S3();
 
 /***/ }),
 
-/***/ "../../../libs/timestamp-helpers-lib.js":
-/*!*********************************************************************************!*\
-  !*** /Users/alexma/Desktop/LeetLogger/LeetLogger/libs/timestamp-helpers-lib.js ***!
-  \*********************************************************************************/
-/*! exports provided: twoDaysAgo, calculatePostponedRevisionDate, calculateExpeditedRevisionDate, currentDateString */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "twoDaysAgo", function() { return twoDaysAgo; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "calculatePostponedRevisionDate", function() { return calculatePostponedRevisionDate; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "calculateExpeditedRevisionDate", function() { return calculateExpeditedRevisionDate; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "currentDateString", function() { return currentDateString; });
-/* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! source-map-support/register */ "../../source-map-support/register.js");
-/* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(source_map_support_register__WEBPACK_IMPORTED_MODULE_0__);
-
-const twoDaysAgo = () => {
-  const today = Date.now();
-  const twoDaysAgo = today - 2 * 24 * 60 * 60 * 1000;
-  return twoDaysAgo;
-};
-
-const timeSpanToMs = timeSpan => {
-  let ms;
-  let day = 1000 * 60 * 60 * 24;
-
-  switch (timeSpan) {
-    case "day":
-      ms = day;
-
-    case "week":
-      ms = 7 * day;
-
-    case '2-weeks':
-      ms = 14 * day;
-
-    case '3-weeks':
-      ms = 21 * day;
-
-    case "4-weeks":
-      ms = 28 * day;
-  }
-
-  return ms;
-};
-
-const calculateChangedRevisionDate = (timeSpan, revisionDate, postpone) => {
-  const msToAdd = timeSpanToMs(timeSpan);
-  let newDate;
-
-  if (postpone) {
-    newDate = new Date(revisionDate + msToAdd);
-  } else {
-    newDate = new Date(revisionDate - msToAdd);
-  }
-
-  newDate.setHours(0, 0, 0, 0);
-  const currDate = new Date();
-  currDate.setHours(0, 0, 0, 0);
-  return {
-    newDate: newDate.getTime(),
-    currDate: currDate.getTime()
-  };
-};
-
-const calculatePostponedRevisionDate = (timeSpan, revisionDate) => {
-  const POSTPONE = true;
-  const [newDate] = calculateChangedRevisionDate(timeSpan, revisionDate, POSTPONE);
-  return newDate.getTime();
-};
-const calculateExpeditedRevisionDate = (timeSpan, revisionDate) => {
-  const EXPEDITE = false;
-  const [newDate, currDate] = calculateChangedRevisionDate(timeSpan, revisionDate, EXPEDITE);
-  let exceededCurrDay = false;
-  let newRevisionDate = newDate.getTime();
-
-  if (newDate < currDate) {
-    newRevisionDate = currDate.getTime(), exceededCurrDay = true;
-  }
-
-  return {
-    revisionDate: newRevisionDate,
-    exceededCurrDay: exceededCurrDay
-  };
-};
-const currentDateString = () => {
-  return new Date().toDateString();
-}; // export const getRevisionDate = (timeSpan) => {
-//     const msToAdd = timeSpanToMs(timeSpan);
-//     const revisonDate = new Date(Date.now() + msToAdd);
-//     revisonDate.setHours(0,0,0,0);
-//     return revisionDate.getTime();
-// }
-
-/***/ }),
-
-/***/ "../../../src/entries/updateEntry.js":
+/***/ "../../../src/entries/deleteEntry.js":
 /*!******************************************************************************!*\
-  !*** /Users/alexma/Desktop/LeetLogger/LeetLogger/src/entries/updateEntry.js ***!
+  !*** /Users/alexma/Desktop/LeetLogger/LeetLogger/src/entries/deleteEntry.js ***!
   \******************************************************************************/
 /*! exports provided: main */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -378,44 +285,69 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _libs_handler_lib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../libs/handler-lib */ "../../../libs/handler-lib.js");
 /* harmony import */ var _libs_s3_lib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../libs/s3-lib */ "../../../libs/s3-lib.js");
 /* harmony import */ var _libs_helpers_lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../libs/helpers-lib */ "../../../libs/helpers-lib.js");
-/* harmony import */ var _libs_timestamp_helpers_lib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../libs/timestamp-helpers-lib */ "../../../libs/timestamp-helpers-lib.js");
-
 
 
 
 
 
 const main = Object(_libs_handler_lib__WEBPACK_IMPORTED_MODULE_2__["default"])(async (event, context) => {
-  const data = Object(_libs_helpers_lib__WEBPACK_IMPORTED_MODULE_4__["convertEntryToDBStruct"])(event.body);
-  const currentDate = Object(_libs_timestamp_helpers_lib__WEBPACK_IMPORTED_MODULE_5__["currentDateString"])();
   const params = {
     TableName: process.env.entryTable,
     Key: {
       userID: "123",
       entryID: event.pathParameters.entryId
     },
-    UpdateExpression: "SET approxCompletionMins = :completion, tags = :tags,  difficulty = :difficulty, lastUpdated = :lastUpdated",
-    ExpressionAttributeValues: {
-      ":tags": data.tags || [],
-      ":completion": data.approxCompletionMins || 0,
-      ":difficulty": data.difficulty || "",
-      ":lastUpdated": currentDate
-    },
-    ReturnValues: "ALL_NEW"
+    ReturnValues: "ALL_OLD"
   };
-  const updatedEntry = await _libs_dynamoDB_lib__WEBPACK_IMPORTED_MODULE_1__["default"].update(params);
-  const s3JsonData = {
-    title: data.title,
-    content: data.content
-  };
-  const s3Params = {
+  const deletedEntry = await _libs_dynamoDB_lib__WEBPACK_IMPORTED_MODULE_1__["default"].delete(params);
+
+  if (Object(_libs_helpers_lib__WEBPACK_IMPORTED_MODULE_4__["isEmptyObject"])(deletedEntry)) {
+    throw new Error("Item not found");
+  }
+
+  const expression = "select * from S3Object[*][*] s where s.entryID = '" + event["pathParameters"]["entryId"] + "'";
+  const s3SelectParams = {
     Bucket: process.env.s3BucketName,
-    Key: event.pathParameters.entryId,
-    Body: JSON.stringify(s3JsonData)
+    Expression: expression,
+    ExpressionType: 'SQL',
+    Key: "123",
+    InputSerialization: {
+      JSON: {
+        Type: 'DOCUMENT'
+      }
+    },
+    OutputSerialization: {
+      JSON: {
+        RecordDelimiter: ','
+      }
+    }
   };
-  await _libs_s3_lib__WEBPACK_IMPORTED_MODULE_3__["default"].put(s3Params);
-  return updatedEntry;
+  const s3ObjToDelete = await _libs_s3_lib__WEBPACK_IMPORTED_MODULE_3__["default"].s3SelectList(s3SelectParams);
+  const s3GetParams = {
+    Bucket: process.env.s3BucketName,
+    Key: "123"
+  };
+  const updatedS3Obj = await deleteObjFromS3Data(s3GetParams, s3ObjToDelete.index);
+  const s3UploadParams = {
+    Bucket: process.env.s3BucketName,
+    Key: "123",
+    Body: JSON.stringify(updatedS3Obj)
+  };
+  await _libs_s3_lib__WEBPACK_IMPORTED_MODULE_3__["default"].upload(s3UploadParams); // const s3Params = { 
+  //     Bucket: process.env.s3BucketName,
+  //     Key: event.pathParameters.entryId
+  // }
+  // await s3.delete(s3Params);
+
+  return deletedEntry;
 });
+
+const deleteObjFromS3Data = async (s3GetParams, index) => {
+  const s3Obj = await _libs_s3_lib__WEBPACK_IMPORTED_MODULE_3__["default"].get(s3GetParams);
+  const jsonData = JSON.parse(s3Obj.Body.toString());
+  jsonData.splice(index, 1);
+  return jsonData;
+};
 
 /***/ }),
 
@@ -4426,4 +4358,4 @@ module.exports = require("path");
 /***/ })
 
 /******/ })));
-//# sourceMappingURL=updateEntry.js.map
+//# sourceMappingURL=deleteEntry.js.map

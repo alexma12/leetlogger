@@ -119,13 +119,13 @@ functions:
           path: questions/{questionId}
           method: delete
           cors: true
-  
+
 
   getQuestion:
-    handler: src/questions/getQuestion.main 
-    events: 
-      - http: 
-          path: questions/{questionId}/{noteId}
+      handler: src/questions/getQuestion.main 
+      events: 
+        - http: 
+          path: questions/{questionId}/{title}
           method: get
           cors: true
 
@@ -182,15 +182,34 @@ functions:
       handler: src/questions/incQuestionEntryCount.main
       events: 
           - http: 
-              path: questions/inc
+              path: questions/{questionId}/inc
               method: post
               cors: true 
+
+  incQuestyEntryCountAndUpdateRevisionDate:
+      handler: src/questions/incQuestionEntryCountAndUpdateRevisionDate.main
+      events: 
+        - http: 
+            path: questions/{questionId}/inc-update
+            method: post
+            cors: true
 
   decQuestionEntryCount:
       handler: src/questions/decQuestionEntryCount.main
       events: 
           - http: 
-              path: questions/dec
+              path: questions/{questionId}dec
               method: post
               cors: true 
+
+  loginUserS3Create:
+      handler: src/login/loginUserS3Create.main
+      events: 
+         - http: 
+              path: login
+              method: post 
+              cors: true
+
+          
+
   

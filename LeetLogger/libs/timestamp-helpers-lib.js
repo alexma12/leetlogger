@@ -6,18 +6,23 @@ export const twoDaysAgo = () => {
 
 const timeSpanToMs = (timeSpan) => {
     let ms;
-    let day = 1000 * 60 * 60 * 24;
+    let day = (1000 * 60 * 60 * 24);
     switch (timeSpan) {
         case "day":
             ms = day
+            break;
         case "week":
             ms = 7 * day
+            break;
         case '2-weeks':
             ms = 14 * day
+            break;
         case '3-weeks':
             ms = 21 * day
+            break;
         case "4-weeks":
             ms = 28 * day
+            break;
     }
     return ms
 }
@@ -33,25 +38,22 @@ const calculateChangedRevisionDate = (timeSpan, revisionDate, postpone) => {
     newDate.setHours(0, 0, 0, 0);
     const currDate = new Date();
     currDate.setHours(0, 0, 0, 0);
-    return {
-        newDate: newDate.getTime(),
-        currDate: currDate.getTime()
-    }
+    return [newDate.getTime(), currDate.getTime()]
 }
 
 export const calculatePostponedRevisionDate = (timeSpan, revisionDate) => {
     const POSTPONE = true;
-    const [newDate] = calculateChangedRevisionDate(timeSpan, revisionDate, POSTPONE);
-    return newDate.getTime();
+    const [newDate, currDate] = calculateChangedRevisionDate(timeSpan, revisionDate, POSTPONE);
+    return newDate;
 }
 
 export const calculateExpeditedRevisionDate = (timeSpan, revisionDate) => {
     const EXPEDITE = false;
     const [newDate, currDate] = calculateChangedRevisionDate(timeSpan, revisionDate, EXPEDITE);
     let exceededCurrDay = false;
-    let newRevisionDate = newDate.getTime()
+    let newRevisionDate = newDate
     if (newDate < currDate) {
-        newRevisionDate = currDate.getTime(),
+        newRevisionDate = currDate,
         exceededCurrDay = true
     }
     return {
