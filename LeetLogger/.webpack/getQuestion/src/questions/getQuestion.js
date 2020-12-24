@@ -81,14 +81,14 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "../../../src/entries/deleteEntry.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "../../../src/questions/getQuestion.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "../../../libs/dynamoDB-lib.js":
+/***/ "../../../libs/dynamodb-lib.js":
 /*!************************************************************************!*\
-  !*** /Users/alexma/Desktop/LeetLogger/LeetLogger/libs/dynamoDB-lib.js ***!
+  !*** /Users/alexma/Desktop/LeetLogger/LeetLogger/libs/dynamodb-lib.js ***!
   \************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -269,10 +269,10 @@ const s3 = new aws_sdk__WEBPACK_IMPORTED_MODULE_1___default.a.S3();
 
 /***/ }),
 
-/***/ "../../../src/entries/deleteEntry.js":
-/*!******************************************************************************!*\
-  !*** /Users/alexma/Desktop/LeetLogger/LeetLogger/src/entries/deleteEntry.js ***!
-  \******************************************************************************/
+/***/ "../../../src/questions/getQuestion.js":
+/*!********************************************************************************!*\
+  !*** /Users/alexma/Desktop/LeetLogger/LeetLogger/src/questions/getQuestion.js ***!
+  \********************************************************************************/
 /*! exports provided: main */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -281,32 +281,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "main", function() { return main; });
 /* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! source-map-support/register */ "../../source-map-support/register.js");
 /* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(source_map_support_register__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _libs_dynamoDB_lib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../libs/dynamoDB-lib */ "../../../libs/dynamoDB-lib.js");
+/* harmony import */ var _libs_dynamodb_lib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../libs/dynamodb-lib */ "../../../libs/dynamodb-lib.js");
 /* harmony import */ var _libs_handler_lib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../libs/handler-lib */ "../../../libs/handler-lib.js");
 /* harmony import */ var _libs_s3_lib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../libs/s3-lib */ "../../../libs/s3-lib.js");
-/* harmony import */ var _libs_helpers_lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../libs/helpers-lib */ "../../../libs/helpers-lib.js");
-
 
 
 
 
 const main = Object(_libs_handler_lib__WEBPACK_IMPORTED_MODULE_2__["default"])(async (event, context) => {
-  const params = {
-    TableName: process.env.entryTable,
+  const dbParams = {
+    TableName: process.env.questionTable,
     Key: {
-      userID: "123",
-      entryID: event.pathParameters.entryId
-    },
-    ReturnValues: "ALL_OLD"
+      "userID": "123",
+      "questionID": event.pathParameters.questionId
+    }
   };
-  const deletedEntry = await _libs_dynamoDB_lib__WEBPACK_IMPORTED_MODULE_1__["default"].delete(params);
+  const questions = await _libs_dynamodb_lib__WEBPACK_IMPORTED_MODULE_1__["default"].get(dbParams);
 
-  if (Object(_libs_helpers_lib__WEBPACK_IMPORTED_MODULE_4__["isEmptyObject"])(deletedEntry)) {
-    throw new Error("Item not found");
+  if (!event.queryStringParameters || !event.queryStringParameters.title) {
+    throw new Error("title not in queryStringParameters");
   }
 
-  const expression = "select * from S3Object[*][*] s where s.entryID = '" + event["pathParameters"]["entryId"] + "'";
-  const s3SelectParams = {
+  const expression = "select * from S3Object[*][*] s where s.title = '" + event["queryStringParameters"]["title"] + "'";
+  const s3Params = {
     Bucket: process.env.s3BucketName,
     Expression: expression,
     ExpressionType: 'SQL',
@@ -322,32 +319,11 @@ const main = Object(_libs_handler_lib__WEBPACK_IMPORTED_MODULE_2__["default"])(a
       }
     }
   };
-  const s3ObjToDelete = await _libs_s3_lib__WEBPACK_IMPORTED_MODULE_3__["default"].s3SelectList(s3SelectParams);
-  const s3GetParams = {
-    Bucket: process.env.s3BucketName,
-    Key: "123"
+  const s3Data = await _libs_s3_lib__WEBPACK_IMPORTED_MODULE_3__["default"].s3SelectList(s3Params);
+  return { ...questions.Item,
+    s3Data: s3Data
   };
-  const updatedS3Obj = await deleteObjFromS3Data(s3GetParams, s3ObjToDelete.index);
-  const s3UploadParams = {
-    Bucket: process.env.s3BucketName,
-    Key: "123",
-    Body: JSON.stringify(updatedS3Obj)
-  };
-  await _libs_s3_lib__WEBPACK_IMPORTED_MODULE_3__["default"].upload(s3UploadParams); // const s3Params = { 
-  //     Bucket: process.env.s3BucketName,
-  //     Key: event.pathParameters.entryId
-  // }
-  // await s3.delete(s3Params);
-
-  return deletedEntry;
 });
-
-const deleteObjFromS3Data = async (s3GetParams, index) => {
-  const s3Obj = await _libs_s3_lib__WEBPACK_IMPORTED_MODULE_3__["default"].get(s3GetParams);
-  const jsonData = JSON.parse(s3Obj.Body.toString());
-  jsonData.splice(index, 1);
-  return jsonData;
-};
 
 /***/ }),
 
@@ -4358,4 +4334,4 @@ module.exports = require("path");
 /***/ })
 
 /******/ })));
-//# sourceMappingURL=deleteEntry.js.map
+//# sourceMappingURL=getQuestion.js.map

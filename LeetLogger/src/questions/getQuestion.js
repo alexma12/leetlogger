@@ -15,14 +15,14 @@ export const main = handler(async (event, context) => {
     if(!event.queryStringParameters || !event.queryStringParameters.title){
       throw new Error("title not in queryStringParameters")
     }
-    const expression = "select * from S3Object[*] s where s.title =  '" + event["queryStringParameters"]["title"] + "'";
+    const expression = "select * from S3Object[*][*] s where s.title = '" + event["queryStringParameters"]["title"] + "'";
     
 
     const s3Params = {
         Bucket: process.env.s3BucketName,
         Expression: expression,
         ExpressionType: 'SQL',
-        Key: event.pathParameters.questionId,
+        Key: "123",
         InputSerialization: {
           JSON: {
             Type: 'DOCUMENT',
@@ -37,5 +37,5 @@ export const main = handler(async (event, context) => {
 
     const s3Data = await s3.s3SelectList(s3Params);
         
-    return {...questions, ...s3Data }
+    return {...questions.Item, s3Data: s3Data }
 });

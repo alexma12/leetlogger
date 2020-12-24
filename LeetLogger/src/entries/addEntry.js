@@ -9,9 +9,6 @@ export const main = handler(async (event, context) => {
     const data = convertEntryToDBStruct(event.body);
     const entryID = uuid.v4();
     const currentDate = currentDateString();
-    
-    //generate noteID 
-    //currentDateString
 
     const dbParams = { 
         TableName: process.env.entryTable,

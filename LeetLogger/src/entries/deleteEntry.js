@@ -42,7 +42,7 @@ export const main = handler(async (event, context) => {
         Key: "123"
     }
 
-    const updatedS3Obj = await deleteObjFromS3Data(s3GetParams, s3ObjToDelete.index);
+    const updatedS3Obj = await deleteObjFromS3Data(s3GetParams, s3ObjToDelete[0].index);
 
     const s3UploadParams = {
         Bucket: process.env.s3BucketName,
@@ -65,6 +65,7 @@ export const main = handler(async (event, context) => {
 const deleteObjFromS3Data = async (s3GetParams, index) => {
     const s3Obj = await s3.get(s3GetParams);
     const jsonData = JSON.parse(s3Obj.Body.toString());
-    jsonData.splice(index,1);
+    jsonData[index] = null;
+    console.log(jsonData);
     return jsonData;
 }
