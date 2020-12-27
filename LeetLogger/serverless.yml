@@ -6,15 +6,15 @@ package:
   individually: true
 
 plugins:
-  - serverless-bundle # Package our functions with Webpack
+  - serverless-bundle
   - serverless-offline
-  - serverless-dotenv-plugin # Load .env as environment variables
+  - serverless-dotenv-plugin
   - serverless-pseudo-parameters
-
 provider:
   name: aws
   runtime: nodejs12.x
-  stage: prod
+  memorySize: 256
+  stage: dev
   region: us-west-2
   # To load environment variables externally
   # rename env.example to .env and uncomment
@@ -39,10 +39,12 @@ provider:
       Action:
         - s3:*
       Resource: arn:aws:s3:::*
+  
+
 
 functions:
   addEntry:
-    handler: src/entries/addEntry.main
+    handler: src/handlers/entries/addEntry.main
     events:
       - http:
           path: entries
@@ -50,7 +52,7 @@ functions:
           cors: true
 
   updateEntry:
-    handler: src/entries/updateEntry.main
+    handler: src/handlers/entries/updateEntry.main
     events:
       - http:
           path: entries/{entryId}
@@ -58,7 +60,7 @@ functions:
           cors: true
 
   getEntry:
-    handler: src/entries/getEntry.main
+    handler: src/handlers/entries/getEntry.main
     events:
       - http:
           path: entries/{entryId}
@@ -66,7 +68,7 @@ functions:
           cors: true
 
   deleteEntry:
-    handler: src/entries/deleteEntry.main
+    handler: src/handlers/entries/deleteEntry.main
     events:
       - http:
           path: entries/{entryId}
@@ -74,7 +76,7 @@ functions:
           cors: true
 
   listEntriesAll:
-    handler: src/entries/listEntriesAll.main
+    handler: src/handlers/entries/listEntriesAll.main
     events:
       - http:
           path: entries/list
@@ -82,7 +84,7 @@ functions:
           cors: true
 
   listEntriesBySubmittedAt:
-    handler: src/entries/listEntriesBySubmittedAt.main
+    handler: src/handlers/entries/listEntriesBySubmittedAt.main
     events:
       - http:
           path: entries/list/entriesInTwoDays
@@ -90,7 +92,7 @@ functions:
           cors: true
 
   listEntriesByTitle:
-    handler: src/entries/listEntriesByTitle.main
+    handler: src/handlers/entries/listEntriesByTitle.main
     events:
       - http:
           path: entries/list/{title}
@@ -98,14 +100,14 @@ functions:
           cors: true
 
   addQuestion:
-    handler: src/questions/addQuestion.main
+    handler: src/handlers/questions/addQuestion.main
     
 
   deleteQuestion:
-    handler: src/questions/deleteQuestion.main
+    handler: src/handlers/questions/deleteQuestion.main
   
   getQuestion:
-    handler: src/questions/getQuestion.main
+    handler: src/handlers/questions/getQuestion.main
     events:
       - http:
           path: questions/{questionId}/{title}
@@ -113,7 +115,7 @@ functions:
           cors: true
 
   listQuestionAll:
-    handler: src/questions/listQuestionAll.main
+    handler: src/handlers/questions/listQuestionAll.main
     events:
       - http:
           path: questions/list
@@ -121,7 +123,7 @@ functions:
           cors: true
 
   listQuestionByType:
-    handler: src/questions/listQuestionByType.main
+    handler: src/handlers/questions/listQuestionByType.main
     events:
       - http:
           path: questions/list/{type}
@@ -129,7 +131,7 @@ functions:
           cors: true
 
   listSortedRevisionQuestions:
-    handler: src/questions/listSortedRevisionQuestions.main
+    handler: src/handlers/questions/listSortedRevisionQuestions.main
     events:
       - http:
           path: questions/list/revisionQuestions
@@ -137,7 +139,7 @@ functions:
           cors: true
 
   expediteRevisionDate:
-    handler: src/questions/expediteRevisionDate.main
+    handler: src/handlers/questions/expediteRevisionDate.main
     events:
       - http:
           path: questions/{questionId}/expedite
@@ -145,7 +147,7 @@ functions:
           cors: true
 
   postponeRevisionDate:
-    handler: src/questions/postponeRevisionDate.main
+    handler: src/handlers/questions/postponeRevisionDate.main
     events:
       - http:
           path: questions/{questionId}/postpone
@@ -153,7 +155,7 @@ functions:
           cors: true
 
   completeRevisionQuestion:
-    handler: src/questions/completeRevisionQuestion.main
+    handler: src/handlers/questions/completeRevisionQuestion.main
     events:
       - http:
           path: questions/{questionId}/complete
@@ -161,13 +163,13 @@ functions:
           cors: true
 
   incQuestionEntryCount:
-    handler: src/questions/incQuestionEntryCount.main
+    handler: src/handlers/questions/incQuestionEntryCount.main
 
   incQuestyEntryAndUpdateRevisionDate:
-    handler: src/questions/incQuestionEntryAndUpdateRevisionDate.main
+    handler: src/handlers/questions/incQuestionEntryAndUpdateRevisionDate.main
    
   decQuestionEntryCount:
-    handler: src/questions/decQuestionEntryCount.main
+    handler: src/handlers/questions/decQuestionEntryCount.main
     events:
       - http:
           path: questions/{questionId}/dec
@@ -175,14 +177,12 @@ functions:
           cors: true
 
   loginUserS3Create:
-    handler: src/login/loginUserS3Create.main
+    handler: src/handlers/login/loginUserS3Create.main
     events:
       - http:
           path: login
           method: post
           cors: true
-
-      
 
 custom:
   bundle:

@@ -5,6 +5,7 @@ import {convertEntryToDBStruct} from "../../libs/helpers-lib";
 import {currentDateString} from "../../libs/timestamp-helpers-lib"
 import * as uuid from "uuid";
 
+
 export const main = handler(async (event, context) => {
     const data = convertEntryToDBStruct(event.body);
     const entryID = uuid.v4();
