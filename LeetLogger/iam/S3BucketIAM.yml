@@ -1,0 +1,9 @@
+S3BucketIAM:
+  Effect: Allow
+  Action: 
+    - s3:putObject
+    - s3:getOjbect
+    - s3:upload
+    - s3:selectObjectContent
+  Resource: 
+      - ${self:custom.NoteBucket.arn}

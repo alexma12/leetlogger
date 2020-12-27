@@ -21,169 +21,53 @@ provider:
   # the following line. Also, make sure to not
   # commit your .env.
   #
+
   environment:
-    questionTable: leetlogger-questions
-    entryTable: leetlogger-entries
-    s3BucketName: leetlogger-notes-and-solutions
+    questionTable: ${self:custom.QuestionTable.name}
+    entryTable: ${self:custom.EntryTable.name}
+    s3BucketName: ${self:custom.NoteBucket.name}
 
   iamRoleStatements:
-    - Effect: "Allow"
-      Action:
-        - dynamodb:PutItem
-        - dynamodb:GetItem
-        - dynamodb:UpdateItem
-        - dyanmodb:DeleteItem
-        - dynamodb:Query
-      Resource: arn:aws:dynamodb:us-west-2:*:*
-    - Effect: "Allow"
-      Action:
-        - s3:*
-      Resource: arn:aws:s3:::*
+    - ${file(iam/DynamodbIAM.yml):DynamodbIAM}
+    - ${file(iam/S3BucketIAM.yml):S3BucketIAM}
   
-
+resources: 
+    Resources: 
+      QuestionTable: ${file(resources/QuestionTable.yml):QuestionTable}
+      EntryTable: ${file(resources/EntryTable.yml):EntryTable} 
+      NoteBucket: ${file(resources/NoteBucket.yml):NoteBucket}
 
 functions:
-  addEntry:
-    handler: src/handlers/entries/addEntry.main
-    events:
-      - http:
-          path: entries
-          method: post
-          cors: true
+  addEntry: ${file(functions/entryApiFunctions.yml):addEntry}
+  updateEntry: ${file(functions/entryApiFunctions.yml):updateEntry}
+  getEntry: ${file(functions/entryApiFunctions.yml):getEntry}
+  deleteEntry: ${file(functions/entryApiFunctions.yml):deleteEntry}
+  listEntriesAll: ${file(functions/entryApiFunctions.yml):listEntriesAll}
+  listEntriesBySubmittedAt: ${file(functions/entryApiFunctions.yml):listEntriesBySubmittedAt}
+  listEntriesByTitle: ${file(functions/entryApiFunctions.yml):listEntriesByTitle}
 
-  updateEntry:
-    handler: src/handlers/entries/updateEntry.main
-    events:
-      - http:
-          path: entries/{entryId}
-          method: put
-          cors: true
-
-  getEntry:
-    handler: src/handlers/entries/getEntry.main
-    events:
-      - http:
-          path: entries/{entryId}
-          method: get
-          cors: true
-
-  deleteEntry:
-    handler: src/handlers/entries/deleteEntry.main
-    events:
-      - http:
-          path: entries/{entryId}
-          method: delete
-          cors: true
-
-  listEntriesAll:
-    handler: src/handlers/entries/listEntriesAll.main
-    events:
-      - http:
-          path: entries/list
-          method: get
-          cors: true
-
-  listEntriesBySubmittedAt:
-    handler: src/handlers/entries/listEntriesBySubmittedAt.main
-    events:
-      - http:
-          path: entries/list/entriesInTwoDays
-          method: get
-          cors: true
-
-  listEntriesByTitle:
-    handler: src/handlers/entries/listEntriesByTitle.main
-    events:
-      - http:
-          path: entries/list/{title}
-          method: get
-          cors: true
-
-  addQuestion:
-    handler: src/handlers/questions/addQuestion.main
-    
-
-  deleteQuestion:
-    handler: src/handlers/questions/deleteQuestion.main
-  
-  getQuestion:
-    handler: src/handlers/questions/getQuestion.main
-    events:
-      - http:
-          path: questions/{questionId}/{title}
-          method: get
-          cors: true
-
-  listQuestionAll:
-    handler: src/handlers/questions/listQuestionAll.main
-    events:
-      - http:
-          path: questions/list
-          method: get
-          cors: true
-
-  listQuestionByType:
-    handler: src/handlers/questions/listQuestionByType.main
-    events:
-      - http:
-          path: questions/list/{type}
-          method: get
-          cors: true
-
-  listSortedRevisionQuestions:
-    handler: src/handlers/questions/listSortedRevisionQuestions.main
-    events:
-      - http:
-          path: questions/list/revisionQuestions
-          method: get
-          cors: true
-
-  expediteRevisionDate:
-    handler: src/handlers/questions/expediteRevisionDate.main
-    events:
-      - http:
-          path: questions/{questionId}/expedite
-          method: post
-          cors: true
-
-  postponeRevisionDate:
-    handler: src/handlers/questions/postponeRevisionDate.main
-    events:
-      - http:
-          path: questions/{questionId}/postpone
-          method: post
-          cors: true
-
-  completeRevisionQuestion:
-    handler: src/handlers/questions/completeRevisionQuestion.main
-    events:
-      - http:
-          path: questions/{questionId}/complete
-          method: post
-          cors: true
-
-  incQuestionEntryCount:
-    handler: src/handlers/questions/incQuestionEntryCount.main
-
-  incQuestyEntryAndUpdateRevisionDate:
-    handler: src/handlers/questions/incQuestionEntryAndUpdateRevisionDate.main
-   
-  decQuestionEntryCount:
-    handler: src/handlers/questions/decQuestionEntryCount.main
-    events:
-      - http:
-          path: questions/{questionId}/dec
-          method: post
-          cors: true
-
-  loginUserS3Create:
-    handler: src/handlers/login/loginUserS3Create.main
-    events:
-      - http:
-          path: login
-          method: post
-          cors: true
+  addQuestion: ${file(functions/questionApiFunctions.yml):addQuestion}
+  deleteQuestion: ${file(functions/questionApiFunctions.yml):deleteQuestion}
+  getQuestion: ${file(functions/questionApiFunctions.yml):getQuestion}
+  listQuestionAll: ${file(functions/questionApiFunctions.yml):listQuestionAll}
+  listQuestionByType: ${file(functions/questionApiFunctions.yml):listQuestionByType}
+  listSortedRevisionQuestions: ${file(functions/questionApiFunctions.yml):listSortedRevisionQuestions}
+  expediteRevisionDate: ${file(functions/questionApiFunctions.yml):expediteRevisionDate}
+  postponeRevisionDate: ${file(functions/questionApiFunctions.yml):postponeRevisionDate}
+  completeRevisionQuestion: ${file(functions/questionApiFunctions.yml):completeRevisionQuestion}
+  incQuestionEntryCount: ${file(functions/questionApiFunctions.yml):incQuestionEntryCount}
+  decQuestionEntryCount: ${file(functions/questionApiFunctions.yml):decQuestionEntryCount}
+  loginUserS3Create: ${file(functions/loginApiFunctions.yml):loginUserS3Create}
 
 custom:
+  QuestionTable:
+    name: !Ref QuestionTable 
+    arn: !GetAtt QuestionTable.Arn
+  EntryTable:
+    name: !Ref EntryTable 
+    arn: !GetAtt EntryTable.Arn
+  NoteBucket:
+    name: !Ref NoteBucket
+    arn: !GetAtt NoteBucket.Arn
   bundle:
     linting: false

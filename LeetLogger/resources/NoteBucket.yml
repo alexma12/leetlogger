@@ -1,0 +1,4 @@
+NoteBucket: 
+  Type: AWS::S3::Bucket
+  Properties:
+    BucketName: leetlogger-notes-bucket-q12hg7y-${self:provider.stage}

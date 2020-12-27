@@ -1,0 +1,49 @@
+QuestionTable: 
+  Type: AWS::DynamoDB::Table
+  Properties:
+    TableName: QuestionTable-${self:provider.stage}
+    BillingMode: PAY_PER_REQUEST
+    AttributeDefinitions:
+      - AttributeName: userID
+        AttributeType: S
+      - AttributeName: questionID
+        AttributeType: S
+      - AttributeName: questionType
+        AttributeType: S
+      - AttributeName: title
+        AttributeType: S
+      - AttributeName: revisionDate
+        AttributeType: "N"   
+    KeySchema:
+      - AttributeName: userID
+        KeyType: HASH
+      - AttributeName: questionID
+        KeyType: RANGE
+
+    LocalSecondaryIndexes:
+      - IndexName: userID-revisionDate-index
+        KeySchema:
+              - AttributeName: userID
+                KeyType: HASH
+              - AttributeName: revisionDate
+                KeyType: RANGE
+        Projection: 
+              ProjectionType: ALL
+
+      - IndexName: userID-title-index
+        KeySchema:
+              - AttributeName: userID
+                KeyType: HASH
+              - AttributeName: title
+                KeyType: RANGE
+        Projection: 
+              ProjectionType: ALL
+
+      - IndexName: userID-questionType-index
+        KeySchema:
+              - AttributeName: userID
+                KeyType: HASH
+              - AttributeName: questionType
+                KeyType: RANGE
+        Projection: 
+              ProjectionType: ALL

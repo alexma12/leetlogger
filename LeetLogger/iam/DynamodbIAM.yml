@@ -1,0 +1,16 @@
+DynamodbIAM:
+  Effect: Allow
+  Action:
+    - dynamodb:PutItem
+    - dynamodb:GetItem
+    - dynamodb:UpdateItem
+    - dyanmodb:DeleteItem
+    - dynamodb:Query
+  Resource: 
+    - ${self:custom.QuestionTable.arn}
+    - !Join ["/", ["${self:custom.QuestionTable.arn}", "index", "userID-revsionDate-index"]]
+    - !Join ["/", ["${self:custom.QuestionTable.arn}", "index", "userID-title-index"]]
+    - !Join ["/", ["${self:custom.QuestionTable.arn}", "index", "userID-questionType-index"]]
+    - ${self:custom.EntryTable.arn}
+    - !Join ["/", ["${self:custom.EntryTable.arn}", "index", "userID-submittedAt-index"]]
+    - !Join ["/", ["${self:custom.EntryTable.arn}", "index", "userID-title-index"]]

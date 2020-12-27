@@ -1,0 +1,74 @@
+addQuestion:
+    handler: src/handlers/questions/addQuestion.main
+    
+
+deleteQuestion:
+    handler: src/handlers/questions/deleteQuestion.main
+  
+getQuestion:
+    handler: src/handlers/questions/getQuestion.main
+    events:
+      - http:
+          path: questions/{questionId}/{title}
+          method: get
+          cors: true
+
+listQuestionAll:
+    handler: src/handlers/questions/listQuestionAll.main
+    events:
+      - http:
+          path: questions/list
+          method: get
+          cors: true
+
+listQuestionByType:
+    handler: src/handlers/questions/listQuestionByType.main
+    events:
+      - http:
+          path: questions/list/{type}
+          method: get
+          cors: true
+
+listSortedRevisionQuestions:
+    handler: src/handlers/questions/listSortedRevisionQuestions.main
+    events:
+      - http:
+          path: questions/list/revisionQuestions
+          method: get
+          cors: true
+
+expediteRevisionDate:
+    handler: src/handlers/questions/expediteRevisionDate.main
+    events:
+      - http:
+          path: questions/{questionId}/expedite
+          method: post
+          cors: true
+
+postponeRevisionDate:
+    handler: src/handlers/questions/postponeRevisionDate.main
+    events:
+      - http:
+          path: questions/{questionId}/postpone
+          method: post
+          cors: true
+
+completeRevisionQuestion:
+    handler: src/handlers/questions/completeRevisionQuestion.main
+    events:
+      - http:
+          path: questions/{questionId}/complete
+          method: post
+          cors: true
+
+incQuestionEntryCount:
+    handler: src/handlers/questions/incQuestionEntryCount.main
+
+   
+decQuestionEntryCount:
+    handler: src/handlers/questions/decQuestionEntryCount.main
+    events:
+      - http:
+          path: questions/{questionId}/dec
+          method: post
+          cors: true

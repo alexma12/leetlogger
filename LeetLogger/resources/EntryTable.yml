@@ -1,0 +1,37 @@
+EntryTable: 
+  Type: AWS::DynamoDB::Table
+  Properties:
+    TableName: EntryTable-${self:provider.stage}
+    BillingMode: PAY_PER_REQUEST
+    AttributeDefinitions:
+      - AttributeName: userID
+        AttributeType: S
+      - AttributeName: entryID
+        AttributeType: S
+      - AttributeName: submittedAt
+        AttributeType: "N"
+      - AttributeName: title
+        AttributeType: S
+    KeySchema:
+      - AttributeName: userID
+        KeyType: HASH
+      - AttributeName: entryID
+        KeyType: RANGE
+    LocalSecondaryIndexes:
+      - IndexName: userID-submittedAt-index
+        KeySchema:
+            - AttributeName: userID
+              KeyType: HASH
+            - AttributeName: submittedAt
+              KeyType: RANGE
+        Projection: 
+            ProjectionType: ALL
+
+      - IndexName: userID-title-index
+        KeySchema:
+              - AttributeName: userID
+                KeyType: HASH
+              - AttributeName: title
+                KeyType: RANGE
+        Projection: 
+              ProjectionType: ALL
