@@ -1,16 +1,28 @@
 
-import dynamoDB from "../../libs/dynamodb-lib";
-import handler from "../../libs/handler-lib";
+import createError from "http-errors";
 
-export const main = handler(async (event, context) => {
+import middleware from "../../libs/middleware";
+import dynamoDB from "../../libs/dynamodb-lib";
+
+
+async function handler(event, context){
     const params = {
         TableName: process.env.entryTable,
         KeyConditionExpression: "userID = :userID",
         ExpressionAttributeValues: {
-           ":userID": "123"
+            ":userID": "123"
         },
     }
-    const entries = await dynamoDB.query(params);
+    let entries
+    try {
+        entries = await dynamoDB.query(params);
+    } catch {
+        throw new createError.InternalServerError("Error occured when querying for your entries");
+    }
+    return {
+        status: 200,
+        body: entries.Items
+    }       
+};
 
-    return entries.Items;
-});
+export const main = middleware(handler);

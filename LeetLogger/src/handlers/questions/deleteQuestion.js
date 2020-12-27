@@ -1,7 +1,9 @@
-import dynamoDB from "../../libs/dynamoDB-lib";
-import handler from "../../libs/handler-lib";
+import createError from "http-errors"
 
-export const main = handler(async (event, context) => {
+import middleware from "../../libs/middleware"
+import dynamoDB from "../../libs/dynamoDB-lib";
+
+async function handler(event, context) {
     const params = {
         TableName: process.env.questionTable,
         Key: {
@@ -10,11 +12,25 @@ export const main = handler(async (event, context) => {
         },
         ReturnValues: "ALL_OLD"
     }
-    const deletedQuestion = await dynamoDB.delete(params);
+    let deletedQuestion 
+    
+    try {    
+        await dynamoDB.delete(params);
+    } catch { 
+        throw new createError.InternalServerError();
+    }
 
     if(!deletedQuestion){
-        throw new Error("Item not found")
+        throw new createError.NotFound();
     }
-    return deletedQuestion;
+
+    return {
+        status: 200,
+        body: deletedQuestion
+    }
     
-});
+};
+
+export const main = middleware(handler);
+
+

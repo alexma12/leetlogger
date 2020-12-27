@@ -1,8 +1,10 @@
 
-import handler from "../../libs/handler-lib";
+import createError from "http-errors";
+
+import middleware from "../../libs/middleware";
 import s3 from "../../libs/s3-lib";
 
-export const main = handler(async (event, context) => {
+async function handler(event, context) {
     const userID = "123" //event
 
     const s3Params = { 
@@ -10,10 +12,18 @@ export const main = handler(async (event, context) => {
         Key: userID,
         Body: "[]"
     }
+
+    try {
     await s3.put(s3Params);
+    } catch {
+        throw new createError.InternalServerError("Error occured when creating your a question");
+    }
 
     return {
-        addedUserS3Bucket: true
-    }
-   
-});
+        status: 201,
+        addedUserS3BucketFile: true
+    } 
+};
+
+
+export const main = middleware(handler)

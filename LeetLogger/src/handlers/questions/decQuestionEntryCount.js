@@ -1,7 +1,9 @@
-import dynamoDB from "../../libs/dynamoDB-lib";
-import handler from "../../libs/handler-lib";
+import createError from "http-errors";
 
-export const main = handler(async (event, context) => {
+import middleware from "../../libs/middleware"
+import dynamoDB from "../../libs/dynamoDB-lib";
+
+async function handler(event, context) {
 
     const params = {
         TableName: process.env.questionTable,
@@ -16,6 +18,17 @@ export const main = handler(async (event, context) => {
         ReturnValues: "ALL_NEW"
 
     }
-    const updatedEntry = await dynamoDB.update(params);
-    return updatedEntry
-}); 
+    let updatedEntry;
+
+    try {
+    updatedEntry = await dynamoDB.update(params);
+    } catch {
+        throw new createError.InternalServerError("Error occured when creating your a question");
+    }
+    return {
+        status: 200,
+        body: updatedEntry
+    }
+}; 
+
+export const main = middleware(handler)

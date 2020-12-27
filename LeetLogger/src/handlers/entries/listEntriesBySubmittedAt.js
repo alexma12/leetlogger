@@ -1,19 +1,30 @@
-import handler from "../../libs/handler-lib"
-import dynamoDB from "../../libs/dynamodb-lib";
-import {twoDaysAgo} from "../../libs/timestamp-helpers-lib";
+import createError from "http-errors";
 
-export const main = handler(async (event, context) => {
+import middleware from "../../libs/middleware";
+import dynamoDB from "../../libs/dynamodb-lib";
+import { twoDaysAgo } from "../../libs/timestamp-helpers-lib";
+
+async function handler(event, context) {
     const twoDaysPrior = twoDaysAgo();
     const params = {
         TableName: process.env.entryTable,
         IndexName: "userID-submittedAt-index",
         KeyConditionExpression: "userID = :userID and submittedAt >= :twoDaysPrior",
         ExpressionAttributeValues: {
-           ":userID": "123",
-           ":twoDaysPrior": twoDaysPrior
+            ":userID": "123",
+            ":twoDaysPrior": twoDaysPrior
         },
     }
-    const entries = await dynamoDB.query(params);
+    let entries
+    try {
+        entries = await dynamoDB.query(params);
+    } catch {
+        throw new createError.InternalServerError("Error occured when querying for your entries");
+    }
+    return {
+        status: 200,
+        body: entries.Items
+    }
+};
 
-    return entries.Items;
-});
+export const main = middleware(handler)

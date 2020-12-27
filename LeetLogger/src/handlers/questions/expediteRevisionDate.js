@@ -1,13 +1,16 @@
-import handler from "../../libs/handler-lib";
-import dynamoDB from "../../libs/dynamoDB-lib"
-import {calculateExpeditedRevisionDate} from "../../libs/timestamp-helpers-lib";
+import createError from "http-errors"
 
-export const main = handler(async (event, context) => {
-    const data = JSON.parse(event.body);
-    if(data.revisionDate === -1){
-        throw new Error("This question does not have a revision date set")
+import middleware from "../../libs/middleware"
+import dynamoDB from "../../libs/dynamoDB-lib"
+import { calculateExpeditedRevisionDate } from "../../libs/timestamp-helpers-lib";
+
+async function handler(event, context) {
+    const {timeDelay, revisionDate} = event.body;
+
+    if (data.revisionDate === -1) {
+        throw new createError.Forbidden("This question does not have a revision date set")
     }
-    const expeditedDate = calculateExpeditedRevisionDate(data.timeDelay, data.revisionDate);
+    const expeditedDate = calculateExpeditedRevisionDate(timeDelay, revisionDate);
     const params = {
         TableName: process.env.questionTable,
         Key: {
@@ -19,6 +22,16 @@ export const main = handler(async (event, context) => {
             ":expeditedDate": expeditedDate.revisionDate,
         },
     }
-    await dynamoDB.update(params);
-    return expeditedDate;
-}); 
+
+    try {
+        await dynamoDB.update(params);
+    } catch {
+        throw new createError.InternalServerError();
+    }
+    return {
+        status: 200,
+        body: expeditedDate
+    }
+};
+
+export const main = middleware(handler)

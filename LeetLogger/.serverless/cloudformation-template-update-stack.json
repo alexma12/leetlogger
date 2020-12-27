@@ -173,12 +173,6 @@
         "LogGroupName": "/aws/lambda/LeetLogger-dev-incQuestionEntryCount"
       }
     },
-    "IncQuestyEntryAndUpdateRevisionDateLogGroup": {
-      "Type": "AWS::Logs::LogGroup",
-      "Properties": {
-        "LogGroupName": "/aws/lambda/LeetLogger-dev-incQuestyEntryAndUpdateRevisionDate"
-      }
-    },
     "DecQuestionEntryCountLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
@@ -391,7 +385,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/LeetLogger/dev/1609043909968-2020-12-27T04:38:29.968Z/addEntry.zip"
+          "S3Key": "serverless/LeetLogger/dev/1609053104971-2020-12-27T07:11:44.971Z/addEntry.zip"
         },
         "Handler": "src/handlers/entries/addEntry.main",
         "Runtime": "nodejs12.x",
@@ -423,14 +417,14 @@
         "AddEntryLogGroup"
       ]
     },
-    "AddEntryLambdaVersionf8r4FpurAywEBOF56wPiQS3K5irg1wD19TjQ0bCFlgk": {
+    "AddEntryLambdaVersionL6nEVlDbf5P9UnXJVEj9YvIIZ69G2CyBN1VlDrWWVZ0": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AddEntryLambdaFunction"
         },
-        "CodeSha256": "trShwqxmffBYXev9CjDge/HqEkhjMfowoFUQ6sEZEM0="
+        "CodeSha256": "RjuOwp4QmmcICaghJaAUlvLyzwxqPEpCaBo24PkV/w0="
       }
     },
     "UpdateEntryLambdaFunction": {
@@ -440,7 +434,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/LeetLogger/dev/1609043909968-2020-12-27T04:38:29.968Z/updateEntry.zip"
+          "S3Key": "serverless/LeetLogger/dev/1609053104971-2020-12-27T07:11:44.971Z/updateEntry.zip"
         },
         "Handler": "src/handlers/entries/updateEntry.main",
         "Runtime": "nodejs12.x",
@@ -472,14 +466,14 @@
         "UpdateEntryLogGroup"
       ]
     },
-    "UpdateEntryLambdaVersionYAOHXk7x8nBJ1ljI8KMtynS7Z3OGHVx4FdNrXHkDE": {
+    "UpdateEntryLambdaVersionjeFK7ZSTXCaJ7q4Ae9kcjUvbW8NjwshhKpmcoBYrlSE": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "UpdateEntryLambdaFunction"
         },
-        "CodeSha256": "x0+yInIA8SxRWq335pmLrN46g2XHjmMZM9bSZtHMheI="
+        "CodeSha256": "U+nCqVlUfnqnVvOLl9s+QlgVfnEEMt9qPWKwCeLR8iM="
       }
     },
     "GetEntryLambdaFunction": {
@@ -489,7 +483,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/LeetLogger/dev/1609043909968-2020-12-27T04:38:29.968Z/getEntry.zip"
+          "S3Key": "serverless/LeetLogger/dev/1609053104971-2020-12-27T07:11:44.971Z/getEntry.zip"
         },
         "Handler": "src/handlers/entries/getEntry.main",
         "Runtime": "nodejs12.x",
@@ -521,14 +515,14 @@
         "GetEntryLogGroup"
       ]
     },
-    "GetEntryLambdaVersionDCK3Xro7EKCssShdt5x8U6n4O3mpvqxJgme4l8bE": {
+    "GetEntryLambdaVersion6waj46V5leKpjZ1gLUHdYcVRk7O4eopVgiWvjl6Lbc": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetEntryLambdaFunction"
         },
-        "CodeSha256": "d5skGl6KnQwta6PoChe6Qx16NkmrLHc+K+vWMNtOQ0M="
+        "CodeSha256": "LM46ZIg/XIIMivFW9hSaqLWWrWcn8V0Ag9aiFEQv2Io="
       }
     },
     "DeleteEntryLambdaFunction": {
@@ -538,7 +532,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/LeetLogger/dev/1609043909968-2020-12-27T04:38:29.968Z/deleteEntry.zip"
+          "S3Key": "serverless/LeetLogger/dev/1609053104971-2020-12-27T07:11:44.971Z/deleteEntry.zip"
         },
         "Handler": "src/handlers/entries/deleteEntry.main",
         "Runtime": "nodejs12.x",
@@ -570,14 +564,14 @@
         "DeleteEntryLogGroup"
       ]
     },
-    "DeleteEntryLambdaVersionFUuoXvWxSrh0u5nKHbmSLfCfrcKNCFz4bPK8C7VWBU": {
+    "DeleteEntryLambdaVersionZ9xsI0qWd0OyhG3d6b6CViVo8oC5rqAhQuOkR34KQ": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "DeleteEntryLambdaFunction"
         },
-        "CodeSha256": "asEQ9BguMUeh+5IDur6q+wYywakMdQx/WsZd6YRMTUw="
+        "CodeSha256": "1w3pcVHYa0i43YaCS1yVX5DbZiYMHAbbeEsAc6/NVAY="
       }
     },
     "ListEntriesAllLambdaFunction": {
@@ -587,7 +581,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/LeetLogger/dev/1609043909968-2020-12-27T04:38:29.968Z/listEntriesAll.zip"
+          "S3Key": "serverless/LeetLogger/dev/1609053104971-2020-12-27T07:11:44.971Z/listEntriesAll.zip"
         },
         "Handler": "src/handlers/entries/listEntriesAll.main",
         "Runtime": "nodejs12.x",
@@ -619,14 +613,14 @@
         "ListEntriesAllLogGroup"
       ]
     },
-    "ListEntriesAllLambdaVersiondCpe3lsJyXYAXwHMWSEDXW5nWXehdrjSvhAhfzuwwVE": {
+    "ListEntriesAllLambdaVersionIUB8gwaCfW7FdEHaztxXZNfNfvQdQJ1uXhlfo90d0": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ListEntriesAllLambdaFunction"
         },
-        "CodeSha256": "u6i5ZVEWEl5AblvwQLUWrwcszktYuMaieFcHsx2q8E8="
+        "CodeSha256": "FHnzIuWWzvP63eeu1WCUBtOYRSJxzT9ZnxcBPynndkk="
       }
     },
     "ListEntriesBySubmittedAtLambdaFunction": {
@@ -636,7 +630,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/LeetLogger/dev/1609043909968-2020-12-27T04:38:29.968Z/listEntriesBySubmittedAt.zip"
+          "S3Key": "serverless/LeetLogger/dev/1609053104971-2020-12-27T07:11:44.971Z/listEntriesBySubmittedAt.zip"
         },
         "Handler": "src/handlers/entries/listEntriesBySubmittedAt.main",
         "Runtime": "nodejs12.x",
@@ -668,14 +662,14 @@
         "ListEntriesBySubmittedAtLogGroup"
       ]
     },
-    "ListEntriesBySubmittedAtLambdaVersionHAQXFJ8UsKyxLFQws1OiyqrXUdnV3LDN2AnXNTx0UgE": {
+    "ListEntriesBySubmittedAtLambdaVersion3iVNH4eLMkxp3GbUn14i2PrLvpZ09umO2nOwDIKM0": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ListEntriesBySubmittedAtLambdaFunction"
         },
-        "CodeSha256": "G1ulemrluQitUaFnyPsGpgsBVksGBRN1vuiiGM9b5Ng="
+        "CodeSha256": "A7pPmK5w5VVT4aY8WPXIvEL3jOaDS/RhsT5D99/Ib3Q="
       }
     },
     "ListEntriesByTitleLambdaFunction": {
@@ -685,7 +679,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/LeetLogger/dev/1609043909968-2020-12-27T04:38:29.968Z/listEntriesByTitle.zip"
+          "S3Key": "serverless/LeetLogger/dev/1609053104971-2020-12-27T07:11:44.971Z/listEntriesByTitle.zip"
         },
         "Handler": "src/handlers/entries/listEntriesByTitle.main",
         "Runtime": "nodejs12.x",
@@ -717,14 +711,14 @@
         "ListEntriesByTitleLogGroup"
       ]
     },
-    "ListEntriesByTitleLambdaVersioneowmF3TbEkzy9QEzt8U18dwSn3KpivnnDoLt1giF0I": {
+    "ListEntriesByTitleLambdaVersionlLlKuuEBZ7iNo7p9HMtXRThOtNak027uelrgIdBw9Fo": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ListEntriesByTitleLambdaFunction"
         },
-        "CodeSha256": "QqyYfdmnTZj6ca6rIEEr2erEji/Rlmsgdw1loVumNDA="
+        "CodeSha256": "rOFrocxhLKEeAQDOJ9nMapgpsdnKH5cS3WZo894ida0="
       }
     },
     "AddQuestionLambdaFunction": {
@@ -734,7 +728,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/LeetLogger/dev/1609043909968-2020-12-27T04:38:29.968Z/addQuestion.zip"
+          "S3Key": "serverless/LeetLogger/dev/1609053104971-2020-12-27T07:11:44.971Z/addQuestion.zip"
         },
         "Handler": "src/handlers/questions/addQuestion.main",
         "Runtime": "nodejs12.x",
@@ -766,14 +760,14 @@
         "AddQuestionLogGroup"
       ]
     },
-    "AddQuestionLambdaVersion6dgjprDfu5UuL9z4isCHTizS1ydHdRa9bjlnsE": {
+    "AddQuestionLambdaVersionKawIJHXrN7YkifZGGzI2eXUwLdnQP92SrhiSFi6s": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AddQuestionLambdaFunction"
         },
-        "CodeSha256": "R9VA/6t11fsehVslLhD/OcfXI/mhMoeozWZVnjmOqEc="
+        "CodeSha256": "0Ng6ZjC7HTxzQTHFZiqwg90f6UvwPdy9RMyyVe4nOuA="
       }
     },
     "DeleteQuestionLambdaFunction": {
@@ -783,7 +777,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/LeetLogger/dev/1609043909968-2020-12-27T04:38:29.968Z/deleteQuestion.zip"
+          "S3Key": "serverless/LeetLogger/dev/1609053104971-2020-12-27T07:11:44.971Z/deleteQuestion.zip"
         },
         "Handler": "src/handlers/questions/deleteQuestion.main",
         "Runtime": "nodejs12.x",
@@ -815,14 +809,14 @@
         "DeleteQuestionLogGroup"
       ]
     },
-    "DeleteQuestionLambdaVersionn1imUfsF7Uxl24dtfVk7RPPC6HrQBGEIuwxl6UIM": {
+    "DeleteQuestionLambdaVersionTZAQfmIm4x4QaT8RQM1UNuBxV2kSWl6Tv8f7Jx2sv0": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "DeleteQuestionLambdaFunction"
         },
-        "CodeSha256": "qGsCmbEU0PrKjwwLX7o34sh9noEMUw2HZmYo6zl5vSU="
+        "CodeSha256": "Ev7Re+gFjHZsyGLExWsyrwh1owNLC9bRFz+8rCvgqk8="
       }
     },
     "GetQuestionLambdaFunction": {
@@ -832,7 +826,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/LeetLogger/dev/1609043909968-2020-12-27T04:38:29.968Z/getQuestion.zip"
+          "S3Key": "serverless/LeetLogger/dev/1609053104971-2020-12-27T07:11:44.971Z/getQuestion.zip"
         },
         "Handler": "src/handlers/questions/getQuestion.main",
         "Runtime": "nodejs12.x",
@@ -864,14 +858,14 @@
         "GetQuestionLogGroup"
       ]
     },
-    "GetQuestionLambdaVersionu5SdK6p3k6JJlIv09MmGm2udU7B0IDuCXtcJkmbag": {
+    "GetQuestionLambdaVersionJazFy6VKyQkdouxz6G8uI7d3YSaS2uTp22trZwfH4": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetQuestionLambdaFunction"
         },
-        "CodeSha256": "FD//LPn2ZnHJfN9Nju7lspIm3k1G6maPsrMtlyCvB0g="
+        "CodeSha256": "3yF0vpylujR/2KkGVXHbjrYvY8Lx93FWS8qrELr2eV8="
       }
     },
     "ListQuestionAllLambdaFunction": {
@@ -881,7 +875,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/LeetLogger/dev/1609043909968-2020-12-27T04:38:29.968Z/listQuestionAll.zip"
+          "S3Key": "serverless/LeetLogger/dev/1609053104971-2020-12-27T07:11:44.971Z/listQuestionAll.zip"
         },
         "Handler": "src/handlers/questions/listQuestionAll.main",
         "Runtime": "nodejs12.x",
@@ -913,14 +907,14 @@
         "ListQuestionAllLogGroup"
       ]
     },
-    "ListQuestionAllLambdaVersionDlr2FycSnzxC8ciqQFotKEGaN72jylxjVxcbbcZvbY": {
+    "ListQuestionAllLambdaVersionu893Jils8Tqwss6EuwfAeoGVDAdoEvlgURqXzzg4A": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ListQuestionAllLambdaFunction"
         },
-        "CodeSha256": "UBztzFCnd7zKyccYnIT+nfxULOyqlsitKBRZsJ32Fw0="
+        "CodeSha256": "btsMZO76BghCcEy2OAlc1/4FQHKr98Nnqxf5GMlPT8c="
       }
     },
     "ListQuestionByTypeLambdaFunction": {
@@ -930,7 +924,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/LeetLogger/dev/1609043909968-2020-12-27T04:38:29.968Z/listQuestionByType.zip"
+          "S3Key": "serverless/LeetLogger/dev/1609053104971-2020-12-27T07:11:44.971Z/listQuestionByType.zip"
         },
         "Handler": "src/handlers/questions/listQuestionByType.main",
         "Runtime": "nodejs12.x",
@@ -962,14 +956,14 @@
         "ListQuestionByTypeLogGroup"
       ]
     },
-    "ListQuestionByTypeLambdaVersionNwcaLZOotNQdxw9HchEBtevbMqKrWZRzAqYDlgdE": {
+    "ListQuestionByTypeLambdaVersionixT8htpunsfuAB8e0vagiOmykWitXwLxMNLYIB9f4Tc": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ListQuestionByTypeLambdaFunction"
         },
-        "CodeSha256": "fG5kKyFD1eZBPIX7o3wa8uPCjxdnFz0PSa16CTr7sEU="
+        "CodeSha256": "aZDLumTBE5/JcSTFV9HCqKX28nBPthMJLHPfgtjUiHk="
       }
     },
     "ListSortedRevisionQuestionsLambdaFunction": {
@@ -979,7 +973,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/LeetLogger/dev/1609043909968-2020-12-27T04:38:29.968Z/listSortedRevisionQuestions.zip"
+          "S3Key": "serverless/LeetLogger/dev/1609053104971-2020-12-27T07:11:44.971Z/listSortedRevisionQuestions.zip"
         },
         "Handler": "src/handlers/questions/listSortedRevisionQuestions.main",
         "Runtime": "nodejs12.x",
@@ -1011,14 +1005,14 @@
         "ListSortedRevisionQuestionsLogGroup"
       ]
     },
-    "ListSortedRevisionQuestionsLambdaVersionqBfUUuIKbwuWFvfRFUkyuZmB2tcLgvs1wMmAczLRzZE": {
+    "ListSortedRevisionQuestionsLambdaVersiont3lxe5P05TSaB2m0XLqcLspTRXPkWceTm3Sypwf3fjc": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ListSortedRevisionQuestionsLambdaFunction"
         },
-        "CodeSha256": "IUrqsaIluprfpYW8QOubnJJcA5bGIpkD3m7vftrUavw="
+        "CodeSha256": "GA94NK/XhHbb0FfTRnF7JgHRKCD7smXPk7dbJbUbe1s="
       }
     },
     "ExpediteRevisionDateLambdaFunction": {
@@ -1028,7 +1022,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/LeetLogger/dev/1609043909968-2020-12-27T04:38:29.968Z/expediteRevisionDate.zip"
+          "S3Key": "serverless/LeetLogger/dev/1609053104971-2020-12-27T07:11:44.971Z/expediteRevisionDate.zip"
         },
         "Handler": "src/handlers/questions/expediteRevisionDate.main",
         "Runtime": "nodejs12.x",
@@ -1060,14 +1054,14 @@
         "ExpediteRevisionDateLogGroup"
       ]
     },
-    "ExpediteRevisionDateLambdaVersion1TXNQSyWqWRqCvF5TAmGCFb4rXeQYIiy0d7ZYsSmII": {
+    "ExpediteRevisionDateLambdaVersionOqt2Vu7axk4QhUwXi3Ykm09SodO1FOHev7pae3diiM": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ExpediteRevisionDateLambdaFunction"
         },
-        "CodeSha256": "HjDG+7mdwDh9kZgpBlIpKtaXRTga6kQ2jJqiXFgmpj0="
+        "CodeSha256": "HfO93mXmNMxZwb9lygHdYUaZm3s5qQxnkitYQDefOWc="
       }
     },
     "PostponeRevisionDateLambdaFunction": {
@@ -1077,7 +1071,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/LeetLogger/dev/1609043909968-2020-12-27T04:38:29.968Z/postponeRevisionDate.zip"
+          "S3Key": "serverless/LeetLogger/dev/1609053104971-2020-12-27T07:11:44.971Z/postponeRevisionDate.zip"
         },
         "Handler": "src/handlers/questions/postponeRevisionDate.main",
         "Runtime": "nodejs12.x",
@@ -1109,14 +1103,14 @@
         "PostponeRevisionDateLogGroup"
       ]
     },
-    "PostponeRevisionDateLambdaVersionwZCepL9m1XtAglFulku2Jh2YdYg4BEU9exX8BfYN5g": {
+    "PostponeRevisionDateLambdaVersionOBK2EAJNndqBxKvg6IMEIMEZqsD0LWL2xx7W4HjPhQ": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "PostponeRevisionDateLambdaFunction"
         },
-        "CodeSha256": "fcVtdW0oZvHMolsmG+VeKsWikZAnq9s7FQD+p92k2+E="
+        "CodeSha256": "LaLBh4Bp9Y28uhHvh00rSM0sVx6+d3sA+QwF67fxWBQ="
       }
     },
     "CompleteRevisionQuestionLambdaFunction": {
@@ -1126,7 +1120,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/LeetLogger/dev/1609043909968-2020-12-27T04:38:29.968Z/completeRevisionQuestion.zip"
+          "S3Key": "serverless/LeetLogger/dev/1609053104971-2020-12-27T07:11:44.971Z/completeRevisionQuestion.zip"
         },
         "Handler": "src/handlers/questions/completeRevisionQuestion.main",
         "Runtime": "nodejs12.x",
@@ -1158,14 +1152,14 @@
         "CompleteRevisionQuestionLogGroup"
       ]
     },
-    "CompleteRevisionQuestionLambdaVersionQM48BnbcGy1ZEw8ZLivqEDtsuMHvCSFE97wsqDgnII": {
+    "CompleteRevisionQuestionLambdaVersion0kMf2IoJtxcGHzcuWQrArpswePYm3Czgz9xpAFsNvYA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CompleteRevisionQuestionLambdaFunction"
         },
-        "CodeSha256": "sONAskRVZtu/6YAA48O0nxgI6wt3m7wiLkCdNW+93OQ="
+        "CodeSha256": "9n9lsjdLFDbk6F9MG4R+jmUeh/YXhqzJlQysdlV5sLQ="
       }
     },
     "IncQuestionEntryCountLambdaFunction": {
@@ -1175,7 +1169,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/LeetLogger/dev/1609043909968-2020-12-27T04:38:29.968Z/incQuestionEntryCount.zip"
+          "S3Key": "serverless/LeetLogger/dev/1609053104971-2020-12-27T07:11:44.971Z/incQuestionEntryCount.zip"
         },
         "Handler": "src/handlers/questions/incQuestionEntryCount.main",
         "Runtime": "nodejs12.x",
@@ -1207,63 +1201,14 @@
         "IncQuestionEntryCountLogGroup"
       ]
     },
-    "IncQuestionEntryCountLambdaVersionflpYwHvSt7PVZL67MNYgimxjm4fr34jy1W8nU6nvD8": {
+    "IncQuestionEntryCountLambdaVersion9WHWT9nW9rwHmI0uXcVsJbXn2is1kJ3AO75W7kN8PG8": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "IncQuestionEntryCountLambdaFunction"
         },
-        "CodeSha256": "/aao43tpNvNnFY9hLpgwzQaHZO/BvB4Fa5nBghuNW3g="
-      }
-    },
-    "IncQuestyEntryAndUpdateRevisionDateLambdaFunction": {
-      "Type": "AWS::Lambda::Function",
-      "Properties": {
-        "Code": {
-          "S3Bucket": {
-            "Ref": "ServerlessDeploymentBucket"
-          },
-          "S3Key": "serverless/LeetLogger/dev/1609043909968-2020-12-27T04:38:29.968Z/incQuestyEntryAndUpdateRevisionDate.zip"
-        },
-        "Handler": "src/handlers/questions/incQuestionEntryAndUpdateRevisionDate.main",
-        "Runtime": "nodejs12.x",
-        "FunctionName": "LeetLogger-dev-incQuestyEntryAndUpdateRevisionDate",
-        "MemorySize": 256,
-        "Timeout": 6,
-        "Environment": {
-          "Variables": {
-            "questionTable": {
-              "Ref": "QuestionTable"
-            },
-            "entryTable": {
-              "Ref": "EntryTable"
-            },
-            "s3BucketName": {
-              "Ref": "NoteBucket"
-            },
-            "STRIPE_SECRET_KEY": "sk_test_51I0DDwJk1Wzg0X9wyKHOAOJIdPzw7yGkQNDbUdPUPz6oDmUzT7ybzsWqsQlcxrlV9cXFZw5OroC5pq6zMUgz3Im200s0aLmSId"
-          }
-        },
-        "Role": {
-          "Fn::GetAtt": [
-            "IamRoleLambdaExecution",
-            "Arn"
-          ]
-        }
-      },
-      "DependsOn": [
-        "IncQuestyEntryAndUpdateRevisionDateLogGroup"
-      ]
-    },
-    "IncQuestyEntryAndUpdateRevisionDateLambdaVersionME0D0hyyHYysSn5pzbpRS6HYlEUeYPb0im1LAmtbnRU": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "IncQuestyEntryAndUpdateRevisionDateLambdaFunction"
-        },
-        "CodeSha256": "cvKMHUagd2jAIonBMBd4gyJntkQIVtktgP+EDqi8UPI="
+        "CodeSha256": "/ib3+hucV5x3XA+noUdYm9slDV7izxXxyoMOKxCx+4o="
       }
     },
     "DecQuestionEntryCountLambdaFunction": {
@@ -1273,7 +1218,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/LeetLogger/dev/1609043909968-2020-12-27T04:38:29.968Z/decQuestionEntryCount.zip"
+          "S3Key": "serverless/LeetLogger/dev/1609053104971-2020-12-27T07:11:44.971Z/decQuestionEntryCount.zip"
         },
         "Handler": "src/handlers/questions/decQuestionEntryCount.main",
         "Runtime": "nodejs12.x",
@@ -1305,14 +1250,14 @@
         "DecQuestionEntryCountLogGroup"
       ]
     },
-    "DecQuestionEntryCountLambdaVersionCjoUshuhzvlwm21U9GxHCEw49rMO6nnXVEaG08Jy0": {
+    "DecQuestionEntryCountLambdaVersionuQXisRL4tSRrsCxIc8t7Doxt4ONtDBJjoUFnFo3mTFs": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "DecQuestionEntryCountLambdaFunction"
         },
-        "CodeSha256": "vUGMOmvhmlR9xehK+WDxjqx8J+1j4BRtgxTfiowWEg0="
+        "CodeSha256": "iBStfq0W7rro5D8HVr4ooiSGN+4QHhqs3JeRCjoYp8s="
       }
     },
     "LoginUserS3CreateLambdaFunction": {
@@ -1322,7 +1267,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/LeetLogger/dev/1609043909968-2020-12-27T04:38:29.968Z/loginUserS3Create.zip"
+          "S3Key": "serverless/LeetLogger/dev/1609053104971-2020-12-27T07:11:44.971Z/loginUserS3Create.zip"
         },
         "Handler": "src/handlers/login/loginUserS3Create.main",
         "Runtime": "nodejs12.x",
@@ -1354,14 +1299,14 @@
         "LoginUserS3CreateLogGroup"
       ]
     },
-    "LoginUserS3CreateLambdaVersionnO4QRO7Ice9JisJbIfvOwOwAvxnFwTMqaSUoNp1svZ0": {
+    "LoginUserS3CreateLambdaVersionyslN6u6iWtvCHXNKHJJNfLbB6y5HoC93hIRcWvTvc": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "LoginUserS3CreateLambdaFunction"
         },
-        "CodeSha256": "LiQvqZ9EgDPUDg++3fAzAG7AcPfzlh/pXtOei6TBeYU="
+        "CodeSha256": "HkCeRTR2dTD7hxjT6R7dcI5Eh/XKzNfqu0YvNgHLm98="
       }
     },
     "ApiGatewayRestApi": {
@@ -2895,7 +2840,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1609043902836": {
+    "ApiGatewayDeployment1609053093952": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -3702,121 +3647,115 @@
     "AddEntryLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AddEntryLambdaVersionf8r4FpurAywEBOF56wPiQS3K5irg1wD19TjQ0bCFlgk"
+        "Ref": "AddEntryLambdaVersionL6nEVlDbf5P9UnXJVEj9YvIIZ69G2CyBN1VlDrWWVZ0"
       }
     },
     "UpdateEntryLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "UpdateEntryLambdaVersionYAOHXk7x8nBJ1ljI8KMtynS7Z3OGHVx4FdNrXHkDE"
+        "Ref": "UpdateEntryLambdaVersionjeFK7ZSTXCaJ7q4Ae9kcjUvbW8NjwshhKpmcoBYrlSE"
       }
     },
     "GetEntryLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetEntryLambdaVersionDCK3Xro7EKCssShdt5x8U6n4O3mpvqxJgme4l8bE"
+        "Ref": "GetEntryLambdaVersion6waj46V5leKpjZ1gLUHdYcVRk7O4eopVgiWvjl6Lbc"
       }
     },
     "DeleteEntryLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "DeleteEntryLambdaVersionFUuoXvWxSrh0u5nKHbmSLfCfrcKNCFz4bPK8C7VWBU"
+        "Ref": "DeleteEntryLambdaVersionZ9xsI0qWd0OyhG3d6b6CViVo8oC5rqAhQuOkR34KQ"
       }
     },
     "ListEntriesAllLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ListEntriesAllLambdaVersiondCpe3lsJyXYAXwHMWSEDXW5nWXehdrjSvhAhfzuwwVE"
+        "Ref": "ListEntriesAllLambdaVersionIUB8gwaCfW7FdEHaztxXZNfNfvQdQJ1uXhlfo90d0"
       }
     },
     "ListEntriesBySubmittedAtLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ListEntriesBySubmittedAtLambdaVersionHAQXFJ8UsKyxLFQws1OiyqrXUdnV3LDN2AnXNTx0UgE"
+        "Ref": "ListEntriesBySubmittedAtLambdaVersion3iVNH4eLMkxp3GbUn14i2PrLvpZ09umO2nOwDIKM0"
       }
     },
     "ListEntriesByTitleLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ListEntriesByTitleLambdaVersioneowmF3TbEkzy9QEzt8U18dwSn3KpivnnDoLt1giF0I"
+        "Ref": "ListEntriesByTitleLambdaVersionlLlKuuEBZ7iNo7p9HMtXRThOtNak027uelrgIdBw9Fo"
       }
     },
     "AddQuestionLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AddQuestionLambdaVersion6dgjprDfu5UuL9z4isCHTizS1ydHdRa9bjlnsE"
+        "Ref": "AddQuestionLambdaVersionKawIJHXrN7YkifZGGzI2eXUwLdnQP92SrhiSFi6s"
       }
     },
     "DeleteQuestionLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "DeleteQuestionLambdaVersionn1imUfsF7Uxl24dtfVk7RPPC6HrQBGEIuwxl6UIM"
+        "Ref": "DeleteQuestionLambdaVersionTZAQfmIm4x4QaT8RQM1UNuBxV2kSWl6Tv8f7Jx2sv0"
       }
     },
     "GetQuestionLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetQuestionLambdaVersionu5SdK6p3k6JJlIv09MmGm2udU7B0IDuCXtcJkmbag"
+        "Ref": "GetQuestionLambdaVersionJazFy6VKyQkdouxz6G8uI7d3YSaS2uTp22trZwfH4"
       }
     },
     "ListQuestionAllLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ListQuestionAllLambdaVersionDlr2FycSnzxC8ciqQFotKEGaN72jylxjVxcbbcZvbY"
+        "Ref": "ListQuestionAllLambdaVersionu893Jils8Tqwss6EuwfAeoGVDAdoEvlgURqXzzg4A"
       }
     },
     "ListQuestionByTypeLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ListQuestionByTypeLambdaVersionNwcaLZOotNQdxw9HchEBtevbMqKrWZRzAqYDlgdE"
+        "Ref": "ListQuestionByTypeLambdaVersionixT8htpunsfuAB8e0vagiOmykWitXwLxMNLYIB9f4Tc"
       }
     },
     "ListSortedRevisionQuestionsLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ListSortedRevisionQuestionsLambdaVersionqBfUUuIKbwuWFvfRFUkyuZmB2tcLgvs1wMmAczLRzZE"
+        "Ref": "ListSortedRevisionQuestionsLambdaVersiont3lxe5P05TSaB2m0XLqcLspTRXPkWceTm3Sypwf3fjc"
       }
     },
     "ExpediteRevisionDateLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ExpediteRevisionDateLambdaVersion1TXNQSyWqWRqCvF5TAmGCFb4rXeQYIiy0d7ZYsSmII"
+        "Ref": "ExpediteRevisionDateLambdaVersionOqt2Vu7axk4QhUwXi3Ykm09SodO1FOHev7pae3diiM"
       }
     },
     "PostponeRevisionDateLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "PostponeRevisionDateLambdaVersionwZCepL9m1XtAglFulku2Jh2YdYg4BEU9exX8BfYN5g"
+        "Ref": "PostponeRevisionDateLambdaVersionOBK2EAJNndqBxKvg6IMEIMEZqsD0LWL2xx7W4HjPhQ"
       }
     },
     "CompleteRevisionQuestionLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CompleteRevisionQuestionLambdaVersionQM48BnbcGy1ZEw8ZLivqEDtsuMHvCSFE97wsqDgnII"
+        "Ref": "CompleteRevisionQuestionLambdaVersion0kMf2IoJtxcGHzcuWQrArpswePYm3Czgz9xpAFsNvYA"
       }
     },
     "IncQuestionEntryCountLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "IncQuestionEntryCountLambdaVersionflpYwHvSt7PVZL67MNYgimxjm4fr34jy1W8nU6nvD8"
-      }
-    },
-    "IncQuestyEntryAndUpdateRevisionDateLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
-      "Value": {
-        "Ref": "IncQuestyEntryAndUpdateRevisionDateLambdaVersionME0D0hyyHYysSn5pzbpRS6HYlEUeYPb0im1LAmtbnRU"
+        "Ref": "IncQuestionEntryCountLambdaVersion9WHWT9nW9rwHmI0uXcVsJbXn2is1kJ3AO75W7kN8PG8"
       }
     },
     "DecQuestionEntryCountLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "DecQuestionEntryCountLambdaVersionCjoUshuhzvlwm21U9GxHCEw49rMO6nnXVEaG08Jy0"
+        "Ref": "DecQuestionEntryCountLambdaVersionuQXisRL4tSRrsCxIc8t7Doxt4ONtDBJjoUFnFo3mTFs"
       }
     },
     "LoginUserS3CreateLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "LoginUserS3CreateLambdaVersionnO4QRO7Ice9JisJbIfvOwOwAvxnFwTMqaSUoNp1svZ0"
+        "Ref": "LoginUserS3CreateLambdaVersionyslN6u6iWtvCHXNKHJJNfLbB6y5HoC93hIRcWvTvc"
       }
     },
     "ServiceEndpoint": {

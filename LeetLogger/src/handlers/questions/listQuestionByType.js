@@ -1,7 +1,9 @@
-import handler from "../../libs/handler-lib"
+import createError from "http-errors";
+
+import middleware from "../../libs/middleware";
 import dynamoDB from "../../libs/dynamodb-lib";
 
-export const main = handler(async (event, context) => {
+async function handler(event, context) {
 
     const params = {
         TableName: process.env.questionTable,   
@@ -12,7 +14,18 @@ export const main = handler(async (event, context) => {
             ":type": event.queryStringParameter.type
         },
     }
-    const questions = await dynamoDB.query(params);
+    let questions;
+    
+    try {
+        questions = await dynamoDB.query(params);
+    } catch { 
+        throw new createError.InternalServerError("Error occured when querying for your questions")
+    }
 
-    return questions.Items;
-});
+    return {
+        status: 200,
+        body: questions.Items
+    }
+};
+
+export const main = middleware(handler);
