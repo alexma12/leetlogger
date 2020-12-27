@@ -1,5 +1,7 @@
 import createError from "http-errors";
+import validator from "@middy/validator";
 
+import schema from "../../libs/schema/listQuestionByTypeValidator";
 import middleware from "../../libs/middleware";
 import dynamoDB from "../../libs/dynamodb-lib";
 
@@ -28,4 +30,5 @@ async function handler(event, context) {
     }
 };
 
-export const main = middleware(handler);
+export const main = middleware(handler)
+.use(validator({inputSchema: schema}))

@@ -22,6 +22,9 @@ const addCase = (str) => {
 
 export const convertEntryToDBStruct = (jsonData) => {
     const data = JSON.parse(jsonData);
+    if(!data.title){
+        return {};
+    }
     let tempTitle = removeCaseAndSpaceSensitivty(data.title);
     tempTitle = addCase(tempTitle);
     data["title"] = tempTitle;

@@ -5,10 +5,6 @@ import dynamoDB from "../../libs/dynamodb-lib";
 
 async function handler(event, context) {
 
-    if(!event.queryStringParameters || !event.queryStringParameters.title){
-        throw new Error("No title in queryStringParameters")
-    }
-
     const {title} = event.queryStringParameters
 
     const params = {

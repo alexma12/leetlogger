@@ -1,5 +1,6 @@
 import * as uuid from "uuid";
 import createError from "http-errors";
+import schema from "../../libs/schema/addEntryValidator";
 
 import validator from "@middy/validator"
 import middleware from "../../libs/middleware";
@@ -28,7 +29,7 @@ async function handler(event, context) {
         TableName: process.env.entryTable,
         Item: {
             userID: "123",
-            entryID,
+            entryID: entryID,
             title,
             questionType,
             submittedAt: Date.now(),
@@ -73,4 +74,5 @@ async function handler(event, context) {
     }
 };
 
-export const main = middleware(handler);
+export const main = middleware(handler)
+.use(validator({inputSchema: schema}))

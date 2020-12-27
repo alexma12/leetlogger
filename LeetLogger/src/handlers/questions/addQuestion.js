@@ -2,6 +2,7 @@ import * as uuid from "uuid";
 import createError from "http-errors";
 import validator from "@middy/validator";
 
+import schema from "../../libs/schema/addQuestionValidator";
 import dynamoDB from "../../libs/dynamoDB-lib";
 import middleware from "../../libs/middleware";
 
@@ -35,3 +36,4 @@ async function handler(event, context) {
 };
 
 export const main = middleware(handler)
+.use(validator({inputSchema: schema}))

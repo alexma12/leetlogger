@@ -1,5 +1,4 @@
 import createError from "http-errors";
-import validator from "@middy/validator";
 
 import middleware from "../../libs/middleware"
 import dynamoDB from "../../libs/dynamodb-lib";
@@ -18,10 +17,6 @@ async function handler(event, context) {
 
   try {
     questions = await dynamoDB.get(dbParams);
-
-    if (!event.queryStringParameters || !event.queryStringParameters.title) {
-      throw new Error("title not in queryStringParameters")
-    }
 
     const expression = "select * from S3Object[*][*] s where s.title = '" + event["queryStringParameters"]["title"] + "'";
 
@@ -56,4 +51,4 @@ async function handler(event, context) {
   }
 };
 
-export const main = middleware(handler)
+export const main = middleware(handler)   

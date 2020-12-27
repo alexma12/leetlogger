@@ -88,3 +88,6 @@ async function handler(event, context) {
 };
 
 export const main = middleware(handler);
+import validator from "@middy/validator";
+
+import schema from "../../libs/schema/listQuestionByTypeValidator";
