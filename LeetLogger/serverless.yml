@@ -1,7 +1,7 @@
 # NOTE: update this with your service name
 service: LeetLogger
 
-# Create an optimized package for our functions 
+# Create an optimized package for our functions
 package:
   individually: true
 
@@ -9,16 +9,13 @@ plugins:
   - serverless-bundle # Package our functions with Webpack
   - serverless-offline
   - serverless-dotenv-plugin # Load .env as environment variables
-
-custom: 
-  bundle: 
-    linting: false
+  - serverless-pseudo-parameters
 
 provider:
   name: aws
   runtime: nodejs12.x
   stage: prod
-  region: us-west-2 
+  region: us-west-2
   # To load environment variables externally
   # rename env.example to .env and uncomment
   # the following line. Also, make sure to not
@@ -26,27 +23,23 @@ provider:
   #
   environment:
     questionTable: leetlogger-questions
-    entryTable: leetlogger-entries 
+    entryTable: leetlogger-entries
     s3BucketName: leetlogger-notes-and-solutions
 
   iamRoleStatements:
     - Effect: "Allow"
-      Action: 
+      Action:
         - dynamodb:PutItem
         - dynamodb:GetItem
         - dynamodb:UpdateItem
         - dyanmodb:DeleteItem
         - dynamodb:Query
-        - dynamodb:BatchGetItem
-        - dynamodb:BatchWriteItem
-      Resource: 
-        arn:aws:dynamodb:us-west-2:*:*
+      Resource: arn:aws:dynamodb:us-west-2:*:*
     - Effect: "Allow"
-      Action: 
+      Action:
         - s3:*
-      Resource: 
-        arn:aws:s3:::*
-    
+      Resource: arn:aws:s3:::*
+
 functions:
   addEntry:
     handler: src/entries/addEntry.main
@@ -56,160 +49,141 @@ functions:
           method: post
           cors: true
 
-  updateEntry: 
+  updateEntry:
     handler: src/entries/updateEntry.main
     events:
       - http:
           path: entries/{entryId}
-          method: put 
-          cors: true
-  
-  getEntry: 
-    handler: src/entries/getEntry.main
-    events:
-      - http: 
-          path: entries/{entryId}
-          method: get 
+          method: put
           cors: true
 
-  deleteEntry: 
+  getEntry:
+    handler: src/entries/getEntry.main
+    events:
+      - http:
+          path: entries/{entryId}
+          method: get
+          cors: true
+
+  deleteEntry:
     handler: src/entries/deleteEntry.main
     events:
       - http:
           path: entries/{entryId}
           method: delete
           cors: true
-          
+
   listEntriesAll:
     handler: src/entries/listEntriesAll.main
     events:
       - http:
           path: entries/list
-          method: get 
-          cors: true 
-  
-  listEntriesBySubmittedAt:
-      handler: src/entries/listEntriesBySubmittedAt.main
-      events: 
-        - http:
-            path: entries/list/entriesInTwoDays
-            method: get 
-            cors: true 
-  
-  listEntriesByTitle:
-      handler: src/entries/listEntriesByTitle.main
-      events: 
-        - http:
-            path: entries/list/{title}
-            method: get 
-            cors: true
+          method: get
+          cors: true
 
-  addQuestion: 
-    handler: src/questions/addQuestion.main
+  listEntriesBySubmittedAt:
+    handler: src/entries/listEntriesBySubmittedAt.main
     events:
       - http:
-          path: questions
-          method: post
+          path: entries/list/entriesInTwoDays
+          method: get
           cors: true
+
+  listEntriesByTitle:
+    handler: src/entries/listEntriesByTitle.main
+    events:
+      - http:
+          path: entries/list/{title}
+          method: get
+          cors: true
+
+  addQuestion:
+    handler: src/questions/addQuestion.main
+    
 
   deleteQuestion:
     handler: src/questions/deleteQuestion.main
-    events: 
-      - http: 
-          path: questions/{questionId}
-          method: delete
-          cors: true
-
-
+  
   getQuestion:
-      handler: src/questions/getQuestion.main 
-      events: 
-        - http: 
+    handler: src/questions/getQuestion.main
+    events:
+      - http:
           path: questions/{questionId}/{title}
           method: get
           cors: true
 
-
   listQuestionAll:
-      handler: src/questions/listQuestionAll.main
-      events: 
-        - http:
-            path: questions/list
-            method: get 
-            cors: true 
-  
+    handler: src/questions/listQuestionAll.main
+    events:
+      - http:
+          path: questions/list
+          method: get
+          cors: true
+
   listQuestionByType:
     handler: src/questions/listQuestionByType.main
     events:
       - http:
-         path: questions/list/{type}
-         method: get 
-         cors: true 
-  
+          path: questions/list/{type}
+          method: get
+          cors: true
+
   listSortedRevisionQuestions:
-      handler: src/questions/listSortedRevisionQuestions.main
-      events:
-        - http: 
-            path: questions/list/revisionQuestions 
-            method: get 
-            cors: true 
+    handler: src/questions/listSortedRevisionQuestions.main
+    events:
+      - http:
+          path: questions/list/revisionQuestions
+          method: get
+          cors: true
 
   expediteRevisionDate:
-      handler: src/questions/expediteRevisionDate.main
-      events: 
-          - http: 
-              path: questions/{questionId}/expedite
-              method: post 
-              cors: true
+    handler: src/questions/expediteRevisionDate.main
+    events:
+      - http:
+          path: questions/{questionId}/expedite
+          method: post
+          cors: true
 
   postponeRevisionDate:
-      handler: src/questions/postponeRevisionDate.main
-      events: 
-          - http: 
-              path: questions/{questionId}/postpone
-              method: post 
-              cors: true
+    handler: src/questions/postponeRevisionDate.main
+    events:
+      - http:
+          path: questions/{questionId}/postpone
+          method: post
+          cors: true
 
   completeRevisionQuestion:
     handler: src/questions/completeRevisionQuestion.main
-    events: 
-      - http: 
+    events:
+      - http:
           path: questions/{questionId}/complete
-          method: post 
+          method: post
           cors: true
 
   incQuestionEntryCount:
-      handler: src/questions/incQuestionEntryCount.main
-      events: 
-          - http: 
-              path: questions/{questionId}/inc
-              method: post
-              cors: true 
+    handler: src/questions/incQuestionEntryCount.main
 
-  incQuestyEntryCountAndUpdateRevisionDate:
-      handler: src/questions/incQuestionEntryCountAndUpdateRevisionDate.main
-      events: 
-        - http: 
-            path: questions/{questionId}/inc-update
-            method: post
-            cors: true
-
+  incQuestyEntryAndUpdateRevisionDate:
+    handler: src/questions/incQuestionEntryAndUpdateRevisionDate.main
+   
   decQuestionEntryCount:
-      handler: src/questions/decQuestionEntryCount.main
-      events: 
-          - http: 
-              path: questions/{questionId}dec
-              method: post
-              cors: true 
+    handler: src/questions/decQuestionEntryCount.main
+    events:
+      - http:
+          path: questions/{questionId}/dec
+          method: post
+          cors: true
 
   loginUserS3Create:
-      handler: src/login/loginUserS3Create.main
-      events: 
-         - http: 
-              path: login
-              method: post 
-              cors: true
+    handler: src/login/loginUserS3Create.main
+    events:
+      - http:
+          path: login
+          method: post
+          cors: true
 
-          
+      
 
-  
+custom:
+  bundle:
+    linting: false

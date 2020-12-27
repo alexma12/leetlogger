@@ -1,7 +1,12 @@
 import dynamoDB from "../../libs/dynamoDB-lib";
 import handler from "../../libs/handler-lib";
+import mergeTags  from "../../libs/helpers-lib";
 
 export const main = handler(async (event, context) => {
+
+    const getParams = { 
+        TableName: process.env.questionTable
+    }
     const params = {
         TableName: process.env.questionTable,
         Key: {
