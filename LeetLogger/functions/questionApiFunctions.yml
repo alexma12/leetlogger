@@ -1,9 +1,16 @@
 addQuestion:
     handler: src/handlers/questions/addQuestion.main
-    
+    events: 
+      - sns: 
+          topicName: "${self:custom.AddEntryTopic.name}"
+          arn: ${self:custom.AddEntryTopic.arn}
 
 deleteQuestion:
     handler: src/handlers/questions/deleteQuestion.main
+    events:
+      - sns:
+          topicName: "${self:custom.DeleteEntryTopic.name}"
+          arn: ${self:custom.DeleteEntryTopic.arn}
   
 getQuestion:
     handler: src/handlers/questions/getQuestion.main

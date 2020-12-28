@@ -26,16 +26,22 @@ provider:
     questionTable: ${self:custom.QuestionTable.name}
     entryTable: ${self:custom.EntryTable.name}
     s3BucketName: ${self:custom.NoteBucket.name}
+    addEntryTopicArn: ${self:custom.AddEntryTopic.arn}
+    deleteEntryTopicArn: ${self:custom.DeleteEntryTopic.arn}
+  
 
   iamRoleStatements:
     - ${file(iam/DynamodbIAM.yml):DynamodbIAM}
     - ${file(iam/S3BucketIAM.yml):S3BucketIAM}
+    - ${file(iam/SNSIAM.yml):SNSIAM}
   
 resources: 
     Resources: 
       QuestionTable: ${file(resources/QuestionTable.yml):QuestionTable}
       EntryTable: ${file(resources/EntryTable.yml):EntryTable} 
       NoteBucket: ${file(resources/NoteBucket.yml):NoteBucket}
+      AddEntryTopic: ${file(resources/SNSTopics.yml):AddEntryTopic}
+      DeleteEntryTopic: ${file(resources/SNSTopics.yml):DeleteEntryTopic}
 
 functions:
   addEntry: ${file(functions/entryApiFunctions.yml):addEntry}
@@ -69,5 +75,11 @@ custom:
   NoteBucket:
     name: !Ref NoteBucket
     arn: !GetAtt NoteBucket.Arn
+  AddEntryTopic:
+    name: AddEntryTopic-${self:provider.stage}
+    arn: !Ref AddEntryTopic
+  DeleteEntryTopic:
+    name: DeleteEntryTopic-${self:provider.stage}
+    arn: !Ref DeleteEntryTopic
   bundle:
     linting: false

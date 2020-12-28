@@ -16,8 +16,7 @@ async function handler(event, context) {
   let s3Data;
 
   try {
-    questions = await dynamoDB.get(dbParams);
-
+    questions = dynamoDB.get(dbParams);
     const expression = "select * from S3Object[*][*] s where s.title = '" + event["queryStringParameters"]["title"] + "'";
 
 
@@ -38,8 +37,8 @@ async function handler(event, context) {
       }
     }
 
-
-    s3Data = await s3.s3SelectList(s3Params);
+    s3Data = s3.s3SelectList(s3Params);
+    await Promise.All([s3Data,questions])
 
   } catch {
     throw new createError.InternalServerError("Unable to get notes or get question")

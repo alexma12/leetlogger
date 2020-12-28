@@ -1,9 +1,9 @@
 S3BucketIAM:
   Effect: Allow
   Action: 
-    - s3:putObject
-    - s3:getOjbect
-    - s3:upload
-    - s3:selectObjectContent
+    - s3:PutObject
+    - s3:GetObject
+    - s3:UploadPart
+    - s3:SelectObjectContent
   Resource: 
-      - ${self:custom.NoteBucket.arn}
+      - !Join ["/" , ["${self:custom.NoteBucket.arn}", "*"]]

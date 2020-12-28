@@ -1,6 +1,6 @@
 import createError from "http-errors";
-import validator from "@middy/validator";
 
+import sns from "../../libs/sns-lib"
 import middleware from "../../libs/middleware";
 import dynamoDB from "../../libs/dynamoDB-lib";
 import s3 from "../../libs/s3-lib"
@@ -27,8 +27,7 @@ async function handler(event, context) {
   let deletedEntry;
 
   try {
-    deletedEntry = await dynamoDB.delete(params);
-
+    deletedEntry = dynamoDB.delete(params);
     const expression = "select * from S3Object[*][*] s where s.entryID = '" + event["pathParameters"]["entryId"] + "'";
 
     const s3SelectParams = {
@@ -61,7 +60,11 @@ async function handler(event, context) {
       Key: "123",
       Body: JSON.stringify(updatedS3Obj)
     }
-    await s3.upload(s3UploadParams)
+    const upload =  s3.upload(s3UploadParams)
+
+    await Promise.all([upload,deletedEntry])
+
+    await sns.publish(deletedEntry.body.title, process.env.delteEntryTopicArn)
 
   } catch {
     throw new createError.InternalServerError("Error occured when deleting your notes or deleting your entry");
@@ -73,10 +76,9 @@ async function handler(event, context) {
   }
 
   return {
-    status: 200,
+    staus: 200,
     body: deletedEntry
   }
-
 }
 
 export const main = middleware(handler);

@@ -1,15 +1,15 @@
 const schema = {
-    properties: { 
-        body: { 
+    properties: {
+        body: {
             type: "object",
-            properties: { 
+            properties: {
                 title: {
                     type: "string",
                 },
                 questionType: {
                     type: "array"
                 },
-                tags: { 
+                tags: {
                     type: "array"
                 },
                 approxCompletionMins: {
@@ -17,16 +17,22 @@ const schema = {
                 },
                 difficulty: {
                     type: "string"
+                },
+                content: {
+                    type: "string"
                 }
             },
             required: [
-                "title", "questionType", "approxCompletionMins", "difficulty"
+                "title", "questionType", "approxCompletionMins", "difficulty", "content"
             ]
         },
-        required: [
-            "body"
-        ]
-    }
+    },
+    required: [
+        "body"
+    ]
+
+
+
 }
 
 export default schema;

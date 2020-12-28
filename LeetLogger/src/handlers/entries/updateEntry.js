@@ -37,7 +37,7 @@ async function handler(event, context) {
 
 
   try {
-    updateEntry = await dynamoDB.update(params);
+    updateEntry = dynamoDB.update(params);
     const expression = "select * from S3Object[*][*] s where s.entryID = '" + event["pathParameters"]["entryId"] + "'";
 
     const s3SelectParams = {
@@ -58,10 +58,8 @@ async function handler(event, context) {
     }
 
     const s3ObjToUpdate = await s3.s3SelectList(s3SelectParams);
-    console.log(s3ObjToUpdate)
     s3ObjToUpdate[0].content = data.content;
     s3ObjToUpdate[0].lastUpdated = currentDate;
-    console.log(s3ObjToUpdate)
 
     const s3GetParams = {
       Bucket: process.env.s3BucketName,
@@ -75,8 +73,9 @@ async function handler(event, context) {
       Key: "123",
       Body: JSON.stringify(updatedS3Obj)
     }
-    await s3.upload(s3UploadParams)
+    const upload = s3.upload(s3UploadParams)
 
+    await Promise.all([upload, updateEntry])
   } catch {
     throw new createError.InternalServerError("Error occured when updating your entry or notes");
   }
@@ -88,6 +87,4 @@ async function handler(event, context) {
 };
 
 export const main = middleware(handler);
-import validator from "@middy/validator";
 
-import schema from "../../libs/schema/listQuestionByTypeValidator";

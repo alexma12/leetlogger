@@ -1,0 +1,7 @@
+SNSIAM: 
+  Effect: Allow 
+  Action: 
+    - sns:Publish
+  Resource: 
+    - ${self:custom.AddEntryTopic.arn}
+    - ${self:custom.DeleteEntryTopic.arn}

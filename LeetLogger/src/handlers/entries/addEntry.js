@@ -1,8 +1,9 @@
 import * as uuid from "uuid";
 import createError from "http-errors";
-import schema from "../../libs/schema/addEntryValidator";
-
 import validator from "@middy/validator"
+
+import sns from "../../libs/sns-lib"
+import schema from "../../libs/schema/addEntryValidator";
 import middleware from "../../libs/middleware";
 import dynamoDB from "../../libs/dynamoDB-lib";
 import s3 from "../../libs/s3-lib";
@@ -21,7 +22,7 @@ const addToS3JsonData = async (s3GetParams, s3JsonData) => {
 
 
 async function handler(event, context) {
-    const { title, questionType, tags, approxCompletionMins, difficulty } = convertEntryToDBStruct(event.body);
+    const { title, questionType, tags, approxCompletionMins, difficulty, content } = convertEntryToDBStruct(event.body);
     const entryID = uuid.v4();
     const currentDate = currentDateString();
 
@@ -40,9 +41,7 @@ async function handler(event, context) {
     }
 
     try {
-        await dynamoDB.put(dbParams);
-
-
+        const put =  dynamoDB.put(dbParams);
         const s3GetParams = {
             Bucket: process.env.s3BucketName,
             Key: "123"
@@ -52,8 +51,8 @@ async function handler(event, context) {
             entryID: entryID,
             noteTitle: "Entry -  " + currentDate,
             lastUpdated: currentDate,
-            title: data.title,
-            content: data.content
+            title,
+            content
         }
 
         const addedJsonData = await addToS3JsonData(s3GetParams, s3JsonData);
@@ -63,14 +62,22 @@ async function handler(event, context) {
             Key: "123",
             Body: JSON.stringify(addedJsonData)
         }
-        await s3.upload(s3UploadParams);
+        const update = s3.upload(s3UploadParams);
 
-    } catch {
-        throw new createError.InternalServerError("Error occured while creating your notes or your entry")
+        const snsPublish = sns.publish(JSON.stringify(dbParams.Item), process.env.addEntryTopicArn)
+        
+        await Promise.all([update, put, snsPublish])
+
+    } catch(error) {
+        throw new createError.InternalServerError(error);
     }
     return {
-        status: 201,
-        body: { ...dbParams.Item }
+        statusCode: 201,
+        body: JSON.stringify(dbParams.Item),
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Credentials": true,
+          }
     }
 };
 

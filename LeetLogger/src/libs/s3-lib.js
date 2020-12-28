@@ -37,8 +37,6 @@ export default {
           });
         })
       },
-    delete: (params) => s3.deleteObject(params).promise(),
-
 
 }
 

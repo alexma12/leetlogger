@@ -12,7 +12,7 @@ async function handler(event, context) {
             entryID: event.pathParameters.entryId
         }
     }
-    let entry
+    let entry;
 
     try {
         entry = await dynamoDB.get(params);

@@ -5,6 +5,7 @@ const removeCaseAndSpaceSensitivty = (str) => {
 }
 
 
+
 const addCase = (str) => {
     if (str) {
         const strArr = str.split(" ");
@@ -21,7 +22,7 @@ const addCase = (str) => {
 // }
 
 export const convertEntryToDBStruct = (jsonData) => {
-    const data = JSON.parse(jsonData);
+    const data = jsonData;
     if(!data.title){
         return {};
     }
@@ -40,4 +41,8 @@ export const generateNoteId = (userID, title, uuidString) => {
 
 export const isEmptyObject = (obj) => {
     return JSON.stringify(obj) === JSON.stringify({});
+}
+
+export const convertArrayToString = (array) => {
+    return array.join(", ")
 }
