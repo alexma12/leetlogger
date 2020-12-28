@@ -86,6 +86,13 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(13).install();
+
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -579,14 +586,13 @@ exports.computeSourceURL = computeSourceURL;
 
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 2 */
+/***/ (function(module, exports) {
 
-__webpack_require__(13).install();
-
+module.exports = require("aws-sdk");
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -892,7 +898,7 @@ function toClassName (name) {
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -902,9 +908,9 @@ function toClassName (name) {
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
-var base64VLQ = __webpack_require__(4);
-var util = __webpack_require__(0);
-var ArraySet = __webpack_require__(5).ArraySet;
+var base64VLQ = __webpack_require__(5);
+var util = __webpack_require__(1);
+var ArraySet = __webpack_require__(6).ArraySet;
 var MappingList = __webpack_require__(17).MappingList;
 
 /**
@@ -1323,7 +1329,7 @@ exports.SourceMapGenerator = SourceMapGenerator;
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -1469,7 +1475,7 @@ exports.decode = function base64VLQ_decode(aStr, aIndex, aOutParam) {
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -1479,7 +1485,7 @@ exports.decode = function base64VLQ_decode(aStr, aIndex, aOutParam) {
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
-var util = __webpack_require__(0);
+var util = __webpack_require__(1);
 var has = Object.prototype.hasOwnProperty;
 var hasNativeMap = typeof Map !== "undefined";
 
@@ -1596,13 +1602,13 @@ exports.ArraySet = ArraySet;
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 module.exports = require("path");
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1686,12 +1692,6 @@ function toString (obj) {
   return obj.toString()
 }
 
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-module.exports = require("aws-sdk");
 
 /***/ }),
 /* 9 */
@@ -1977,7 +1977,7 @@ module.exports = middy
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const createError = __webpack_require__(2)
+const createError = __webpack_require__(3)
 const contentType = __webpack_require__(38)
 
 module.exports = (opts) => ({
@@ -2087,7 +2087,7 @@ module.exports = (opts) => {
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var SourceMapConsumer = __webpack_require__(15).SourceMapConsumer;
-var path = __webpack_require__(6);
+var path = __webpack_require__(7);
 
 var fs;
 try {
@@ -2730,7 +2730,7 @@ module.exports = function(module) {
  * Licensed under the New BSD license. See LICENSE.txt or:
  * http://opensource.org/licenses/BSD-3-Clause
  */
-exports.SourceMapGenerator = __webpack_require__(3).SourceMapGenerator;
+exports.SourceMapGenerator = __webpack_require__(4).SourceMapGenerator;
 exports.SourceMapConsumer = __webpack_require__(18).SourceMapConsumer;
 exports.SourceNode = __webpack_require__(21).SourceNode;
 
@@ -2819,7 +2819,7 @@ exports.decode = function (charCode) {
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
-var util = __webpack_require__(0);
+var util = __webpack_require__(1);
 
 /**
  * Determine whether mappingB is after mappingA with respect to generated
@@ -2904,10 +2904,10 @@ exports.MappingList = MappingList;
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
-var util = __webpack_require__(0);
+var util = __webpack_require__(1);
 var binarySearch = __webpack_require__(19);
-var ArraySet = __webpack_require__(5).ArraySet;
-var base64VLQ = __webpack_require__(4);
+var ArraySet = __webpack_require__(6).ArraySet;
+var base64VLQ = __webpack_require__(5);
 var quickSort = __webpack_require__(20).quickSort;
 
 function SourceMapConsumer(aSourceMap, aSourceMapURL) {
@@ -4292,8 +4292,8 @@ exports.quickSort = function (ary, comparator) {
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
-var SourceMapGenerator = __webpack_require__(3).SourceMapGenerator;
-var util = __webpack_require__(0);
+var SourceMapGenerator = __webpack_require__(4).SourceMapGenerator;
+var util = __webpack_require__(1);
 
 // Matches a Windows-style `\r\n` newline or a `\n` newline used by all other
 // operating systems these days (capturing the result).
@@ -4795,9 +4795,9 @@ module.exports = bufferFrom
  * Module dependencies.
  */
 
-var callSiteToString = __webpack_require__(7).callSiteToString
-var eventListenerCount = __webpack_require__(7).eventListenerCount
-var relative = __webpack_require__(6).relative
+var callSiteToString = __webpack_require__(8).callSiteToString
+var eventListenerCount = __webpack_require__(8).eventListenerCount
+var relative = __webpack_require__(7).relative
 
 /**
  * Module exports.
@@ -6033,50 +6033,12 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, "main", function() { return /* binding */ main; });
 
 // EXTERNAL MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/node_modules/source-map-support/register.js
-var register = __webpack_require__(1);
+var register = __webpack_require__(0);
 
 // EXTERNAL MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/node_modules/http-errors/index.js
-var http_errors = __webpack_require__(2);
+var http_errors = __webpack_require__(3);
 var http_errors_default = /*#__PURE__*/__webpack_require__.n(http_errors);
 
-// EXTERNAL MODULE: external "aws-sdk"
-var external_aws_sdk_ = __webpack_require__(8);
-var external_aws_sdk_default = /*#__PURE__*/__webpack_require__.n(external_aws_sdk_);
-
-// CONCATENATED MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/src/libs/dynamoDB-lib.js
-
-
-const dynamoDB = new external_aws_sdk_default.a.DynamoDB.DocumentClient();
-/* harmony default export */ var dynamoDB_lib = ({
-  get: params => dynamoDB.get(params).promise(),
-  put: params => dynamoDB.put(params).promise(),
-  update: params => dynamoDB.update(params).promise(),
-  delete: params => dynamoDB.delete(params).promise(),
-  query: params => dynamoDB.query(params).promise(),
-  batchGet: params => dynamoDB.batchGet(params).promise(),
-  batchWrite: params => dynamoDB.batchWrite(params).promise()
-});
-// CONCATENATED MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/src/libs/queryQuestionByTitle.js
-
-
-/* harmony default export */ var queryQuestionByTitle = (async (id, title, tableName) => {
-  const params = {
-    TableName: tableName,
-    IndexName: "userID-title-index",
-    KeyConditionExpression: "userID = :userID and title = :title",
-    ExpressionAttributeValues: {
-      ":userID": id,
-      ":title": title
-    }
-  };
-  const question = await dynamoDB_lib.query(params);
-
-  if (question.Items.length > 0) {
-    return question.Items[0];
-  }
-
-  return null;
-});
 // EXTERNAL MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/node_modules/@middy/core/index.js
 var core = __webpack_require__(9);
 var core_default = /*#__PURE__*/__webpack_require__.n(core);
@@ -6100,60 +6062,289 @@ var http_error_handler_default = /*#__PURE__*/__webpack_require__.n(http_error_h
 
 
 /* harmony default export */ var middleware = (handler => core_default()(handler).use([http_json_body_parser_default()(), http_event_normalizer_default()(), http_error_handler_default()()]));
-// CONCATENATED MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/src/handlers/questions/deleteQuestion.js
+// EXTERNAL MODULE: external "aws-sdk"
+var external_aws_sdk_ = __webpack_require__(2);
+var external_aws_sdk_default = /*#__PURE__*/__webpack_require__.n(external_aws_sdk_);
+
+// CONCATENATED MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/src/libs/dynamoDB-lib.js
+
+
+const dynamoDB = new external_aws_sdk_default.a.DynamoDB.DocumentClient();
+/* harmony default export */ var dynamoDB_lib = ({
+  get: params => dynamoDB.get(params).promise(),
+  put: params => dynamoDB.put(params).promise(),
+  update: params => dynamoDB.update(params).promise(),
+  delete: params => dynamoDB.delete(params).promise(),
+  query: params => dynamoDB.query(params).promise(),
+  batchGet: params => dynamoDB.batchGet(params).promise(),
+  batchWrite: params => dynamoDB.batchWrite(params).promise()
+});
+// CONCATENATED MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/src/libs/helpers-lib.js
+
+
+const removeCaseAndSpaceSensitivty = str => {
+  return str ? str.toLowerCase().trim() : null;
+};
+
+const addCase = str => {
+  if (str) {
+    const strArr = str.split(" ");
+
+    for (let i in strArr) {
+      strArr[i] = strArr[i][0].toUpperCase() + strArr[i].substring(1);
+    }
+
+    return strArr.join(" ");
+  }
+
+  return null;
+}; // export const isEmptyObject = (obj) => {
+//     return Object.keys(obj).length === 0 && obj.constructor === Object
+// }
+
+
+const convertEntryToDBStruct = jsonData => {
+  const data = jsonData;
+
+  if (!data.title) {
+    return {};
+  }
+
+  let tempTitle = removeCaseAndSpaceSensitivty(data.title);
+  tempTitle = addCase(tempTitle);
+  data["title"] = tempTitle;
+  return data;
+};
+const generateNoteId = (userID, title, uuidString) => {
+  const titleArr = title.split(" ");
+  const titleStr = titleArr.join("-");
+  return userID + "-" + titleStr + "-" + uuidString;
+};
+const isEmptyObject = obj => {
+  return JSON.stringify(obj) === JSON.stringify({});
+};
+const convertArrayToString = array => {
+  return array.join(", ");
+};
+// CONCATENATED MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/src/libs/s3-lib.js
+
+
+
+const s3 = new external_aws_sdk_default.a.S3();
+/* harmony default export */ var s3_lib = ({
+  get: params => s3.getObject(params).promise(),
+  put: params => s3.putObject(params).promise(),
+  upload: params => s3.upload(params).promise(),
+  s3SelectList: async params => {
+    return new Promise((resolve, reject) => {
+      s3.selectObjectContent(params, (err, data) => {
+        if (err) {
+          reject(err);
+        }
+
+        if (data === null || isEmptyObject(data)) {
+          return reject('Empty data object');
+        }
+
+        const records = [];
+        data.Payload.on('data', event => {
+          if (event.Records) {
+            records.push(event.Records.Payload);
+          }
+        }).on('error', err => {
+          reject(err);
+        }).on('end', () => {
+          let dataString = Buffer.concat(records).toString('utf8');
+          dataString = dataString.replace(/\,$/, '');
+          dataString = `[${dataString}]`;
+
+          try {
+            const data = JSON.parse(dataString);
+            resolve(data);
+          } catch (e) {
+            reject(new Error(`Unable to convert S3 data to JSON object. S3 Select Query: ${params.Expression}`));
+          }
+        });
+      });
+    });
+  }
+});
+// CONCATENATED MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/src/libs/timestamp-helpers-lib.js
+
+const twoDaysAgo = () => {
+  const today = Date.now();
+  const twoDaysAgo = today - 2 * 24 * 60 * 60 * 1000;
+  return twoDaysAgo;
+};
+
+const timeSpanToMs = timeSpan => {
+  let ms;
+  let day = 1000 * 60 * 60 * 24;
+
+  switch (timeSpan) {
+    case "day":
+      ms = day;
+      break;
+
+    case "week":
+      ms = 7 * day;
+      break;
+
+    case '2-weeks':
+      ms = 14 * day;
+      break;
+
+    case '3-weeks':
+      ms = 21 * day;
+      break;
+
+    case "4-weeks":
+      ms = 28 * day;
+      break;
+  }
+
+  return ms;
+};
+
+const calculateChangedRevisionDate = (timeSpan, revisionDate, postpone) => {
+  const msToAdd = timeSpanToMs(timeSpan);
+  let newDate;
+
+  if (postpone) {
+    newDate = new Date(revisionDate + msToAdd);
+  } else {
+    newDate = new Date(revisionDate - msToAdd);
+  }
+
+  newDate.setHours(0, 0, 0, 0);
+  const currDate = new Date();
+  currDate.setHours(0, 0, 0, 0);
+  return [newDate.getTime(), currDate.getTime()];
+};
+
+const calculatePostponedRevisionDate = (timeSpan, revisionDate) => {
+  const POSTPONE = true;
+  const [newDate, currDate] = calculateChangedRevisionDate(timeSpan, revisionDate, POSTPONE);
+  return newDate;
+};
+const calculateExpeditedRevisionDate = (timeSpan, revisionDate) => {
+  const EXPEDITE = false;
+  const [newDate, currDate] = calculateChangedRevisionDate(timeSpan, revisionDate, EXPEDITE);
+  let exceededCurrDay = false;
+  let newRevisionDate = newDate;
+
+  if (newDate < currDate) {
+    newRevisionDate = currDate, exceededCurrDay = true;
+  }
+
+  return {
+    revisionDate: newRevisionDate,
+    exceededCurrDay: exceededCurrDay
+  };
+};
+const currentDateString = () => {
+  return new Date().toDateString();
+}; // export const getRevisionDate = (timeSpan) => {
+//     const msToAdd = timeSpanToMs(timeSpan);
+//     const revisonDate = new Date(Date.now() + msToAdd);
+//     revisonDate.setHours(0,0,0,0);
+//     return revisionDate.getTime();
+// }
+// CONCATENATED MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/src/handlers/entries/updateEntry.js
 
 
 
 
 
 
-async function deleteQuestion_handler(event, context) {
-  const deletedEntry = event.Records[0].Sns.Message;
+
+
+const updateS3Data = async (s3GetParams, s3ObjToUpdate) => {
+  const s3Obj = await s3_lib.get(s3GetParams);
+  const jsonData = JSON.parse(s3Obj.Body.toString());
+  jsonData[s3ObjToUpdate.index] = s3ObjToUpdate;
+  return jsonData;
+};
+
+async function updateEntry_handler(event, context) {
   const {
-    title
-  } = JSON.parse(deletedEntry);
+    tags,
+    approxCompletionMins,
+    difficulty,
+    content
+  } = event.body;
+  const currentDate = currentDateString();
+  const params = {
+    TableName: process.env.entryTable,
+    Key: {
+      userID: "123",
+      entryID: event.pathParameters.entryId
+    },
+    UpdateExpression: "SET approxCompletionMins = :completion, tags = :tags,  difficulty = :difficulty, lastUpdated = :lastUpdated",
+    ExpressionAttributeValues: {
+      ":tags": tags || [],
+      ":completion": approxCompletionMins || 0,
+      ":difficulty": difficulty || "",
+      ":lastUpdated": currentDate
+    },
+    ReturnValues: "ALL_NEW"
+  };
+  let updatedEntry;
 
   try {
-    const question = await queryQuestionByTitle("123", title, process.env.questionTable);
-
-    if (!question) {
-      throw new http_errors_default.a.NotFound();
-    }
-
-    if (question.entryCount !== 1) {
-      const params = {
-        TableName: process.env.questionTable,
-        Key: {
-          userID: "123",
-          questionID: question.questionID
-        },
-        UpdateExpression: "SET entryCount = entryCount - :decr",
-        ExpressionAttributeValues: {
-          ":decr": 1
+    updatedEntry = dynamoDB_lib.update(params);
+    const expression = "select * from S3Object[*][*] s where s.entryID = '" + event["pathParameters"]["entryId"] + "'";
+    const s3SelectParams = {
+      Bucket: process.env.s3BucketName,
+      Expression: expression,
+      ExpressionType: 'SQL',
+      Key: "123",
+      InputSerialization: {
+        JSON: {
+          Type: 'DOCUMENT'
         }
-      };
-      await dynamoDB_lib.update(params);
-    } else {
-      const params = {
-        TableName: process.env.questionTable,
-        Key: {
-          userID: "123",
-          questionID: question.questionID
-        },
-        ReturnValues: "ALL_OLD"
-      };
-      await dynamoDB_lib.delete(params);
+      },
+      OutputSerialization: {
+        JSON: {
+          RecordDelimiter: ','
+        }
+      }
+    };
+    const s3ObjToUpdate = await s3_lib.s3SelectList(s3SelectParams);
+
+    if (!s3ObjToUpdate) {
+      throw new Error();
     }
+
+    s3ObjToUpdate[0].content = content;
+    s3ObjToUpdate[0].lastUpdated = currentDate;
+    const s3GetParams = {
+      Bucket: process.env.s3BucketName,
+      Key: "123"
+    };
+    const updatedS3Obj = await updateS3Data(s3GetParams, s3ObjToUpdate[0]);
+    const s3UploadParams = {
+      Bucket: process.env.s3BucketName,
+      Key: "123",
+      Body: JSON.stringify(updatedS3Obj)
+    };
+    const upload = s3_lib.upload(s3UploadParams);
+    await Promise.all([upload, updatedEntry]);
   } catch (error) {
     throw new http_errors_default.a.InternalServerError(error);
   }
 
-  return true;
+  return {
+    statusCode: 200,
+    body: JSON.stringify({
+      updated: true
+    })
+  };
 }
 
 ;
-const main = middleware(deleteQuestion_handler);
+const main = middleware(updateEntry_handler);
 
 /***/ })
 /******/ ])));
-//# sourceMappingURL=deleteQuestion.js.map
+//# sourceMappingURL=updateEntry.js.map

@@ -50,6 +50,6 @@ listEntriesByTitle:
     handler: src/handlers/entries/listEntriesByTitle.main
     events:
       - http:
-          path: entries/list/{title}
+          path: entries/listbytitle
           method: get
           cors: true

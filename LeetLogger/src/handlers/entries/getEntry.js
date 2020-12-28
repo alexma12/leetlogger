@@ -1,6 +1,6 @@
 import createError from "http-errors";
 
-import middleware from "@middy/validator";
+import middleware from "../../libs/middleware";
 import dynamoDB from "../../libs/dynamoDB-lib";
 
 

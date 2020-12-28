@@ -16,7 +16,7 @@ const updateS3Data = async (s3GetParams, s3ObjToUpdate) => {
 }
 
 async function handler(event, context) {
-  const { tags, approxCompletionMins, difficulty, content } = convertEntryToDBStruct(event.body);
+  const { tags, approxCompletionMins, difficulty, content } = event.body;
   const currentDate = currentDateString();
   const params = {
     TableName: process.env.entryTable,
@@ -37,7 +37,7 @@ async function handler(event, context) {
 
 
   try {
-    updateEntry = dynamoDB.update(params);
+    updatedEntry = dynamoDB.update(params);
     const expression = "select * from S3Object[*][*] s where s.entryID = '" + event["pathParameters"]["entryId"] + "'";
 
     const s3SelectParams = {
@@ -78,14 +78,16 @@ async function handler(event, context) {
     }
     const upload = s3.upload(s3UploadParams)
 
-    await Promise.all([upload, updateEntry])
-  } catch {
-    throw new createError.InternalServerError("Error occured when updating your entry or notes");
+    await Promise.all([upload, updatedEntry])
+  } catch(error) {
+    throw new createError.InternalServerError(error);
   }
 
   return {
     statusCode: 200,
-    body: JSON.stringify(updatedEntry)
+    body: JSON.stringify({
+      updated: true
+    })
   }
 };
 
