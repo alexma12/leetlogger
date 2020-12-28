@@ -9,7 +9,7 @@ import { calculateExpeditedRevisionDate } from "../../libs/timestamp-helpers-lib
 async function handler(event, context) {
     const {timeDelay, revisionDate} = event.body;
 
-    if (data.revisionDate === -1) {
+    if (revisionDate === -1) {
         throw new createError.Forbidden("This question does not have a revision date set")
     }
     const expeditedDate = calculateExpeditedRevisionDate(timeDelay, revisionDate);
@@ -31,8 +31,10 @@ async function handler(event, context) {
         throw new createError.InternalServerError();
     }
     return {
-        status: 200,
-        body: expeditedDate
+        statusCode: 200,
+        body: JSON.stringify({
+            expedited: timeDelay
+        })
     }
 };
 

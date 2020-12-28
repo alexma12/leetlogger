@@ -13,7 +13,7 @@ async function handler(event, context) {
         FilterExpression: "contains(questionType, :type)",
         ExpressionAttributeValues: {
             ":userID": "123",
-            ":type": event.queryStringParameter.type
+            ":type": event.queryStringParameters.questionType
         },
     }
     let questions;
@@ -25,8 +25,8 @@ async function handler(event, context) {
     }
 
     return {
-        status: 200,
-        body: questions.Items
+        statusCode: 200,
+        body: JSON.stringify(questions.Items)
     }
 };
 

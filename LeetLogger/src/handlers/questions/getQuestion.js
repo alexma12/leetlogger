@@ -2,7 +2,8 @@ import createError from "http-errors";
 
 import middleware from "../../libs/middleware"
 import dynamoDB from "../../libs/dynamodb-lib";
-import s3 from "../../libs/s3-lib"
+import s3 from "../../libs/s3-lib";
+import {isEmptyObject} from "../../libs/helpers-lib"
 
 async function handler(event, context) {
   const dbParams = {
@@ -12,12 +13,13 @@ async function handler(event, context) {
       "questionID": event.pathParameters.questionId
     },
   }
-  let questions;
+  const title =  decodeURIComponent(event.queryStringParameters.title)
+  let question;
   let s3Data;
 
   try {
-    questions = dynamoDB.get(dbParams);
-    const expression = "select * from S3Object[*][*] s where s.title = '" + event["queryStringParameters"]["title"] + "'";
+    question = await dynamoDB.get(dbParams);
+    const expression = "select * from S3Object[*][*] s where s.title = '" + title + "'";
 
 
     const s3Params = {
@@ -37,16 +39,19 @@ async function handler(event, context) {
       }
     }
 
-    s3Data = s3.s3SelectList(s3Params);
-    await Promise.All([s3Data,questions])
+    s3Data = await s3.s3SelectList(s3Params);
 
-  } catch {
-    throw new createError.InternalServerError("Unable to get notes or get question")
+  } catch(error) {
+    throw new createError.InternalServerError(error)
+  }
+
+  if(isEmptyObject(question)){
+    throw new createError.NotFound()
   }
 
   return { 
-      status: 200,
-      body: {...questions.Item, s3Data: s3Data },
+      statusCode: 200,
+      body: JSON.stringify({...question, note: s3Data}),
   }
 };
 

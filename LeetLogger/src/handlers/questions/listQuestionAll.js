@@ -11,17 +11,17 @@ async function handler(event, context) {
             ":userID": "123"
         },
     }
-    let question;
+    let questions;
 
     try {
-        question = await dynamoDB.query(params);
+        questions = await dynamoDB.query(params);
     } catch {
         throw new createError.InternalServerError("Error occcured when getting all questions")
     }
 
     return {
-        status: 200, 
-        body: questions.Items
+        statusCode: 200, 
+        body: JSON.stringify(questions.Items)
     }
 };
 

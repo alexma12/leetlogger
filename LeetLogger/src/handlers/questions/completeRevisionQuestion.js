@@ -17,17 +17,17 @@ async function handler(event, context) {
         ReturnValues: "ALL_NEW"
     }
 
-    let updatedEntry;
+    let updatedQuestion;
 
     try {
-        updatedEntry = await dynamoDB.update(params);
+        updatedQuestion = await dynamoDB.update(params);
     } catch { 
         throw new createError.InternalServerError("Error occured when updating your question")
     }
 
     return {
-        status: 200,    
-        body: updatedEntry
+        statusCode: 200,    
+        body: JSON.stringify(updatedQuestion.Attributes)
     }
 }; 
 

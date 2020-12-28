@@ -16,14 +16,14 @@ async function handler(event, context){
     }
     let questions;
     try { 
-        await dynamoDB.query(params)
-    } catch {
-        throw new createError.InternalServerError("Error occured when querying for your revision questions")
+        questions = await dynamoDB.query(params)
+    } catch(error) {
+        throw new createError.InternalServerError(error)
     }
 
     return {
-        status: 200,
-        body: questions.Items
+        statusCode: 200,
+        body: JSON.stringify(questions.Items)
     }
 };
 

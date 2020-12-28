@@ -8,7 +8,7 @@ import {calculatePostponedRevisionDate} from "../../libs/timestamp-helpers-lib"
 
 async function handler(event, context) {
     const {timeDelay, revisionDate} = event.body;
-    if(data.revisionDate === -1){
+    if(revisionDate === -1){
         throw new Error("This question does not have a revision date set")
     }
     const postponedDate = calculatePostponedRevisionDate(timeDelay, revisionDate)
@@ -24,15 +24,16 @@ async function handler(event, context) {
         },
         ReturnValues: "ALL_NEW"
     }
-    let updatedQuestion; 
     try {
-        updateQuestion =  await dynamoDB.update(params)
+        await dynamoDB.update(params)
     } catch {
         throw new createError.InternalServerError("Error occured when updating your question");
     }
     return {
-        status: 200,
-        body: updatedQuestion
+        statusCode: 200,
+        body: JSON.stringify({
+            postponed: timeDelay
+        })
     }
 }; 
 

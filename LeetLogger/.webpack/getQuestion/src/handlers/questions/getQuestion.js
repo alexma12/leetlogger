@@ -587,12 +587,6 @@ exports.computeSourceURL = computeSourceURL;
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports) {
-
-module.exports = require("aws-sdk");
-
-/***/ }),
-/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -896,6 +890,12 @@ function toClassName (name) {
     : name
 }
 
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+module.exports = require("aws-sdk");
 
 /***/ }),
 /* 4 */
@@ -1977,7 +1977,7 @@ module.exports = middy
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const createError = __webpack_require__(3)
+const createError = __webpack_require__(2)
 const contentType = __webpack_require__(38)
 
 module.exports = (opts) => ({
@@ -6036,7 +6036,7 @@ __webpack_require__.d(__webpack_exports__, "main", function() { return /* bindin
 var register = __webpack_require__(0);
 
 // EXTERNAL MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/node_modules/http-errors/index.js
-var http_errors = __webpack_require__(3);
+var http_errors = __webpack_require__(2);
 var http_errors_default = /*#__PURE__*/__webpack_require__.n(http_errors);
 
 // EXTERNAL MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/node_modules/@middy/core/index.js
@@ -6063,14 +6063,16 @@ var http_error_handler_default = /*#__PURE__*/__webpack_require__.n(http_error_h
 
 /* harmony default export */ var middleware = (handler => core_default()(handler).use([http_json_body_parser_default()(), http_event_normalizer_default()(), http_error_handler_default()()]));
 // EXTERNAL MODULE: external "aws-sdk"
-var external_aws_sdk_ = __webpack_require__(2);
+var external_aws_sdk_ = __webpack_require__(3);
 var external_aws_sdk_default = /*#__PURE__*/__webpack_require__.n(external_aws_sdk_);
 
-// CONCATENATED MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/src/libs/dynamoDB-lib.js
+// CONCATENATED MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/src/libs/dynamodb-lib.js
 
 
-const dynamoDB = new external_aws_sdk_default.a.DynamoDB.DocumentClient();
-/* harmony default export */ var dynamoDB_lib = ({
+const dynamoDB = new external_aws_sdk_default.a.DynamoDB.DocumentClient({
+  region: 'us-west-2'
+});
+/* harmony default export */ var dynamodb_lib = ({
   get: params => dynamoDB.get(params).promise(),
   put: params => dynamoDB.put(params).promise(),
   update: params => dynamoDB.update(params).promise(),
@@ -6169,88 +6171,7 @@ const s3 = new external_aws_sdk_default.a.S3();
     });
   }
 });
-// CONCATENATED MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/src/libs/timestamp-helpers-lib.js
-
-const twoDaysAgo = () => {
-  const today = Date.now();
-  const twoDaysAgo = today - 2 * 24 * 60 * 60 * 1000;
-  return twoDaysAgo;
-};
-
-const timeSpanToMs = timeSpan => {
-  let ms;
-  let day = 1000 * 60 * 60 * 24;
-
-  switch (timeSpan) {
-    case "day":
-      ms = day;
-      break;
-
-    case "week":
-      ms = 7 * day;
-      break;
-
-    case '2-weeks':
-      ms = 14 * day;
-      break;
-
-    case '3-weeks':
-      ms = 21 * day;
-      break;
-
-    case "4-weeks":
-      ms = 28 * day;
-      break;
-  }
-
-  return ms;
-};
-
-const calculateChangedRevisionDate = (timeSpan, revisionDate, postpone) => {
-  const msToAdd = timeSpanToMs(timeSpan);
-  let newDate;
-
-  if (postpone) {
-    newDate = new Date(revisionDate + msToAdd);
-  } else {
-    newDate = new Date(revisionDate - msToAdd);
-  }
-
-  newDate.setHours(0, 0, 0, 0);
-  const currDate = new Date();
-  currDate.setHours(0, 0, 0, 0);
-  return [newDate.getTime(), currDate.getTime()];
-};
-
-const calculatePostponedRevisionDate = (timeSpan, revisionDate) => {
-  const POSTPONE = true;
-  const [newDate, currDate] = calculateChangedRevisionDate(timeSpan, revisionDate, POSTPONE);
-  return newDate;
-};
-const calculateExpeditedRevisionDate = (timeSpan, revisionDate) => {
-  const EXPEDITE = false;
-  const [newDate, currDate] = calculateChangedRevisionDate(timeSpan, revisionDate, EXPEDITE);
-  let exceededCurrDay = false;
-  let newRevisionDate = newDate;
-
-  if (newDate < currDate) {
-    newRevisionDate = currDate, exceededCurrDay = true;
-  }
-
-  return {
-    revisionDate: newRevisionDate,
-    exceededCurrDay: exceededCurrDay
-  };
-};
-const currentDateString = () => {
-  return new Date().toDateString();
-}; // export const getRevisionDate = (timeSpan) => {
-//     const msToAdd = timeSpanToMs(timeSpan);
-//     const revisonDate = new Date(Date.now() + msToAdd);
-//     revisonDate.setHours(0,0,0,0);
-//     return revisionDate.getTime();
-// }
-// CONCATENATED MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/src/handlers/entries/updateEntry.js
+// CONCATENATED MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/src/handlers/questions/getQuestion.js
 
 
 
@@ -6258,43 +6179,22 @@ const currentDateString = () => {
 
 
 
-
-const updateS3Data = async (s3GetParams, s3ObjToUpdate) => {
-  const s3Obj = await s3_lib.get(s3GetParams);
-  const jsonData = JSON.parse(s3Obj.Body.toString());
-  jsonData[s3ObjToUpdate.index] = s3ObjToUpdate;
-  return jsonData;
-};
-
-async function updateEntry_handler(event, context) {
-  const {
-    tags,
-    approxCompletionMins,
-    difficulty,
-    content
-  } = event.body;
-  const currentDate = currentDateString();
-  const params = {
-    TableName: process.env.entryTable,
+async function getQuestion_handler(event, context) {
+  const dbParams = {
+    TableName: process.env.questionTable,
     Key: {
-      userID: "123",
-      entryID: event.pathParameters.entryId
-    },
-    UpdateExpression: "SET approxCompletionMins = :completion, tags = :tags,  difficulty = :difficulty, lastUpdated = :lastUpdated",
-    ExpressionAttributeValues: {
-      ":tags": tags || [],
-      ":completion": approxCompletionMins || 0,
-      ":difficulty": difficulty || "",
-      ":lastUpdated": currentDate
-    },
-    ReturnValues: "ALL_NEW"
+      "userID": "123",
+      "questionID": event.pathParameters.questionId
+    }
   };
-  let updatedEntry;
+  const title = decodeURIComponent(event.queryStringParameters.title);
+  let question;
+  let s3Data;
 
   try {
-    updatedEntry = dynamoDB_lib.update(params);
-    const expression = "select * from S3Object[*][*] s where s.entryID = '" + event["pathParameters"]["entryId"] + "'";
-    const s3SelectParams = {
+    question = await dynamodb_lib.get(dbParams);
+    const expression = "select * from S3Object[*][*] s where s.title = '" + title + "'";
+    const s3Params = {
       Bucket: process.env.s3BucketName,
       Expression: expression,
       ExpressionType: 'SQL',
@@ -6310,41 +6210,26 @@ async function updateEntry_handler(event, context) {
         }
       }
     };
-    const s3ObjToUpdate = await s3_lib.s3SelectList(s3SelectParams);
-
-    if (!s3ObjToUpdate) {
-      throw new Error();
-    }
-
-    s3ObjToUpdate[0].content = content;
-    s3ObjToUpdate[0].lastUpdated = currentDate;
-    const s3GetParams = {
-      Bucket: process.env.s3BucketName,
-      Key: "123"
-    };
-    const updatedS3Obj = await updateS3Data(s3GetParams, s3ObjToUpdate[0]);
-    const s3UploadParams = {
-      Bucket: process.env.s3BucketName,
-      Key: "123",
-      Body: JSON.stringify(updatedS3Obj)
-    };
-    const upload = s3_lib.upload(s3UploadParams);
-    await Promise.all([upload, updatedEntry]);
+    s3Data = await s3_lib.s3SelectList(s3Params);
   } catch (error) {
     throw new http_errors_default.a.InternalServerError(error);
   }
 
+  if (isEmptyObject(question)) {
+    throw new http_errors_default.a.NotFound();
+  }
+
   return {
     statusCode: 200,
-    body: JSON.stringify({
-      updated: true
+    body: JSON.stringify({ ...question,
+      note: s3Data
     })
   };
 }
 
 ;
-const main = middleware(updateEntry_handler);
+const main = middleware(getQuestion_handler);
 
 /***/ })
 /******/ ])));
-//# sourceMappingURL=updateEntry.js.map
+//# sourceMappingURL=getQuestion.js.map
