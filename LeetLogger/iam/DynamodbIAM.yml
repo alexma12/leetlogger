@@ -4,7 +4,7 @@ DynamodbIAM:
     - dynamodb:PutItem
     - dynamodb:GetItem
     - dynamodb:UpdateItem
-    - dyanmodb:DeleteItem
+    - dynamodb:DeleteItem
     - dynamodb:Query
   Resource: 
     - ${self:custom.QuestionTable.arn}

@@ -1,8 +1,0 @@
-{
-    "body": "{\"userID\":\"123\",\"title\":\"two sum \",\"difficulty\":\"easy\",\"content\":\"hello-worldqweqweqeqweqweqweqweqweweqeqweqweqweqeqweqwe\"}",
-    "requestContext": {
-      "identity": {
-        "cognitoIdentityId": "USER-SUB-1234"
-      }
-    }
-}

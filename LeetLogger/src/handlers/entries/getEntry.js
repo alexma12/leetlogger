@@ -23,8 +23,8 @@ async function handler(event, context) {
         throw new createError.NotFound()
     }
     return {
-        status: 200,
-        body: entry.Item
+        statusCode: 200,
+        body: JSON.stringify(entry.Item)
     }
 };
 

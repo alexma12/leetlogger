@@ -1,8 +1,0 @@
-{
-    "pathParameters": {
-        "questionId": "1c01eeec-3a51-4203-b0ee-5b4e909f15fb"
-    },
-    "queryStringParameters": {
-        "title": "Two Sum"
-    }
-} 

@@ -81,18 +81,11 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 40);
+/******/ 	return __webpack_require__(__webpack_require__.s = 39);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(14).install();
-
-
-/***/ }),
-/* 1 */
 /***/ (function(module, exports) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -586,6 +579,13 @@ exports.computeSourceURL = computeSourceURL;
 
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(13).install();
+
+
+/***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -604,11 +604,11 @@ exports.computeSourceURL = computeSourceURL;
  * @private
  */
 
-var deprecate = __webpack_require__(25)('http-errors')
-var setPrototypeOf = __webpack_require__(29)
-var statuses = __webpack_require__(30)
-var inherits = __webpack_require__(32)
-var toIdentifier = __webpack_require__(35)
+var deprecate = __webpack_require__(24)('http-errors')
+var setPrototypeOf = __webpack_require__(28)
+var statuses = __webpack_require__(29)
+var inherits = __webpack_require__(31)
+var toIdentifier = __webpack_require__(34)
 
 /**
  * Module exports.
@@ -903,9 +903,9 @@ function toClassName (name) {
  */
 
 var base64VLQ = __webpack_require__(4);
-var util = __webpack_require__(1);
+var util = __webpack_require__(0);
 var ArraySet = __webpack_require__(5).ArraySet;
-var MappingList = __webpack_require__(18).MappingList;
+var MappingList = __webpack_require__(17).MappingList;
 
 /**
  * An instance of the SourceMapGenerator represents a source map which is
@@ -1363,7 +1363,7 @@ exports.SourceMapGenerator = SourceMapGenerator;
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-var base64 = __webpack_require__(17);
+var base64 = __webpack_require__(16);
 
 // A single base 64 digit can contain 6 bits of data. For the base 64 variable
 // length quantities we use in the source map spec, the first bit is the sign,
@@ -1479,7 +1479,7 @@ exports.decode = function base64VLQ_decode(aStr, aIndex, aOutParam) {
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
-var util = __webpack_require__(1);
+var util = __webpack_require__(0);
 var has = Object.prototype.hasOwnProperty;
 var hasNativeMap = typeof Map !== "undefined";
 
@@ -1619,7 +1619,7 @@ module.exports = require("path");
  * @private
  */
 
-var EventEmitter = __webpack_require__(26).EventEmitter
+var EventEmitter = __webpack_require__(25).EventEmitter
 
 /**
  * Module exports.
@@ -1647,11 +1647,11 @@ lazyProperty(module.exports, 'callSiteToString', function callSiteToString () {
   Error.prepareStackTrace = prep
   Error.stackTraceLimit = limit
 
-  return stack[0].toString ? toString : __webpack_require__(27)
+  return stack[0].toString ? toString : __webpack_require__(26)
 })
 
 lazyProperty(module.exports, 'eventListenerCount', function eventListenerCount () {
-  return EventEmitter.listenerCount || __webpack_require__(28)
+  return EventEmitter.listenerCount || __webpack_require__(27)
 })
 
 /**
@@ -1697,8 +1697,8 @@ module.exports = require("aws-sdk");
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const isPromise = __webpack_require__(36)
-const once = __webpack_require__(37)
+const isPromise = __webpack_require__(35)
+const once = __webpack_require__(36)
 
 /**
  * @typedef middy
@@ -1978,7 +1978,7 @@ module.exports = middy
 /***/ (function(module, exports, __webpack_require__) {
 
 const createError = __webpack_require__(2)
-const contentType = __webpack_require__(39)
+const contentType = __webpack_require__(38)
 
 module.exports = (opts) => ({
   before: (handler, next) => {
@@ -2084,20 +2084,14 @@ module.exports = (opts) => {
 
 /***/ }),
 /* 13 */
-/***/ (function(module, exports) {
-
-module.exports = require("crypto");
-
-/***/ }),
-/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(module) {var SourceMapConsumer = __webpack_require__(16).SourceMapConsumer;
+/* WEBPACK VAR INJECTION */(function(module) {var SourceMapConsumer = __webpack_require__(15).SourceMapConsumer;
 var path = __webpack_require__(6);
 
 var fs;
 try {
-  fs = __webpack_require__(23);
+  fs = __webpack_require__(22);
   if (!fs.existsSync || !fs.readFileSync) {
     // fs doesn't have all methods we need
     fs = null;
@@ -2106,7 +2100,7 @@ try {
   /* nop */
 }
 
-var bufferFrom = __webpack_require__(24);
+var bufferFrom = __webpack_require__(23);
 
 /**
  * Requires a module which is protected against bundler minification.
@@ -2697,10 +2691,10 @@ exports.resetRetrieveHandlers = function() {
   retrieveFile = handlerExec(retrieveFileHandlers);
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(15)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(14)(module)))
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -2728,7 +2722,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -2737,12 +2731,12 @@ module.exports = function(module) {
  * http://opensource.org/licenses/BSD-3-Clause
  */
 exports.SourceMapGenerator = __webpack_require__(3).SourceMapGenerator;
-exports.SourceMapConsumer = __webpack_require__(19).SourceMapConsumer;
-exports.SourceNode = __webpack_require__(22).SourceNode;
+exports.SourceMapConsumer = __webpack_require__(18).SourceMapConsumer;
+exports.SourceNode = __webpack_require__(21).SourceNode;
 
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -2815,7 +2809,7 @@ exports.decode = function (charCode) {
 
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -2825,7 +2819,7 @@ exports.decode = function (charCode) {
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
-var util = __webpack_require__(1);
+var util = __webpack_require__(0);
 
 /**
  * Determine whether mappingB is after mappingA with respect to generated
@@ -2900,7 +2894,7 @@ exports.MappingList = MappingList;
 
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -2910,11 +2904,11 @@ exports.MappingList = MappingList;
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
-var util = __webpack_require__(1);
-var binarySearch = __webpack_require__(20);
+var util = __webpack_require__(0);
+var binarySearch = __webpack_require__(19);
 var ArraySet = __webpack_require__(5).ArraySet;
 var base64VLQ = __webpack_require__(4);
-var quickSort = __webpack_require__(21).quickSort;
+var quickSort = __webpack_require__(20).quickSort;
 
 function SourceMapConsumer(aSourceMap, aSourceMapURL) {
   var sourceMap = aSourceMap;
@@ -4051,7 +4045,7 @@ exports.IndexedSourceMapConsumer = IndexedSourceMapConsumer;
 
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -4168,7 +4162,7 @@ exports.search = function search(aNeedle, aHaystack, aCompare, aBias) {
 
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -4288,7 +4282,7 @@ exports.quickSort = function (ary, comparator) {
 
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -4299,7 +4293,7 @@ exports.quickSort = function (ary, comparator) {
  */
 
 var SourceMapGenerator = __webpack_require__(3).SourceMapGenerator;
-var util = __webpack_require__(1);
+var util = __webpack_require__(0);
 
 // Matches a Windows-style `\r\n` newline or a `\n` newline used by all other
 // operating systems these days (capturing the result).
@@ -4707,13 +4701,13 @@ exports.SourceNode = SourceNode;
 
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports) {
 
 module.exports = require("fs");
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports) {
 
 var toString = Object.prototype.toString
@@ -4788,7 +4782,7 @@ module.exports = bufferFrom
 
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -5316,13 +5310,13 @@ function DeprecationError (namespace, message, stack) {
 
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports) {
 
 module.exports = require("events");
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5432,7 +5426,7 @@ function getConstructorName (obj) {
 
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5461,7 +5455,7 @@ function eventListenerCount (emitter, type) {
 
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5485,7 +5479,7 @@ function mixinProperties (obj, proto) {
 
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5503,7 +5497,7 @@ function mixinProperties (obj, proto) {
  * @private
  */
 
-var codes = __webpack_require__(31)
+var codes = __webpack_require__(30)
 
 /**
  * Module exports.
@@ -5605,34 +5599,34 @@ function status (code) {
 
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"100\":\"Continue\",\"101\":\"Switching Protocols\",\"102\":\"Processing\",\"103\":\"Early Hints\",\"200\":\"OK\",\"201\":\"Created\",\"202\":\"Accepted\",\"203\":\"Non-Authoritative Information\",\"204\":\"No Content\",\"205\":\"Reset Content\",\"206\":\"Partial Content\",\"207\":\"Multi-Status\",\"208\":\"Already Reported\",\"226\":\"IM Used\",\"300\":\"Multiple Choices\",\"301\":\"Moved Permanently\",\"302\":\"Found\",\"303\":\"See Other\",\"304\":\"Not Modified\",\"305\":\"Use Proxy\",\"306\":\"(Unused)\",\"307\":\"Temporary Redirect\",\"308\":\"Permanent Redirect\",\"400\":\"Bad Request\",\"401\":\"Unauthorized\",\"402\":\"Payment Required\",\"403\":\"Forbidden\",\"404\":\"Not Found\",\"405\":\"Method Not Allowed\",\"406\":\"Not Acceptable\",\"407\":\"Proxy Authentication Required\",\"408\":\"Request Timeout\",\"409\":\"Conflict\",\"410\":\"Gone\",\"411\":\"Length Required\",\"412\":\"Precondition Failed\",\"413\":\"Payload Too Large\",\"414\":\"URI Too Long\",\"415\":\"Unsupported Media Type\",\"416\":\"Range Not Satisfiable\",\"417\":\"Expectation Failed\",\"418\":\"I'm a teapot\",\"421\":\"Misdirected Request\",\"422\":\"Unprocessable Entity\",\"423\":\"Locked\",\"424\":\"Failed Dependency\",\"425\":\"Unordered Collection\",\"426\":\"Upgrade Required\",\"428\":\"Precondition Required\",\"429\":\"Too Many Requests\",\"431\":\"Request Header Fields Too Large\",\"451\":\"Unavailable For Legal Reasons\",\"500\":\"Internal Server Error\",\"501\":\"Not Implemented\",\"502\":\"Bad Gateway\",\"503\":\"Service Unavailable\",\"504\":\"Gateway Timeout\",\"505\":\"HTTP Version Not Supported\",\"506\":\"Variant Also Negotiates\",\"507\":\"Insufficient Storage\",\"508\":\"Loop Detected\",\"509\":\"Bandwidth Limit Exceeded\",\"510\":\"Not Extended\",\"511\":\"Network Authentication Required\"}");
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 try {
-  var util = __webpack_require__(33);
+  var util = __webpack_require__(32);
   /* istanbul ignore next */
   if (typeof util.inherits !== 'function') throw '';
   module.exports = util.inherits;
 } catch (e) {
   /* istanbul ignore next */
-  module.exports = __webpack_require__(34);
+  module.exports = __webpack_require__(33);
 }
 
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports) {
 
 module.exports = require("util");
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports) {
 
 if (typeof Object.create === 'function') {
@@ -5665,7 +5659,7 @@ if (typeof Object.create === 'function') {
 
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports) {
 
 /*!
@@ -5701,7 +5695,7 @@ function toIdentifier (str) {
 
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports) {
 
 module.exports = (val) => {
@@ -5712,10 +5706,10 @@ module.exports = (val) => {
 
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var wrappy = __webpack_require__(38)
+var wrappy = __webpack_require__(37)
 module.exports = wrappy(once)
 module.exports.strict = wrappy(onceStrict)
 
@@ -5760,7 +5754,7 @@ function onceStrict (fn) {
 
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports) {
 
 // Returns a wrapper function that returns a wrapped callback
@@ -5799,7 +5793,7 @@ function wrappy (fn, cb) {
 
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6028,7 +6022,7 @@ function ContentType (type) {
 
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6039,141 +6033,12 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, "main", function() { return /* binding */ main; });
 
 // EXTERNAL MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/node_modules/source-map-support/register.js
-var register = __webpack_require__(0);
+var register = __webpack_require__(1);
 
-// EXTERNAL MODULE: external "crypto"
-var external_crypto_ = __webpack_require__(13);
-var external_crypto_default = /*#__PURE__*/__webpack_require__.n(external_crypto_);
-
-// CONCATENATED MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/node_modules/uuid/dist/esm-node/rng.js
-
-const rnds8Pool = new Uint8Array(256); // # of random values to pre-allocate
-
-let poolPtr = rnds8Pool.length;
-function rng() {
-  if (poolPtr > rnds8Pool.length - 16) {
-    external_crypto_default.a.randomFillSync(rnds8Pool);
-    poolPtr = 0;
-  }
-
-  return rnds8Pool.slice(poolPtr, poolPtr += 16);
-}
-// CONCATENATED MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/node_modules/uuid/dist/esm-node/regex.js
-/* harmony default export */ var regex = (/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i);
-// CONCATENATED MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/node_modules/uuid/dist/esm-node/validate.js
-
-
-function validate(uuid) {
-  return typeof uuid === 'string' && regex.test(uuid);
-}
-
-/* harmony default export */ var esm_node_validate = (validate);
-// CONCATENATED MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/node_modules/uuid/dist/esm-node/stringify.js
-
-/**
- * Convert array of 16 byte values to UUID string format of the form:
- * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
- */
-
-const byteToHex = [];
-
-for (let i = 0; i < 256; ++i) {
-  byteToHex.push((i + 0x100).toString(16).substr(1));
-}
-
-function stringify(arr, offset = 0) {
-  // Note: Be careful editing this code!  It's been tuned for performance
-  // and works in ways you may not expect. See https://github.com/uuidjs/uuid/pull/434
-  const uuid = (byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + '-' + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + '-' + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + '-' + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + '-' + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]]).toLowerCase(); // Consistency check for valid UUID.  If this throws, it's likely due to one
-  // of the following:
-  // - One or more input array values don't map to a hex octet (leading to
-  // "undefined" in the uuid)
-  // - Invalid input values for the RFC `version` or `variant` fields
-
-  if (!esm_node_validate(uuid)) {
-    throw TypeError('Stringified UUID is invalid');
-  }
-
-  return uuid;
-}
-
-/* harmony default export */ var esm_node_stringify = (stringify);
-// CONCATENATED MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/node_modules/uuid/dist/esm-node/v4.js
-
-
-
-function v4(options, buf, offset) {
-  options = options || {};
-  const rnds = options.random || (options.rng || rng)(); // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
-
-  rnds[6] = rnds[6] & 0x0f | 0x40;
-  rnds[8] = rnds[8] & 0x3f | 0x80; // Copy bytes to buffer, if provided
-
-  if (buf) {
-    offset = offset || 0;
-
-    for (let i = 0; i < 16; ++i) {
-      buf[offset + i] = rnds[i];
-    }
-
-    return buf;
-  }
-
-  return esm_node_stringify(rnds);
-}
-
-/* harmony default export */ var esm_node_v4 = (v4);
 // EXTERNAL MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/node_modules/http-errors/index.js
 var http_errors = __webpack_require__(2);
 var http_errors_default = /*#__PURE__*/__webpack_require__.n(http_errors);
 
-// CONCATENATED MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/src/libs/helpers-lib.js
-
-
-const removeCaseAndSpaceSensitivty = str => {
-  return str ? str.toLowerCase().trim() : null;
-};
-
-const addCase = str => {
-  if (str) {
-    const strArr = str.split(" ");
-
-    for (let i in strArr) {
-      strArr[i] = strArr[i][0].toUpperCase() + strArr[i].substring(1);
-    }
-
-    return strArr.join(" ");
-  }
-
-  return null;
-}; // export const isEmptyObject = (obj) => {
-//     return Object.keys(obj).length === 0 && obj.constructor === Object
-// }
-
-
-const convertEntryToDBStruct = jsonData => {
-  const data = jsonData;
-
-  if (!data.title) {
-    return {};
-  }
-
-  let tempTitle = removeCaseAndSpaceSensitivty(data.title);
-  tempTitle = addCase(tempTitle);
-  data["title"] = tempTitle;
-  return data;
-};
-const generateNoteId = (userID, title, uuidString) => {
-  const titleArr = title.split(" ");
-  const titleStr = titleArr.join("-");
-  return userID + "-" + titleStr + "-" + uuidString;
-};
-const isEmptyObject = obj => {
-  return JSON.stringify(obj) === JSON.stringify({});
-};
-const convertArrayToString = array => {
-  return array.join(", ");
-};
 // EXTERNAL MODULE: external "aws-sdk"
 var external_aws_sdk_ = __webpack_require__(8);
 var external_aws_sdk_default = /*#__PURE__*/__webpack_require__.n(external_aws_sdk_);
@@ -6235,83 +6100,60 @@ var http_error_handler_default = /*#__PURE__*/__webpack_require__.n(http_error_h
 
 
 /* harmony default export */ var middleware = (handler => core_default()(handler).use([http_json_body_parser_default()(), http_event_normalizer_default()(), http_error_handler_default()()]));
-// CONCATENATED MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/src/handlers/questions/addQuestion.js
+// CONCATENATED MODULE: /Users/alexma/Desktop/LeetLogger/LeetLogger/src/handlers/questions/deleteQuestion.js
 
 
 
 
 
 
-
-
-async function addQuestion_handler(event, context) {
-  const entry = event.Records[0].Sns.Message;
+async function deleteQuestion_handler(event, context) {
+  const deletedEntry = event.Records[0].Sns.Message;
   const {
-    title,
-    revisionDate,
-    questionType,
-    difficulty
-  } = JSON.parse(entry);
-  let question;
+    title
+  } = JSON.parse(deletedEntry);
 
   try {
-    question = await queryQuestionByTitle("123", title, process.env.questionTable);
+    const question = await queryQuestionByTitle("123", title, process.env.questionTable);
 
-    if (question !== null) {
-      const {
-        questionID
-      } = question;
-      let updateExpression;
-      let expressionAttributeValues;
+    if (!question) {
+      throw new http_errors_default.a.NotFound();
+    }
 
-      if (!revisionDate && revisionDate !== -1) {
-        updateExpression = "SET entryCount = entryCount + :incr";
-        expressionAttributeValues = {
-          ":incr": 1
-        };
-      } else {
-        updateExpression = "SET entryCount = entryCount + :incr, revisionDate = :revisionDate";
-        expressionAttributeValues = {
-          ":incr": 1,
-          ":revisionDate": revisionDate
-        };
-      }
-
+    if (question.entryCount !== 1) {
       const params = {
         TableName: process.env.questionTable,
         Key: {
           userID: "123",
-          questionID: questionID
+          questionID: question.questionID
         },
-        UpdateExpression: updateExpression,
-        ExpressionAttributeValues: expressionAttributeValues
+        UpdateExpression: "SET entryCount = entryCount - :decr",
+        ExpressionAttributeValues: {
+          ":decr": 1
+        }
       };
       await dynamoDB_lib.update(params);
     } else {
       const params = {
         TableName: process.env.questionTable,
-        Item: {
+        Key: {
           userID: "123",
-          questionID: esm_node_v4(),
-          title,
-          questionType: convertArrayToString(questionType),
-          revisionDate: revisionDate || -1,
-          difficulty,
-          entryCount: 1
-        }
+          questionID: question.questionID
+        },
+        ReturnValues: "ALL_OLD"
       };
-      await dynamoDB_lib.put(params);
+      await dynamoDB_lib.delete(params);
     }
   } catch (error) {
-    throw new http_errors_default.a.InternalServerError(JSON.stringify(question));
+    throw new http_errors_default.a.InternalServerError(error);
   }
 
   return true;
 }
 
 ;
-const main = middleware(addQuestion_handler);
+const main = middleware(deleteQuestion_handler);
 
 /***/ })
 /******/ ])));
-//# sourceMappingURL=addQuestion.js.map
+//# sourceMappingURL=deleteQuestion.js.map

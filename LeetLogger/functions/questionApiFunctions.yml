@@ -67,15 +67,3 @@ completeRevisionQuestion:
           path: questions/{questionId}/complete
           method: post
           cors: true
-
-incQuestionEntryCount:
-    handler: src/handlers/questions/incQuestionEntryCount.main
-
-   
-decQuestionEntryCount:
-    handler: src/handlers/questions/decQuestionEntryCount.main
-    events:
-      - http:
-          path: questions/{questionId}/dec
-          method: post
-          cors: true

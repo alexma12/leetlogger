@@ -22,7 +22,7 @@ const addToS3JsonData = async (s3GetParams, s3JsonData) => {
 
 
 async function handler(event, context) {
-    const { title, questionType, tags, approxCompletionMins, difficulty, content } = convertEntryToDBStruct(event.body);
+    const { title, questionType, tags, approxCompletionMins, difficulty, content, revisionDate} = convertEntryToDBStruct(event.body);
     const entryID = uuid.v4();
     const currentDate = currentDateString();
 
@@ -35,6 +35,7 @@ async function handler(event, context) {
             questionType,
             submittedAt: Date.now(),
             tags: tags || [],
+            revisionDate,
             approxCompletionMins,
             difficulty,
         }

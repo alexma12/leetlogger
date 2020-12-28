@@ -1,8 +1,0 @@
-{
-    "body": "{\"title\":\"two sum \",\"difficulty\":\"easy\"}",
-    "requestContext": {
-      "identity": {
-        "cognitoIdentityId": "USER-SUB-1234"
-      }
-    }
-}

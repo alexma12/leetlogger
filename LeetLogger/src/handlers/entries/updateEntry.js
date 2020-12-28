@@ -16,7 +16,7 @@ const updateS3Data = async (s3GetParams, s3ObjToUpdate) => {
 }
 
 async function handler(event, context) {
-  const { tags, approxCompletionMins, difficulty } = convertEntryToDBStruct(event.body);
+  const { tags, approxCompletionMins, difficulty, content } = convertEntryToDBStruct(event.body);
   const currentDate = currentDateString();
   const params = {
     TableName: process.env.entryTable,
@@ -58,7 +58,10 @@ async function handler(event, context) {
     }
 
     const s3ObjToUpdate = await s3.s3SelectList(s3SelectParams);
-    s3ObjToUpdate[0].content = data.content;
+    if(!s3ObjToUpdate){
+      throw new Error()
+    }
+    s3ObjToUpdate[0].content = content;
     s3ObjToUpdate[0].lastUpdated = currentDate;
 
     const s3GetParams = {
@@ -81,8 +84,8 @@ async function handler(event, context) {
   }
 
   return {
-    status: 200,
-    body: updatedEntry
+    statusCode: 200,
+    body: JSON.stringify(updatedEntry)
   }
 };
 

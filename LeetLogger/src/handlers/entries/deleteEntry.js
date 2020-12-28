@@ -25,15 +25,15 @@ async function handler(event, context) {
   }
 
   let deletedEntry;
-
+  let s3ObjToDelete
   try {
-    deletedEntry = dynamoDB.delete(params);
+    deletedEntry = await dynamoDB.delete(params);
     const expression = "select * from S3Object[*][*] s where s.entryID = '" + event["pathParameters"]["entryId"] + "'";
 
     const s3SelectParams = {
       Bucket: process.env.s3BucketName,
       Expression: expression,
-      ExpressionType: 'SQL',
+      ExpressionType: 'SQL', 
       Key: "123",
       InputSerialization: {
         JSON: {
@@ -47,27 +47,31 @@ async function handler(event, context) {
       }
     }
 
-    const s3ObjToDelete = await s3.s3SelectList(s3SelectParams);
+    s3ObjToDelete = await s3.s3SelectList(s3SelectParams);
+    if(!s3ObjToDelete){
+      throw new createError.NotFound();
+    }
     const s3GetParams = {
       Bucket: process.env.s3BucketName,
       Key: "123"
     }
 
-    const updatedS3Obj = await deleteObjFromS3Data(s3GetParams, s3ObjToDelete[0].index);
+
+    const updatedS3Obj = await deleteObjFromS3Data(s3GetParams, s3ObjToDelete[0]["index"]);
 
     const s3UploadParams = {
       Bucket: process.env.s3BucketName,
       Key: "123",
       Body: JSON.stringify(updatedS3Obj)
     }
-    const upload =  s3.upload(s3UploadParams)
+    const upload = s3.upload(s3UploadParams)
 
     await Promise.all([upload,deletedEntry])
 
-    await sns.publish(deletedEntry.body.title, process.env.delteEntryTopicArn)
+    await sns.publish(JSON.stringify(deletedEntry.Attributes), process.env.deleteEntryTopicArn)
 
-  } catch {
-    throw new createError.InternalServerError("Error occured when deleting your notes or deleting your entry");
+  } catch(error) {
+    throw new createError.InternalServerError(error);
   }
 
 
@@ -76,8 +80,8 @@ async function handler(event, context) {
   }
 
   return {
-    staus: 200,
-    body: deletedEntry
+    statusCode: 200,
+    body: JSON.stringify(deletedEntry.Attributes)
   }
 }
 

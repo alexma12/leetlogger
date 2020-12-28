@@ -22,8 +22,8 @@ async function handler(event, context) {
         throw new createError.InternalServerError("Error occured when querying for your entries");
     }
     return {
-        status: 200,
-        body: entries.Items
+        statusCode: 200,
+        body: JSON.stringify(entries.Items)
     }
 };
 

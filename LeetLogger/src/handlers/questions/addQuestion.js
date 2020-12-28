@@ -11,9 +11,8 @@ async function handler(event, context) {
 
     const entry  = event.Records[0].Sns.Message;
     const {title, revisionDate, questionType, difficulty} = JSON.parse(entry)
-    let question;
     try {
-         question = await queryQuestionByTitle("123", title , process.env.questionTable)
+        const question = await queryQuestionByTitle("123", title , process.env.questionTable)
         if (question !== null) {
             const { questionID } = question;
             let updateExpression; 

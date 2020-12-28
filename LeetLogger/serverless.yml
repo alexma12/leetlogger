@@ -61,8 +61,6 @@ functions:
   expediteRevisionDate: ${file(functions/questionApiFunctions.yml):expediteRevisionDate}
   postponeRevisionDate: ${file(functions/questionApiFunctions.yml):postponeRevisionDate}
   completeRevisionQuestion: ${file(functions/questionApiFunctions.yml):completeRevisionQuestion}
-  incQuestionEntryCount: ${file(functions/questionApiFunctions.yml):incQuestionEntryCount}
-  decQuestionEntryCount: ${file(functions/questionApiFunctions.yml):decQuestionEntryCount}
   loginUserS3Create: ${file(functions/loginApiFunctions.yml):loginUserS3Create}
 
 custom:
