@@ -1,0 +1,22 @@
+addEntryToCalendar: 
+    handler: src/handlers/calendar/addEntryToCalendar.main
+    events:
+      - sns: 
+          topicName: "${self:custom.AddEntryTopic.name}"
+          arn: ${self:custom.AddEntryTopic.arn}
+
+deleteEntryFromCalendar: 
+    handler: src/handlers/calendar/deleteEntryFromCalendar.main
+    events:
+      - sns: 
+          topicName: "${self:custom.DeleteEntryTopic.name}"
+          arn: ${self:custom.DeleteEntryTopic.arn}
+
+
+QueryCalendarEntries: 
+    handler: src/handlers/calendar/queryCalendarEntries.main
+    events:
+      - http:
+          method: get
+          path: calendarEntries
+          cors: true
