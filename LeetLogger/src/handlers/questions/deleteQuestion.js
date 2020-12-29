@@ -3,10 +3,24 @@ import createError from "http-errors"
 import queryQuestionByTitle from "../../libs/queryQuestionByTitle"
 import middleware from "../../libs/middleware"
 import dynamoDB from "../../libs/dynamoDB-lib";
+import s3 from "../../libs/s3-lib";
+
+const deleteObjFromS3Data = async (s3GetParams, entryID) => {
+    const s3Obj = await s3.get(s3GetParams);
+    const jsonData = JSON.parse(s3Obj.Body.toString());
+    for (let i in jsonData) {
+        if (jsonData[i].entryID === entryID) {
+            jsonData[i] = null
+            return jsonData
+        }
+    }
+    throw new createError.NotFound();
+}
+
 
 async function handler(event, context) {
     const deletedEntry = event.Records[0].Sns.Message
-    const {title} = JSON.parse(deletedEntry);
+    const { title, entryID } = JSON.parse(deletedEntry);
 
     try {
         const question = await queryQuestionByTitle("123", title, process.env.questionTable)
@@ -16,6 +30,8 @@ async function handler(event, context) {
 
 
         if (question.entryCount !== 1) {
+
+            const bucketKey = "123" + "-" + question.questionID
             const params = {
                 TableName: process.env.questionTable,
                 Key: {
@@ -27,7 +43,26 @@ async function handler(event, context) {
                     ":decr": 1
                 },
             }
-            await dynamoDB.update(params);
+
+            const update = dynamoDB.update(params);
+
+
+            const s3GetParams = {
+                Bucket: process.env.s3BucketName,
+                Key: bucketKey
+            }
+
+            const updatedS3Obj = await deleteObjFromS3Data(s3GetParams, entryID)
+
+            const s3UploadParams = {
+              Bucket: process.env.s3BucketName,
+              Key: bucketKey,
+              Body: JSON.stringify(updatedS3Obj)
+            }
+            const upload = s3.upload(s3UploadParams)
+
+
+            await Promise.all([upload,update])
 
         } else {
             const params = {
@@ -39,9 +74,18 @@ async function handler(event, context) {
                 ReturnValues: "ALL_OLD"
             }
 
-            await dynamoDB.delete(params);
+            const dbDelete = dynamoDB.delete(params);
+
+            const s3Params = {
+                Bucket: process.env.s3BucketName,
+                Key: "123" + "-" + question.questionID
+            }
+
+            const s3Delete = s3.delete(s3Params);
+
+            await Promise.all([dbDelete, s3Delete])
         }
-    } catch(error) {
+    } catch (error) {
         throw new createError.InternalServerError(error);
     }
 

@@ -13,33 +13,17 @@ async function handler(event, context) {
       "questionID": event.pathParameters.questionId
     },
   }
-  const title =  decodeURIComponent(event.queryStringParameters.title)
   let question;
   let s3Data;
 
   try {
     question = await dynamoDB.get(dbParams);
-    const expression = "select * from S3Object[*][*] s where s.title = '" + title + "'";
 
-
-    const s3Params = {
-      Bucket: process.env.s3BucketName,
-      Expression: expression,
-      ExpressionType: 'SQL',
-      Key: "123",
-      InputSerialization: {
-        JSON: {
-          Type: 'DOCUMENT',
-        }
-      },
-      OutputSerialization: {
-        JSON: {
-          RecordDelimiter: ','
-        }
-      }
+    const s3Params = { 
+        Bucket: process.env.s3BucketName,
+        Key:"123" + "-" + event.pathParameters.questionId
     }
-
-    s3Data = await s3.s3SelectList(s3Params);
+    s3Data = await s3.get(s3Params)
 
   } catch(error) {
     throw new createError.InternalServerError(error)
@@ -51,7 +35,7 @@ async function handler(event, context) {
 
   return { 
       statusCode: 200,
-      body: JSON.stringify({...question, note: s3Data}),
+      body: JSON.stringify({...question.Item, notes: JSON.parse(s3Data.Body.toString())}),
   }
 };
 

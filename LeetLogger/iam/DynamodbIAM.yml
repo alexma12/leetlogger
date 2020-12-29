@@ -14,3 +14,4 @@ DynamodbIAM:
     - ${self:custom.EntryTable.arn}
     - !Join ["/", ["${self:custom.EntryTable.arn}", "index", "userID-submittedAt-index"]]
     - !Join ["/", ["${self:custom.EntryTable.arn}", "index", "userID-title-index"]]
+    - ${self:custom.CalendarTable.arn}

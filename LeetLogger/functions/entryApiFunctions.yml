@@ -10,7 +10,7 @@ updateEntry:
     handler: src/handlers/entries/updateEntry.main
     events:
       - http:
-          path: entries/{entryId}
+          path: entries/{entryId}/{questionId}
           method: put
           cors: true
 

@@ -16,7 +16,7 @@ getQuestion:
     handler: src/handlers/questions/getQuestion.main
     events:
       - http:
-          path: questions/{questionId}/title
+          path: questions/{questionId}
           method: get
           cors: true
 
