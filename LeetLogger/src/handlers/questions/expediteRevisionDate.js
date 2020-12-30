@@ -1,42 +1,43 @@
-import createError from "http-errors"
+import createError from "http-errors";
 import validator from "@middy/validator";
 
 import schema from "../../libs/schema/revisionDateShiftingValidator";
-import middleware from "../../libs/middleware"
-import dynamoDB from "../../libs/dynamoDB-lib"
+import middleware from "../../libs/middleware";
+import dynamoDB from "../../libs/dynamoDB-lib";
 import { calculateExpeditedRevisionDate } from "../../libs/timestamp-helpers-lib";
 
 async function handler(event, context) {
-    const {timeDelay, revisionDate} = event.body;
+  const { timeDelay, revisionDate } = event.body;
 
-    if (revisionDate === -1) {
-        throw new createError.Forbidden("This question does not have a revision date set")
-    }
-    const expeditedDate = calculateExpeditedRevisionDate(timeDelay, revisionDate);
-    const params = {
-        TableName: process.env.questionTable,
-        Key: {
-            userID: "123",
-            questionID: event.pathParameters.questionId,
-        },
-        UpdateExpression: "SET revisionDate = :expeditedDate",
-        ExpressionAttributeValues: {
-            ":expeditedDate": expeditedDate.revisionDate,
-        },
-    }
+  if (revisionDate === -1) {
+    throw new createError.Forbidden(
+      "This question does not have a revision date set"
+    );
+  }
+  const expeditedDate = calculateExpeditedRevisionDate(timeDelay, revisionDate);
+  const params = {
+    TableName: process.env.questionTable,
+    Key: {
+      userID: "123",
+      questionID: event.pathParameters.questionId,
+    },
+    UpdateExpression: "SET revisionDate = :expeditedDate",
+    ExpressionAttributeValues: {
+      ":expeditedDate": expeditedDate.revisionDate,
+    },
+  };
 
-    try {
-        await dynamoDB.update(params);
-    } catch {
-        throw new createError.InternalServerError();
-    }
-    return {
-        statusCode: 200,
-        body: JSON.stringify({
-            expedited: timeDelay
-        })
-    }
-};
+  try {
+    await dynamoDB.update(params);
+  } catch {
+    throw new createError.InternalServerError();
+  }
+  return {
+    statusCode: 200,
+    body: JSON.stringify({
+      expedited: timeDelay,
+    }),
+  };
+}
 
-export const main = middleware(handler)
-    .use(validator({inputSchema: schema}))
+export const main = middleware(handler).use(validator({ inputSchema: schema }));
