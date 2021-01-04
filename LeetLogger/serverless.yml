@@ -29,21 +29,20 @@ provider:
     s3BucketName: ${self:custom.NoteBucket.name}
     addEntryTopicArn: ${self:custom.AddEntryTopic.arn}
     deleteEntryTopicArn: ${self:custom.DeleteEntryTopic.arn}
-  
 
   iamRoleStatements:
     - ${file(iam/DynamodbIAM.yml):DynamodbIAM}
     - ${file(iam/S3BucketIAM.yml):S3BucketIAM}
     - ${file(iam/SNSIAM.yml):SNSIAM}
-  
-resources: 
-    Resources: 
-      QuestionTable: ${file(resources/QuestionTable.yml):QuestionTable}
-      EntryTable: ${file(resources/EntryTable.yml):EntryTable} 
-      CalendarTable: ${file(resources/CalendarTable.yml):CalendarTable}
-      NoteBucket: ${file(resources/NoteBucket.yml):NoteBucket}
-      AddEntryTopic: ${file(resources/SNSTopics.yml):AddEntryTopic}
-      DeleteEntryTopic: ${file(resources/SNSTopics.yml):DeleteEntryTopic}
+
+resources:
+  Resources:
+    QuestionTable: ${file(resources/QuestionTable.yml):QuestionTable}
+    EntryTable: ${file(resources/EntryTable.yml):EntryTable}
+    CalendarTable: ${file(resources/CalendarTable.yml):CalendarTable}
+    NoteBucket: ${file(resources/NoteBucket.yml):NoteBucket}
+    AddEntryTopic: ${file(resources/SNSTopics.yml):AddEntryTopic}
+    DeleteEntryTopic: ${file(resources/SNSTopics.yml):DeleteEntryTopic}
 
 functions:
   addEntry: ${file(functions/entryApiFunctions.yml):addEntry}
@@ -67,10 +66,10 @@ functions:
 
 custom:
   QuestionTable:
-    name: !Ref QuestionTable 
+    name: !Ref QuestionTable
     arn: !GetAtt QuestionTable.Arn
   EntryTable:
-    name: !Ref EntryTable 
+    name: !Ref EntryTable
     arn: !GetAtt EntryTable.Arn
   CalendarTable:
     name: !Ref CalendarTable
