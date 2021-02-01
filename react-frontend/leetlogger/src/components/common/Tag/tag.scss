@@ -1,145 +1,147 @@
 @import "../../variables.scss";
 
+.Tag {
+  display: inline-block;
+  margin: 0.2rem 0.6rem;
+  padding: 0.5rem 1.3rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 1.3rem;
+  &-easy {
+    color: $gray-font;
+    background-color: $tag-easy;
+    border: 0.2rem solid rgba($tag-easy, 0.8);
+  }
+  &-medium {
+    color: $gray-font;
+    background-color: $tag-medium;
+    border: 0.2rem solid rgba($tag-medium, 0.8);
+  }
+  &-hard {
+    color: $gray-font;
+    background-color: $tag-hard;
+    border: 0.2rem solid rgba($tag-hard, 0.8);
+  }
 
-.Tag{
-    display: inline-block;
-    margin: 0 .6rem;
-    padding: .5rem 1.3rem;
-    font-size: 1.2rem;
-    font-weight: 700;
-    border-radius: 1.3rem;
-    &-easy{
-        color: $gray-font;
-        background-color: $tag-easy;
-        border: .2rem solid rgba($tag-easy,.8);
-    }
-    &-medium{
-        color: $gray-font;
-        background-color: $tag-medium;
-        border: .2rem solid rgba($tag-medium,.8);
-    }
-    &-hard{
-        color: $gray-font;
-        background-color: $tag-hard;
-        border: .2rem solid rgba($tag-hard,.8);
-    }
-    
-    &-array{
-        color: $gray-font;
-        background-color: $array;
-        border: .2rem solid rgba($array,.8);
-    }
+  &-array {
+    color: $gray-font;
+    background-color: $array;
+    border: 0.2rem solid rgba($array, 0.8);
+  }
 
-    &-dp{
-        color: $gray-font;
-        background-color: $dp;
-        border: .2rem solid rgba($dp,.8);
-    }
+  &-dp {
+    color: $gray-font;
+    background-color: $dp;
+    border: 0.2rem solid rgba($dp, 0.8);
+  }
 
-    &-graph{
-        color: $gray-font;
-        background-color: $graph;
-        border: .2rem solid rgba($graph,.8);
-    }
+  &-graph {
+    color: $gray-font;
+    background-color: $graph;
+    border: 0.2rem solid rgba($graph, 0.8);
+  }
 
-    &-tree{
-        color: $gray-font;
-        background-color: $tree;
-        border: .2rem solid rgba($tree, .8);
-    }
+  &-tree {
+    color: $gray-font;
+    background-color: $tree;
+    border: 0.2rem solid rgba($tree, 0.8);
+  }
 
-    &-linkedlist{
-        color: $gray-font;
-        background-color: $linkedlist;
-        border: .2rem solid rgba($linkedlist, .8);
-    }
+  &-linkedlist {
+    color: $gray-font;
+    background-color: $linkedlist;
+    border: 0.2rem solid rgba($linkedlist, 0.8);
+  }
 
-    &-dc{
-        color: $gray-font;
-        border: .2rem solid rgba($dc, .8);
-        background-color: $dc
-    }
-    &-bit{
-        color: $gray-font;
-        background-color: $bit;
-        border: .2rem solid rgba($bit, .8); 
-    }
+  &-dc {
+    color: $gray-font;
+    border: 0.2rem solid rgba($dc, 0.8);
+    background-color: $dc;
+  }
+  &-bit {
+    color: $gray-font;
+    background-color: $bit;
+    border: 0.2rem solid rgba($bit, 0.8);
+  }
 
-    &-queue{
-        color: $gray-font;
-        background-color: $queue;
-        border: .2rem solid rgba($queue, .8); 
+  &-queue {
+    color: $gray-font;
+    background-color: $queue;
+    border: 0.2rem solid rgba($queue, 0.8);
+  }
+
+  &-sort {
+    color: $gray-font;
+    background-color: $sort;
+    border: 0.2rem solid rgba($sort, 0.8);
+  }
+
+  &-string {
+    color: $gray-font;
+    background-color: $string;
+    border: 0.2rem solid rgba($string, 0.8);
+  }
+
+  &-greedy {
+    color: $gray-font;
+    background-color: $greedy;
+    border: 0.2rem solid rgba($greedy, 0.8);
+  }
+
+  &-backtracking {
+    color: $gray-font;
+    background-color: $backtracking;
+    border: 0.2rem solid rgba($backtracking, 0.8);
+  }
+
+  &-stack {
+    color: $gray-font;
+    background-color: $stack;
+    border: 0.2rem solid rgba($stack, 0.8);
+  }
+
+  &-default {
+    color: $gray-font;
+    background-color: $default-tag;
+    border: 0.2rem solid rgba($default-tag, 0.8);
+  }
+
+  &-postpone {
+    color: #2abd7b;
+    border: 0.2rem solid rgba(#2abd7b, 0.5);
+    border-radius: 0.2rem;
+    padding: 0.5rem 2rem;
+    margin: 0;
+    &:hover {
+      color: white;
+      background-color: rgba(#2ead74, 0.3);
+      border: 0.2rem solid rgba(#2ead74, 0.1);
     }
+  }
 
-    &-sort{
-        color: $gray-font;
-        background-color: $sort;
-        border: .2rem solid rgba($sort, .8); 
+  &-expedite {
+    color: rgba(#437be4, 0.8);
+    border: 0.2rem solid rgba(#437be4, 0.5);
+    border-radius: 0.2rem;
+    padding: 0.5rem 2rem;
+    margin: 0;
+    &:hover {
+      color: white;
+      background-color: rgba(#3270e2, 0.3);
+      border: 0.2rem solid rgba(#3270e2, 0.1);
     }
+  }
+  &-delete {
+    color: rgba(#db5c4b, 0.8);
+    border: 0.2rem solid rgba(#db5c4b, 0.4);
+    border-radius: 0.2rem;
+    padding: 0.5rem 2rem;
+    margin: 0;
 
-    &-string{
-        color: $gray-font;
-        background-color: $string;
-        border: .2rem solid rgba($string, .8); 
+    &:hover {
+      color: white;
+      background-color: rgba(#da4733, 0.3);
+      border: 0.2rem solid rgba(#db5c4b, 0.1);
     }
-
-    &-greedy{
-        color: $gray-font;
-        background-color: $greedy;
-        border: .2rem solid rgba($greedy, .8); 
-    }
-
-    &-backtracking{
-        color: $gray-font;
-        background-color: $backtracking;
-        border: .2rem solid rgba($backtracking, .8); 
-    }
-
-    &-stack{
-        color: $gray-font;
-        background-color: $stack;
-        border: .2rem solid rgba($stack, .8); 
-    }
-
-    &-postpone {
-        color: #2abd7b;
-        border: .2rem solid rgba(#2abd7b, .5);
-        border-radius: .2rem;
-        padding: .5rem 2rem;
-        margin: 0;
-        &:hover {
-            color: white;
-            background-color: rgba(#2ead74, .3);
-            border: .2rem solid rgba(#2ead74, .1);
-        }
-        
-    }
-
-    &-expedite{
-        color: rgba(#437be4, .8);
-        border: .2rem solid rgba(#437be4, .5);
-        border-radius: .2rem;
-        padding: .5rem 2rem;
-        margin: 0;
-        &:hover {
-            color: white;
-            background-color: rgba(#3270e2, .3);
-            border: .2rem solid rgba(#3270e2, .1);
-        }
-    }
-
-    &-delete{
-        color: rgba(#db5c4b, .8);
-        border: .2rem solid rgba(#db5c4b, .4);
-        border-radius: .2rem;
-        padding: .5rem 2rem;
-        margin: 0;
-
-        &:hover {
-            color: white;
-            background-color: rgba(#da4733, .3);
-            border: .2rem solid rgba(#db5c4b, .1);
-        }
-    }
-
+  }
 }

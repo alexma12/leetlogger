@@ -1,5 +1,5 @@
 import React from "react";
-import Tag from "../../../../../common/Tag";
+import Tag from "../../Tag";
 import "./revisionButtons.scss";
 
 const RevisionButtons = () => {

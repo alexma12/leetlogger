@@ -1,0 +1,66 @@
+@import "../../variables.scss";
+
+.Question {
+  margin: 2rem;
+  border: 0.3rem solid #b5cbe4;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  display: grid;
+  grid-template-rows: 3.7rem 1fr;
+  grid-template-columns: 40% 15% 19% 1fr;
+  &-title {
+    font-size: 2rem;
+    margin-right: 2rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    grid-column: span 3;
+  }
+
+  &-date {
+    font-size: 1.2rem;
+    font-weight: 600;
+    &-content {
+      color: rgb(91, 121, 206);
+    }
+  }
+  &-tags {
+    grid-row: 2/-1;
+  }
+
+  &-buttons {
+    grid-column: 3/-1;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  &:hover &-buttons {
+    opacity: 1;
+  }
+
+  &-solvedRecap {
+    font-size: 1.7rem;
+    &-withoutSolution {
+      padding: 1rem 0rem;
+      text-align: center;
+      background-color: rgba($difficulty-easy, 0.2);
+      border-radius: 1rem;
+      margin: 1rem 0rem;
+      margin-right: 0.3rem;
+    }
+    &-withSolution {
+      padding: 1rem 0rem;
+      text-align: center;
+      background-color: rgba($difficulty-hard, 0.2);
+      border-radius: 1rem;
+      margin: 1rem 0rem;
+      margin-right: 0.3rem;
+    }
+    &-completionTime {
+      text-align: end;
+      &-time {
+        color: $theme-blue;
+        margin-right: 1.2rem;
+      }
+    }
+  }
+}

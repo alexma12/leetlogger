@@ -1,6 +1,5 @@
 @import "../../variables.scss";
 .AddForm {
-  height: 80vh;
   padding-bottom: 2rem;
   margin: 2rem;
   background-color: white;
@@ -8,15 +7,18 @@
   padding: 2rem;
   display: grid;
   grid-template-columns: 45% 55%;
-  grid-template-rows: 7rem;
-  overflow-y: scroll;
+  grid-template-rows: 8.5rem;
+
+  &-wrapper {
+    overflow-y: scroll;
+  }
 
   &-title {
     font-size: 3.5rem;
     letter-spacing: 0.2rem;
     color: rgba(black, 0.5);
     background-color: rgba($theme-green, 0.2);
-    padding: 1.3rem;
+    padding: 2rem;
     box-sizing: border-box;
     grid-row: span 1;
     grid-column: span 2;

@@ -29,7 +29,10 @@ const tagPropToClassMap = {
 };
 
 const Tag = ({ tag, size }) => {
-  const classNames = `Tag ${tagPropToClassMap[tag]} ${tagPropToClassMap[size]}`;
+  const mappedClassName = tagPropToClassMap[tag];
+  const classNames = `Tag ${
+    mappedClassName ? mappedClassName : "Tag-default"
+  } ${tagPropToClassMap[size]}`;
 
   return <div className={classNames}>{capitalizeFirstCharacters(tag)}</div>;
 };

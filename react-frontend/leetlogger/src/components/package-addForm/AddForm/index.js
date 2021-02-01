@@ -5,12 +5,14 @@ import "./addForm.scss";
 
 const AddForm = () => {
   return (
-    <div className="AddForm">
-      <div className="AddForm-title">Log A New Entry</div>
-      <FormEntryDetails />
-      <FormEntryNotes />
-      <button className="AddForm-submit"> Submit Entry</button>
-      <div className="AddForm-empty"></div>
+    <div className="AddForm-wrapper">
+      <div className="AddForm">
+        <div className="AddForm-title">Log A New Entry</div>
+        <FormEntryDetails />
+        <FormEntryNotes />
+        <button className="AddForm-submit"> Submit Entry</button>
+        <div className="AddForm-empty"></div>
+      </div>
     </div>
   );
 };
