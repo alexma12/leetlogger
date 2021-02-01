@@ -1,0 +1,9 @@
+@import "../variables.scss";
+.Header {
+  grid-column: 1 / -1;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+  background-color: white;
+  overflow: hidden;
+  border-bottom: 0.3rem solid rgba($logo-purple, 0.3);
+}

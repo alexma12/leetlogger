@@ -1,0 +1,14 @@
+@import "../../variables.scss";
+.RevisionQuestionsPanel {
+  background-color: white;
+  border-radius: 1.5rem;
+  margin: 2rem;
+  margin-left: 0;
+  padding: 2rem;
+
+  &-title {
+    padding: 1rem;
+    color: $logo-purple;
+    font-size: 3rem;
+  }
+}

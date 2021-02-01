@@ -1,0 +1,17 @@
+.Dashboard {
+  border-bottom-right-radius: 2rem;
+  padding: 2rem;
+  padding-bottom: 2rem;
+  display: grid;
+  grid-template-rows: 49rem 10rem 1fr;
+  grid-template-columns: 74rem 20rem 1fr;
+  overflow-y: scroll;
+  &-empty {
+    display: inline-block;
+    float: left;
+    height: 1rem;
+    margin: 0;
+    text-align: center;
+    width: 2rem;
+  }
+}

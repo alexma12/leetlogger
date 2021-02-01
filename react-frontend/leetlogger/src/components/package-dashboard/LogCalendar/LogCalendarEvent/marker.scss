@@ -1,0 +1,19 @@
+@import "../../../variables.scss";
+.Marker {
+  display: inline-block;
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.2rem;
+  border-radius: 50%;
+  &-easy {
+    background-color: rgba($marker-easy, 0.7);
+  }
+
+  &-medium {
+    background-color: rgba($marker-medium, 0.6);
+  }
+
+  &-hard {
+    background-color: rgba($marker-hard, 0.6);
+  }
+}

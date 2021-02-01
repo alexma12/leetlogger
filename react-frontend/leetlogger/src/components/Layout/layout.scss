@@ -1,0 +1,10 @@
+@import "../variables.scss";
+.Layout {
+  display: grid;
+  height: 100%;
+  box-shadow: 2rem 2rem 2rem rgba(black, 0.1);
+  grid-template-columns: 19rem 1fr;
+  grid-template-rows: 6rem 88vh;
+  border-radius: 1.5rem;
+  background-color: rgb(247, 247, 247);
+}

@@ -1,0 +1,62 @@
+@import "../../../../variables.scss";
+.FormEntrySelect {
+  width: 90%;
+  padding: 1rem 1rem;
+  padding-bottom: 0rem;
+  margin-left: 2rem;
+  box-sizing: border-box;
+  border-bottom: 0.1rem solid rgba(gray, 0.4);
+  &-label {
+    width: 15%;
+    grid-column: 2/3;
+    font-size: 1.5rem;
+    color: rgba($theme-blue, 0.6);
+    margin-right: 2rem;
+    text-transform: uppercase;
+    height: 5rem;
+    transform: translateY(-1rem);
+    display: inline-block;
+  }
+  &-type {
+    z-index: 100;
+  }
+  &-diff {
+    z-index: 99;
+  }
+}
+
+.Dropdown {
+  &-root {
+    width: 75%;
+    display: inline-block;
+    font-size: 2.2rem;
+    transform: translateY(2rem);
+    margin-left: 2rem;
+    border: 0.1rem solid rgba($theme-blue, 0.4);
+  }
+
+  &-placeholder {
+    color: rgba(gray, 0.5);
+    font-style: italic;
+  }
+
+  &-menu {
+    border: 0.1rem solid rgba($theme-green, 0.6);
+  }
+  &-menu .is-selected {
+    background-color: rgba($theme-green, 0.1);
+  }
+
+  &-option:hover {
+    background-color: rgba($theme-green, 0.1);
+  }
+}
+
+.is-selected {
+  color: black;
+  font-style: normal;
+}
+
+.is-open {
+  border: 0.1rem solid rgba($theme-green, 0.6);
+}

@@ -1,0 +1,30 @@
+@import "../../../../variables.scss";
+.FormEntryRadio {
+  width: 90%;
+  padding: 1.2rem 1rem 0rem 1rem;
+  margin-left: 2rem;
+  margin-top: 0.8rem;
+  box-sizing: border-box;
+  border-bottom: 0.1rem solid rgba(gray, 0.4);
+  &-label {
+    width: 15%;
+    font-size: 1.5rem;
+    color: rgba($theme-blue, 0.6);
+    margin-right: 2rem;
+    text-transform: uppercase;
+    height: 5rem;
+    transform: translateY(-0.8rem);
+    display: inline-block;
+  }
+  &-radio {
+    width: 3rem;
+    height: 3rem;
+    margin-left: 2rem;
+    transform: translateY(0.8rem);
+    &-label {
+      margin-left: 1rem;
+      font-size: 2.2rem;
+      padding-right: 2rem;
+    }
+  }
+}

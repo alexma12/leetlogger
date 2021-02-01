@@ -1,0 +1,70 @@
+@import "../../../../variables.scss";
+
+.RecentQuestion {
+  font-size: 2rem;
+  margin: 2rem 4rem;
+  padding: 1.2rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+
+  &-easy {
+    border: solid 0.21rem $difficulty-easy;
+    border-radius: 1rem;
+    &::before {
+      content: "";
+      position: absolute;
+      background-color: rgba($difficulty-easy, 0.8);
+      border-radius: 50%;
+      width: 2rem;
+      height: 2rem;
+      margin-top: -1rem;
+      margin-left: -1rem;
+      display: inline-block;
+    }
+  }
+
+  &-medium {
+    border: solid 0.21rem $difficulty-medium;
+    border-radius: 1rem;
+    &::before {
+      content: "";
+      position: absolute;
+      background-color: rgba($difficulty-medium, 0.9);
+      border-radius: 50%;
+      width: 2rem;
+      height: 2rem;
+      margin-top: -1rem;
+      margin-left: -1rem;
+      display: inline-block;
+    }
+  }
+
+  &-hard {
+    border: solid 0.21rem $difficulty-hard;
+    border-radius: 1rem;
+    &::before {
+      content: "";
+      position: absolute;
+      background-color: rgba($difficulty-hard, 0.6);
+      border-radius: 50%;
+      width: 2rem;
+      height: 2rem;
+      margin-top: -1rem;
+      margin-left: -1rem;
+      display: inline-block;
+    }
+  }
+
+  &-title {
+    padding-left: 4rem;
+    display: inline-block;
+  }
+
+  &-date {
+    padding-left: 2rem;
+    float: right;
+    font-size: 1.3rem;
+    margin-top: -1rem;
+  }
+}

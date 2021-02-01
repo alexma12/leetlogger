@@ -1,0 +1,26 @@
+@import "../../../variables.scss";
+
+.FormEntryNotes {
+  padding: 0.5rem;
+  margin-top: 4rem;
+  font-size: 2rem;
+
+  &-title {
+    font-size: 1.7rem;
+    color: rgba($logo-purple, 0.7);
+    text-transform: uppercase;
+    margin-left: 1rem;
+  }
+
+  &-editor {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 0.2rem solid rgba($logo-purple, 0.4);
+    border-radius: 1.2rem;
+    min-height: 86%;
+  }
+}
+.public-DraftEditorPlaceholder-inner {
+  color: rgba(grey, 0.4);
+  font-style: italic;
+}

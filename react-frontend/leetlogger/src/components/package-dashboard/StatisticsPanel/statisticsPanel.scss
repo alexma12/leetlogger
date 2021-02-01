@@ -1,0 +1,178 @@
+@import "../../variables.scss";
+
+.StatisticsPanel {
+  font-size: 2.4rem;
+  grid-column: span 3;
+  grid-row: 3 / 2;
+  display: flex;
+  justify-content: space-between;
+  perspective: 1600rem;
+  -moz-perspective: 1600rem;
+  position: relative;
+
+  &-fireicon {
+    width: 4rem;
+    height: 4rem;
+    position: absolute;
+    margin-left: -5.2rem;
+    margin-top: -0.35rem;
+
+    & path {
+      fill: rgba(black, 0.4);
+    }
+  }
+
+  &-firsticon {
+    width: 4.5rem;
+    height: 4.5rem;
+    position: absolute;
+    margin-left: -5rem;
+    margin-top: -0.5rem;
+
+    & path {
+      fill: rgba(black, 0.5);
+    }
+  }
+
+  &-reporticon {
+    width: 3.5rem;
+    height: 3.5rem;
+    position: absolute;
+    margin-left: -5.2rem;
+    margin-top: -0.3rem;
+
+    & path {
+      fill: rgba(black, 0.4);
+    }
+  }
+
+  &-clipboardicon {
+    width: 4.5rem;
+    height: 4.5rem;
+    position: absolute;
+    margin-left: -5.6rem;
+    margin-top: -0.8rem;
+
+    & path {
+      fill: rgba(black, 0.5);
+    }
+  }
+
+  &-weekicon {
+    width: 4.5rem;
+    height: 4.5rem;
+    position: absolute;
+    margin-left: -6rem;
+    margin-top: -0.5rem;
+
+    & path {
+      fill: rgba(black, 0.5);
+    }
+  }
+
+  &-monthicon {
+    width: 4.5rem;
+    height: 4.5rem;
+    position: absolute;
+    margin-left: -6.2rem;
+    margin-top: -0.7rem;
+
+    & path {
+      fill: rgba(black, 0.5);
+    }
+  }
+
+  &-item {
+    box-sizing: border-box;
+    padding-top: 2.5rem;
+    text-align: center;
+    border-radius: 1rem;
+    height: 9rem;
+    backface-visibility: hidden;
+  }
+
+  &-streak {
+    padding-top: 2rem;
+    width: 32%;
+    &-front {
+      height: 100%;
+      transition: all 0.8s;
+      border-radius: 1rem;
+      background-color: rgba($logo-purple, 0.25);
+    }
+
+    &-back {
+      height: 100%;
+      margin-top: -8rem;
+      transition: all 0.8s;
+      border-radius: 1rem;
+      background-color: rgba($logo-purple, 0.25);
+      transform: rotateX(180deg);
+    }
+
+    &:hover &-front {
+      transform: rotateX(180deg);
+    }
+
+    &:hover &-back {
+      transform: rotateX(0);
+    }
+  }
+
+  &-total {
+    padding-top: 2rem;
+    width: 32%;
+    &-front {
+      height: 100%;
+      transition: all 0.8s;
+      border-radius: 1rem;
+      background-color: rgba($theme-blue, 0.2);
+    }
+
+    &-back {
+      height: 100%;
+      margin-top: -8rem;
+      transition: all 0.8s;
+      border-radius: 1rem;
+      background-color: rgba($theme-blue, 0.2);
+      transform: rotateX(180deg);
+    }
+
+    &:hover &-front {
+      transform: rotateX(180deg);
+    }
+
+    &:hover &-back {
+      transform: rotateX(0);
+    }
+  }
+
+  &-month {
+    padding-top: 2rem;
+    width: 32%;
+    &-front {
+      height: 100%;
+      transition: all 0.8s;
+      border-radius: 1rem;
+      background-color: rgba($theme-green, 0.25);
+      //background-image:linear-gradient(to right bottom ,rgba($theme-green, .2), rgba($theme-green, .4));
+    }
+
+    &-back {
+      height: 100%;
+      margin-top: -8rem;
+      transition: all 0.8s;
+      border-radius: 1rem;
+      background-color: rgba($theme-green, 0.25);
+      transform: rotateX(180deg);
+    }
+
+    &:hover &-front {
+      transform: rotateX(180deg);
+    }
+
+    &:hover &-back {
+      transform: rotateX(0);
+    }
+  }
+}
