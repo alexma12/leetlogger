@@ -13,6 +13,7 @@
     text-transform: uppercase;
     height: 5rem;
     transform: translateY(-0.8rem);
+    font-weight: 600;
     display: inline-block;
   }
   &-radio {
@@ -31,8 +32,10 @@
   font-size: 1.6rem !important;
   overflow: hidden;
   border: 0.1rem solid rgba($theme-green, 0.6) !important;
+
   &__current-month {
     font-size: 1.9rem !important;
+    color: rgba(black, 0.5) !important;
   }
   &__header {
     padding-top: 0.8rem !important;
@@ -43,6 +46,7 @@
   &__day {
     margin: 0.43rem !important;
     padding: 0.6rem !important;
+    color: rgba(black, 0.5) !important;
 
     &:focus {
       outline: none;
@@ -50,9 +54,10 @@
   }
 
   &__day {
+    color: rgba(black, 0.5);
     &--selected {
       background-color: rgba($theme-green, 0.3) !important;
-      color: black !important;
+      color: rgba(black, 0.5) !important;
     }
   }
 
@@ -74,7 +79,7 @@
     font-size: 2.2rem;
     padding: 0.8rem;
     margin-left: 1rem;
-
+    color: rgba(black, 0.5);
     font-family: inherit;
     border: 0.2rem solid rgba(#2e67b3, 0.35);
   }

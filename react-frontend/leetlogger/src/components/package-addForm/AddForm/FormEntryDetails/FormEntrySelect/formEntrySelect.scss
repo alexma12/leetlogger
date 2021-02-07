@@ -15,6 +15,7 @@
     text-transform: uppercase;
     height: 5rem;
     transform: translateY(-1rem);
+    font-weight: 600;
     display: inline-block;
   }
   &-type {
@@ -53,7 +54,7 @@
 }
 
 .is-selected {
-  color: black;
+  color: rgba(black, 0.5);
   font-style: normal;
 }
 

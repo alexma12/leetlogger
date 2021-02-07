@@ -45,7 +45,7 @@ const Question = ({
   const subTypes =
     subtypes &&
     subtypes.map((subtype) => {
-      return <Tag tag={subtype} size="sm" />;
+      return <Tag tag={subtype} size="sm" isDefault />;
     });
 
   const revisionReviewDate = (

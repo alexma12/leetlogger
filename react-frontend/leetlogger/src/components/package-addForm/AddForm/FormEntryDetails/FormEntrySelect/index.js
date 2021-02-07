@@ -21,7 +21,6 @@ const FormEntrySelect = ({ label }) => {
         queue: "Queue",
         stack: "Stack",
         string: "String",
-        sort: "Sorting",
         tree: "Tree",
       };
       placeholder = "Select A Question Type";

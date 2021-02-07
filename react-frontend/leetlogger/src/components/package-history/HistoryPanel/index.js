@@ -33,7 +33,7 @@ const HistoryPanel = () => {
             solved={true}
             completionTimeHrs={0}
             completionTimeMins={30}
-            questionType="sorting"
+            questionType="stack"
             difficulty="easy"
             subtypes={["recursion", "bfs", "dfs"]}
           />
@@ -77,7 +77,7 @@ const HistoryPanel = () => {
             solved={false}
             completionTimeHrs={0}
             completionTimeMins={30}
-            questionType="divide & conquer"
+            questionType="dc"
             difficulty="medium"
             subtypes={["recursion", "bfs", "dfs"]}
           />

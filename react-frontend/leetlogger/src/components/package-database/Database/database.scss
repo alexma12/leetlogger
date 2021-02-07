@@ -1,0 +1,13 @@
+.Database {
+  background-color: white;
+  border-radius: 1.5rem;
+  margin: 2rem;
+  padding: 2rem;
+  position: relative;
+
+  &-items {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-items: center;
+  }
+}

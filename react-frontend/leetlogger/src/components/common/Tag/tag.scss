@@ -70,12 +70,6 @@
     border: 0.2rem solid rgba($queue, 0.8);
   }
 
-  &-sort {
-    color: $gray-font;
-    background-color: $sort;
-    border: 0.2rem solid rgba($sort, 0.8);
-  }
-
   &-string {
     color: $gray-font;
     background-color: $string;
@@ -109,39 +103,40 @@
   &-postpone {
     color: #2abd7b;
     border: 0.2rem solid rgba(#2abd7b, 0.5);
-    border-radius: 0.2rem;
+    border-radius: 1.5rem;
     padding: 0.5rem 2rem;
     margin: 0;
     &:hover {
-      color: white;
+      color: $gray-font;
       background-color: rgba(#2ead74, 0.3);
-      border: 0.2rem solid rgba(#2ead74, 0.1);
+      border: 0.2rem solid rgba(#2ead74, 0.5);
     }
   }
 
   &-expedite {
     color: rgba(#437be4, 0.8);
     border: 0.2rem solid rgba(#437be4, 0.5);
-    border-radius: 0.2rem;
+    border-radius: 1.5rem;
     padding: 0.5rem 2rem;
-    margin: 0;
+    margin: 0.5rem;
+    margin-top: 0.5rem;
     &:hover {
-      color: white;
+      color: $gray-font;
       background-color: rgba(#3270e2, 0.3);
-      border: 0.2rem solid rgba(#3270e2, 0.1);
+      border: 0.2rem solid rgba(#3270e2, 0.5);
     }
   }
   &-delete {
     color: rgba(#db5c4b, 0.8);
     border: 0.2rem solid rgba(#db5c4b, 0.4);
-    border-radius: 0.2rem;
+    border-radius: 1.5rem;
     padding: 0.5rem 2rem;
     margin: 0;
 
     &:hover {
-      color: white;
+      color: $gray-font;
       background-color: rgba(#da4733, 0.3);
-      border: 0.2rem solid rgba(#db5c4b, 0.1);
+      border: 0.2rem solid rgba(#db5c4b, 0.5);
     }
   }
 }

@@ -42,7 +42,7 @@ const RevisionQuestions = () => {
         title="Median of Two Sorted Arrays"
         date="March 3, 2021"
         due={false}
-        questionType="divide & conquer"
+        questionType="dc"
         difficulty="medium"
       />
     </div>

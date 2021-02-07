@@ -57,13 +57,32 @@ const BarGraph = () => {
     fill: {
       //colors: ["#83d9dc",  "#bdefef","#c997c6", '#f496c2','#ffaaa5', '#ffc859']
       colors: [
-        "#c7ceea",
+        "#C8CFEA",
         "#b5ead7",
         "#e2f0cb",
         "#ffdac1",
         "#ffb7b2",
-        "#f496c2",
+        "#f4acca",
       ],
+      // colors: [
+      //   "#dceaf8",
+      //   "#e0d2e9",
+      //   "#f6f7ca",
+      //   "#dbf8df",
+      //   "#d0f3fc",
+      //   "#fcd7d7",
+      //   "#fcebd7",
+      //   "#e6e3f5",
+      //   "#fbebfd",
+      //   "#d5f3e2",
+      //   "#e3f8f3",
+      //   "#f0fcde",
+      //   "#ffd6e5",
+      //   "#f1f1f1",
+      //   "#c7f3c2",
+      //   "#ffe3ae",
+      //   "#f7c7c7",
+      // ],
     },
     xaxis: {
       labels: {
@@ -79,9 +98,9 @@ const BarGraph = () => {
         "Greedy",
         "Linked Lists",
         "Queue",
-        "Sorting",
         "Stack",
         "String",
+        "Tree",
       ],
     },
     yaxis: {

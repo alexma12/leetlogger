@@ -8,6 +8,7 @@
   display: grid;
   grid-template-columns: 45% 55%;
   grid-template-rows: 8.5rem;
+  color: rgba(black, 0.5);
 
   &-wrapper {
     overflow-y: scroll;

@@ -1,0 +1,15 @@
+export const typeToTitleMap = {
+  array: "Array",
+  bit: "Bit Manipulation",
+  linkedlist: "Linked List",
+  graph: "Graph",
+  stack: "Stack",
+  string: "String",
+  queue: "Queue",
+  tree: "Tree",
+  dp: "Dynamic Programming",
+  tree: "Tree",
+  dc: "Divide & Conquer",
+  greedy: "Greedy",
+  backtracking: "Backtracking",
+};
