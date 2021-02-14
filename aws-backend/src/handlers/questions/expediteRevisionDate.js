@@ -37,6 +37,10 @@ async function handler(event, context) {
     body: JSON.stringify({
       expedited: timeDelay,
     }),
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": true,
+    },
   };
 }
 

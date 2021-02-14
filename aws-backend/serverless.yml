@@ -10,6 +10,7 @@ plugins:
   - serverless-offline
   - serverless-dotenv-plugin
   - serverless-pseudo-parameters
+
 provider:
   name: aws
   runtime: nodejs12.x
@@ -25,7 +26,6 @@ provider:
   environment:
     questionTable: ${self:custom.QuestionTable.name}
     entryTable: ${self:custom.EntryTable.name}
-    calendarTable: ${self:custom.CalendarTable.name}
     s3BucketName: ${self:custom.NoteBucket.name}
     addEntryTopicArn: ${self:custom.AddEntryTopic.arn}
     deleteEntryTopicArn: ${self:custom.DeleteEntryTopic.arn}
@@ -39,7 +39,6 @@ resources:
   Resources:
     QuestionTable: ${file(resources/QuestionTable.yml):QuestionTable}
     EntryTable: ${file(resources/EntryTable.yml):EntryTable}
-    CalendarTable: ${file(resources/CalendarTable.yml):CalendarTable}
     NoteBucket: ${file(resources/NoteBucket.yml):NoteBucket}
     AddEntryTopic: ${file(resources/SNSTopics.yml):AddEntryTopic}
     DeleteEntryTopic: ${file(resources/SNSTopics.yml):DeleteEntryTopic}
@@ -71,9 +70,6 @@ custom:
   EntryTable:
     name: !Ref EntryTable
     arn: !GetAtt EntryTable.Arn
-  CalendarTable:
-    name: !Ref CalendarTable
-    arn: !GetAtt CalendarTable.Arn
   NoteBucket:
     name: !Ref NoteBucket
     arn: !GetAtt NoteBucket.Arn

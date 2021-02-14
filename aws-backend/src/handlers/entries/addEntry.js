@@ -18,7 +18,7 @@ async function handler(event, context) {
     content,
     revisionDate,
   } = convertEntryToDBStruct(event.body);
-  
+
   const entryID = uuid.v4();
 
   const dbParams = {

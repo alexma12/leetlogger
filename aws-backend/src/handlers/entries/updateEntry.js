@@ -73,6 +73,10 @@ async function handler(event, context) {
     body: JSON.stringify({
       updated: true,
     }),
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": true,
+    },
   };
 }
 

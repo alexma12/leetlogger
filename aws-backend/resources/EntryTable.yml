@@ -1,4 +1,4 @@
-EntryTable: 
+EntryTable:
   Type: AWS::DynamoDB::Table
   Properties:
     TableName: LeetLogger-EntryTable-${self:provider.stage}
@@ -20,18 +20,18 @@ EntryTable:
     LocalSecondaryIndexes:
       - IndexName: userID-submittedAt-index
         KeySchema:
-            - AttributeName: userID
-              KeyType: HASH
-            - AttributeName: submittedAt
-              KeyType: RANGE
-        Projection: 
-            ProjectionType: ALL
+          - AttributeName: userID
+            KeyType: HASH
+          - AttributeName: submittedAt
+            KeyType: RANGE
+        Projection:
+          ProjectionType: ALL
 
       - IndexName: userID-title-index
         KeySchema:
-              - AttributeName: userID
-                KeyType: HASH
-              - AttributeName: title
-                KeyType: RANGE
-        Projection: 
-              ProjectionType: ALL
+          - AttributeName: userID
+            KeyType: HASH
+          - AttributeName: title
+            KeyType: RANGE
+        Projection:
+          ProjectionType: ALL

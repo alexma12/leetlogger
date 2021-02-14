@@ -1,4 +1,4 @@
-QuestionTable: 
+QuestionTable:
   Type: AWS::DynamoDB::Table
   Properties:
     TableName: LeetLogger-QuestionTable-${self:provider.stage}
@@ -13,7 +13,7 @@ QuestionTable:
       - AttributeName: title
         AttributeType: S
       - AttributeName: revisionDate
-        AttributeType: "N"   
+        AttributeType: "N"
     KeySchema:
       - AttributeName: userID
         KeyType: HASH
@@ -23,27 +23,27 @@ QuestionTable:
     LocalSecondaryIndexes:
       - IndexName: userID-revisionDate-index
         KeySchema:
-              - AttributeName: userID
-                KeyType: HASH
-              - AttributeName: revisionDate
-                KeyType: RANGE
-        Projection: 
-              ProjectionType: ALL
+          - AttributeName: userID
+            KeyType: HASH
+          - AttributeName: revisionDate
+            KeyType: RANGE
+        Projection:
+          ProjectionType: ALL
 
       - IndexName: userID-title-index
         KeySchema:
-              - AttributeName: userID
-                KeyType: HASH
-              - AttributeName: title
-                KeyType: RANGE
-        Projection: 
-              ProjectionType: ALL
+          - AttributeName: userID
+            KeyType: HASH
+          - AttributeName: title
+            KeyType: RANGE
+        Projection:
+          ProjectionType: ALL
 
       - IndexName: userID-questionType-index
         KeySchema:
-              - AttributeName: userID
-                KeyType: HASH
-              - AttributeName: questionType
-                KeyType: RANGE
-        Projection: 
-              ProjectionType: ALL
+          - AttributeName: userID
+            KeyType: HASH
+          - AttributeName: questionType
+            KeyType: RANGE
+        Projection:
+          ProjectionType: ALL

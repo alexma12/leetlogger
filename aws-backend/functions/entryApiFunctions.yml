@@ -1,55 +1,55 @@
 addEntry:
-    handler: src/handlers/entries/addEntry.main
-    events:
-      - http:
-          path: entries
-          method: post
-          cors: true
+  handler: src/handlers/entries/addEntry.main
+  events:
+    - http:
+        path: entries
+        method: post
+        cors: true
 
 updateEntry:
-    handler: src/handlers/entries/updateEntry.main
-    events:
-      - http:
-          path: entries/{entryId}/{questionId}
-          method: put
-          cors: true
+  handler: src/handlers/entries/updateEntry.main
+  events:
+    - http:
+        path: entries/{entryId}/{questionId}
+        method: put
+        cors: true
 
 getEntry:
-    handler: src/handlers/entries/getEntry.main
-    events:
-      - http:
-          path: entries/{entryId}
-          method: get
-          cors: true
+  handler: src/handlers/entries/getEntry.main
+  events:
+    - http:
+        path: entries/{entryId}
+        method: get
+        cors: true
 
 deleteEntry:
-    handler: src/handlers/entries/deleteEntry.main
-    events:
-      - http:
-          path: entries/{entryId}
-          method: delete
-          cors: true
+  handler: src/handlers/entries/deleteEntry.main
+  events:
+    - http:
+        path: entries/{entryId}
+        method: delete
+        cors: true
 
 listEntriesAll:
-    handler: src/handlers/entries/listEntriesAll.main
-    events:
-      - http:
-          path: entries/list
-          method: get
-          cors: true
+  handler: src/handlers/entries/listEntriesAll.main
+  events:
+    - http:
+        path: entries/list
+        method: get
+        cors: true
 
 listEntriesBySubmittedAt:
-    handler: src/handlers/entries/listEntriesBySubmittedAt.main
-    events:
-      - http:
-          path: entries/list/entriesInTwoDays
-          method: get
-          cors: true
+  handler: src/handlers/entries/listEntriesBySubmittedAt.main
+  events:
+    - http:
+        path: entries/list/entriesInTwoDays
+        method: get
+        cors: true
 
 listEntriesByTitle:
-    handler: src/handlers/entries/listEntriesByTitle.main
-    events:
-      - http:
-          path: entries/listbytitle
-          method: get
-          cors: true
+  handler: src/handlers/entries/listEntriesByTitle.main
+  events:
+    - http:
+        path: entries/listbytitle
+        method: get
+        cors: true

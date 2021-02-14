@@ -38,6 +38,10 @@ async function handler(event, context) {
       ...question.Item,
       notes: JSON.parse(s3Data.Body.toString()),
     }),
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": true,
+    },
   };
 }
 

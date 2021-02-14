@@ -1,7 +1,7 @@
-  loginUserS3Create:
-    handler: src/handlers/login/loginUserS3Create.main
-    events:
-      - http:
-          path: login
-          method: post
-          cors: true
+loginUserS3Create:
+  handler: src/handlers/login/loginUserS3Create.main
+  events:
+    - http:
+        path: login
+        method: post
+        cors: true

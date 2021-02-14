@@ -122,7 +122,14 @@ async function handler(event, context) {
     throw new createError.InternalServerError(error);
   }
 
-  return true;
+  return {
+    status: 200,
+    body: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": true,
+    },
+  };
 }
 
 export const main = middleware(handler);

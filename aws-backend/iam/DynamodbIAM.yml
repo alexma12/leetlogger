@@ -6,12 +6,34 @@ DynamodbIAM:
     - dynamodb:UpdateItem
     - dynamodb:DeleteItem
     - dynamodb:Query
-  Resource: 
+  Resource:
     - ${self:custom.QuestionTable.arn}
-    - !Join ["/", ["${self:custom.QuestionTable.arn}", "index", "userID-revisionDate-index"]]
-    - !Join ["/", ["${self:custom.QuestionTable.arn}", "index", "userID-title-index"]]
-    - !Join ["/", ["${self:custom.QuestionTable.arn}", "index", "userID-questionType-index"]]
+    - !Join [
+        "/",
+        [
+          "${self:custom.QuestionTable.arn}",
+          "index",
+          "userID-revisionDate-index",
+        ],
+      ]
+    - !Join [
+        "/",
+        ["${self:custom.QuestionTable.arn}", "index", "userID-title-index"],
+      ]
+    - !Join [
+        "/",
+        [
+          "${self:custom.QuestionTable.arn}",
+          "index",
+          "userID-questionType-index",
+        ],
+      ]
     - ${self:custom.EntryTable.arn}
-    - !Join ["/", ["${self:custom.EntryTable.arn}", "index", "userID-submittedAt-index"]]
-    - !Join ["/", ["${self:custom.EntryTable.arn}", "index", "userID-title-index"]]
-    - ${self:custom.CalendarTable.arn}
+    - !Join [
+        "/",
+        ["${self:custom.EntryTable.arn}", "index", "userID-submittedAt-index"],
+      ]
+    - !Join [
+        "/",
+        ["${self:custom.EntryTable.arn}", "index", "userID-title-index"],
+      ]

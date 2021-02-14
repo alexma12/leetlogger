@@ -1,12 +1,9 @@
-DeleteEntryTopic: 
+DeleteEntryTopic:
   Type: AWS::SNS::Topic
-  Properties: 
+  Properties:
     TopicName: DeleteEntryTopic-${self:provider.stage}
-  
 
 AddEntryTopic:
   Type: AWS::SNS::Topic
-  Properties: 
+  Properties:
     TopicName: AddEntryTopic-${self:provider.stage}
-
-

@@ -38,6 +38,10 @@ async function handler(event, context) {
     body: JSON.stringify({
       postponed: timeDelay,
     }),
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": true,
+    },
   };
 }
 
