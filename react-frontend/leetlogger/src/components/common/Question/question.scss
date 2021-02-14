@@ -2,12 +2,13 @@
 
 .Question {
   margin: 2rem;
-  border: 0.3rem solid #b5cbe4;
+  border-top: 0.7rem solid rgba(#b5cbe4, 0.7);
   padding: 1rem;
-  border-radius: 0.5rem;
+  border-radius: 0.4rem;
   display: grid;
   grid-template-rows: 3.7rem 1fr;
   grid-template-columns: 40% 15% 19% 1fr;
+  box-shadow: 0rem 0.3rem 1.3rem #0000002c;
   &-title {
     font-size: 2rem;
     margin-right: 2rem;

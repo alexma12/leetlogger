@@ -3,14 +3,13 @@
   width: 90%;
   margin: 2rem;
   margin-bottom: 1rem;
-  border: 0.2rem solid lightgrey;
+  box-shadow: 0.2rem 0.2rem 2rem rgba(0, 0, 0, 0.089);
   border-radius: 0.5rem;
   display: inline-block;
   transition: 0.1s;
   text-decoration: none;
 
   &:hover {
-    border: 0.2rem solid #d4d2d2;
     width: 92%;
     height: 73%;
   }

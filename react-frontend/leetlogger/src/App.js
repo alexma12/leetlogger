@@ -1,12 +1,17 @@
 import React from "react";
 import Layout from "./components/Layout";
+import { Provider } from "react-redux";
+import store from "./store";
+
 import "./App.scss";
 
 function App() {
   return (
-    <div className="App">
-      <Layout />
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <Layout />
+      </div>
+    </Provider>
   );
 }
 

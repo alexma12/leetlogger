@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import Header from "../Header";
 import SideNav from "../SideNav";
 import Dashboard from "../package-dashboard/Dashboard";
@@ -7,9 +8,16 @@ import History from "../package-history/HistoryPanel";
 import Database from "../package-database/Database";
 import DatabaseQuestion from "../package-database/Database/DatabaseQuestion";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
+import * as entryActions from "store/actions/entriesActions/entriesActionCreators";
 import "./layout.scss";
 
 const Layout = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(entryActions.loadEntries());
+  }, []);
+
   return (
     <div className="Layout">
       <BrowserRouter>

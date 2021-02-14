@@ -4,60 +4,28 @@
   font-size: 2rem;
   margin: 2rem 4rem;
   padding: 1.2rem;
+  padding-left: 0;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-
+  box-shadow: 0rem 0.3rem 1.2rem #0000001f;
   &-easy {
-    border: solid 0.21rem $difficulty-easy;
-    border-radius: 1rem;
-    &::before {
-      content: "";
-      position: absolute;
-      background-color: rgba($difficulty-easy, 0.8);
-      border-radius: 50%;
-      width: 2rem;
-      height: 2rem;
-      margin-top: -1rem;
-      margin-left: -1rem;
-      display: inline-block;
-    }
+    border-top: solid 0.5rem rgba($difficulty-easy, 0.7);
+    border-radius: 0.5rem;
   }
 
   &-medium {
-    border: solid 0.21rem $difficulty-medium;
-    border-radius: 1rem;
-    &::before {
-      content: "";
-      position: absolute;
-      background-color: rgba($difficulty-medium, 0.9);
-      border-radius: 50%;
-      width: 2rem;
-      height: 2rem;
-      margin-top: -1rem;
-      margin-left: -1rem;
-      display: inline-block;
-    }
+    border-top: solid 0.5rem rgba($difficulty-medium, 0.5);
+    border-radius: 0.5rem;
   }
 
   &-hard {
-    border: solid 0.21rem $difficulty-hard;
-    border-radius: 1rem;
-    &::before {
-      content: "";
-      position: absolute;
-      background-color: rgba($difficulty-hard, 0.6);
-      border-radius: 50%;
-      width: 2rem;
-      height: 2rem;
-      margin-top: -1rem;
-      margin-left: -1rem;
-      display: inline-block;
-    }
+    border-top: solid 0.5rem rgba($difficulty-hard, 0.5);
+    border-radius: 0.5rem;
   }
 
   &-title {
-    padding-left: 4rem;
+    padding-left: 1rem;
     display: inline-block;
   }
 
