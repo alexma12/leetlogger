@@ -2,21 +2,13 @@ import React, { useState } from "react";
 
 import { ReactComponent as BackIcon } from "svg/back.svg";
 import { ReactComponent as NextIcon } from "svg/next.svg";
+import { milisecondsToDateString } from "utils/dateHelpers";
 import ReactPaginate from "react-paginate";
 import "./historyPanel.scss";
 import Question from "../../common/Question";
 
 const HistoryPanel = () => {
-  const date = new Date();
-  var options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-
-  const dateString = date.toLocaleDateString("en-US", options);
-
+  const dateString = milisecondsToDateString(Date.now());
   return (
     <div className="HistoryPanel-wrapper">
       <div className="HistoryPanel">

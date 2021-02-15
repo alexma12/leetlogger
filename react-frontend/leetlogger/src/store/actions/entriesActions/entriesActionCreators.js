@@ -1,4 +1,10 @@
 import * as actionTypes from "./entriesActionTypes";
+import {
+  getStartOfDayInMiliseconds,
+  milisecondsToDateString,
+  getTodaysDateInFormattedString,
+  getYesterdaysDateInFormattedString,
+} from "utils/dateHelpers";
 import { axiosAWSInstance } from "../../../axios";
 
 export const setEntries = (data) => {
@@ -8,7 +14,14 @@ export const setEntries = (data) => {
   };
 };
 
-const _checkIfEntryDateIsInTimeFrame = (entry, timeFrame) => {
+export const setMappedEntryData = (data) => {
+  return {
+    type: actionTypes.SET_MAPPED_ENTRY_DATA,
+    data,
+  };
+};
+
+const _checkIfEntryDateIsInTimeFrame = (date, timeFrame) => {
   const timeFrameFilterDate = new Date();
   timeFrameFilterDate.setHours(0, 0, 0, 0);
 
@@ -37,39 +50,135 @@ const _checkIfEntryDateIsInTimeFrame = (entry, timeFrame) => {
       timeFrameFilterDate.setFullYear(0);
       break;
   }
-  return entry.entryDate >= timeFrameFilterDate.toISOString();
+  const dateOfEntryInMiliseconds = getStartOfDayInMiliseconds(date);
+  console.log(
+    timeFrame,
+    milisecondsToDateString(dateOfEntryInMiliseconds),
+    milisecondsToDateString(timeFrameFilterDate.getTime())
+  );
+  return dateOfEntryInMiliseconds >= timeFrameFilterDate.getTime();
 };
 const entryBarGraphDataFunctionMap = {
-  weekEntryBarGraphData: (data) => _checkIfEntryDateIsInTimeFrame(data, "week"),
-  monthEntryBarGraphData: (data) =>
-    _checkIfEntryDateIsInTimeFrame(data, "month"),
-  threeMonthEntryBarGraphData: (data) =>
-    _checkIfEntryDateIsInTimeFrame(data, "3-month"),
-  sixMonthEntryBarGraphData: (data) =>
-    _checkIfEntryDateIsInTimeFrame(data, "6-month"),
-  yearEntryBarGraphData: (data) => _checkIfEntryDateIsInTimeFrame(data, "year"),
-  allTimeBarGraphData: (data) =>
-    _checkIfEntryDateIsInTimeFrame(data, "allTime"),
+  weekEntryBarGraphData: (date) => _checkIfEntryDateIsInTimeFrame(date, "week"),
+  monthEntryBarGraphData: (date) =>
+    _checkIfEntryDateIsInTimeFrame(date, "month"),
+  threeMonthEntryBarGraphData: (date) =>
+    _checkIfEntryDateIsInTimeFrame(date, "3-month"),
+  sixMonthEntryBarGraphData: (date) =>
+    _checkIfEntryDateIsInTimeFrame(date, "6-month"),
+  yearEntryBarGraphData: (date) => _checkIfEntryDateIsInTimeFrame(date, "year"),
+  allTimeBarGraphData: (date) =>
+    _checkIfEntryDateIsInTimeFrame(date, "allTime"),
 };
 
-const _mapAllEntryData = (entries) => {
+const _generateAllEntryData = (entries) => {
   const resData = {};
   for (const data in entryBarGraphDataFunctionMap) {
     resData[data] = {};
   }
   resData.calendarData = {};
-
+  resData.statistics = {};
+  resData.history = {};
+  console.log("entries", entries);
   entries.forEach((entry) => {
-    const { difficulty, questionType, entryDate } = entry;
+    const { difficulty, questionType, submittedAt } = entry;
+    const dateSubmittedInMiliseconds = getStartOfDayInMiliseconds(submittedAt);
+    // * generate bar graph data data
+
     for (const barData in entryBarGraphDataFunctionMap) {
-      if (entryBarGraphDataFunctionMap[barData](entryDate)) {
+      if (entryBarGraphDataFunctionMap[barData](submittedAt)) {
         resData[barData][questionType] =
           resData[barData][questionType] + 1 || 1;
       }
     }
-    resData.calendarData[`${entryDate}-${difficulty}`] =
-      resData.calendarData[`${entryDate}-${difficulty}`] + 1 || 0;
+
+    // * generate calendar data
+
+    resData.calendarData[`${dateSubmittedInMiliseconds}-${difficulty}`] =
+      resData.calendarData[`${dateSubmittedInMiliseconds}-${difficulty}`] + 1 ||
+      1;
+
+    // * generate statistics data
+
+    const formattedDateString = milisecondsToDateString(
+      dateSubmittedInMiliseconds
+    );
+    if (resData.history[formattedDateString]) {
+      resData.history[formattedDateString].push(entry);
+    } else {
+      resData.history[formattedDateString] = [entry];
+    }
+    // * generate history data
+    resData.statistics[difficulty] = resData.statistics[difficulty] + 1 || 1;
+    resData.statistics["entryCount"] =
+      resData.statistics["entryCount"] + 1 || 1;
   });
+  return resData;
+};
+
+const _checkIfFormattedStringDatesAreOneDayApart = (
+  dateString1,
+  date2String
+) => {
+  const date2 = new Date(date2String);
+  date2.setDate(date2.getDate() + 1);
+  console.log(milisecondsToDateString(date2.getTime()));
+  return dateString1 === milisecondsToDateString(date2.getTime());
+};
+
+const _calculateStreaks = (history) => {
+  const sortedEntryHistoryDescending = history.sort(
+    (a, b) => new Date(b) - new Date(a)
+  );
+  console.log(sortedEntryHistoryDescending);
+  let currStreakOver = false;
+  let currStreakCount = 0;
+  let longestStreakCount = 1;
+  let currLongestStreak = 1;
+  let today = getTodaysDateInFormattedString();
+  let yesterday = getYesterdaysDateInFormattedString();
+  let counter = 1;
+
+  if (
+    sortedEntryHistoryDescending[0] === today ||
+    sortedEntryHistoryDescending[0] === yesterday
+  ) {
+    currStreakCount++;
+  } else {
+    currStreakOver = true;
+  }
+
+  if (history.length === 1) {
+    if (currStreakOver) {
+      return [0, 1];
+    } else {
+      return [1, 1];
+    }
+  }
+  console.log("hi");
+
+  while (counter < history.length) {
+    const date1 = sortedEntryHistoryDescending[counter - 1];
+    const date2 = sortedEntryHistoryDescending[counter];
+    if (_checkIfFormattedStringDatesAreOneDayApart(date1, date2)) {
+      if (!currStreakOver) {
+        currStreakCount++;
+      }
+      currLongestStreak++;
+    } else {
+      currStreakOver = true;
+      currLongestStreak = 1;
+    }
+    longestStreakCount = Math.max(longestStreakCount, currLongestStreak);
+    counter++;
+    console.log(counter);
+  }
+  return [currStreakCount, longestStreakCount];
+};
+
+const _applyStatisticsData = (stats, history) => {
+  const [currentStreak, longestStreak] = _calculateStreaks(history);
+  return { ...stats, currentStreak, longestStreak };
 };
 
 export const loadEntries = () => async (dispatch, getState) => {
@@ -77,7 +186,13 @@ export const loadEntries = () => async (dispatch, getState) => {
     .get("/entries/list")
     .then((res) => {
       dispatch(setEntries(res.data));
-      const allComponentEntryData = _mapAllEntryData(res.data);
+      const entryMapData = _generateAllEntryData(res.data);
+      entryMapData.statistics = _applyStatisticsData(
+        entryMapData.statistics,
+        Object.keys(entryMapData.history)
+      );
+      console.log("j", entryMapData);
+      dispatch(setMappedEntryData(entryMapData));
     })
     .catch((err) => console.log(err.message));
 };
