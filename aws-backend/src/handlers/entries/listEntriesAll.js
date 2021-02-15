@@ -6,10 +6,12 @@ import dynamoDB from "../../libs/dynamodb-lib";
 async function handler(event, context) {
   const params = {
     TableName: process.env.entryTable,
+    IndexName: "userID-submittedAt-index",
     KeyConditionExpression: "userID = :userID",
     ExpressionAttributeValues: {
       ":userID": "123",
     },
+    ScanIndexForward: false,
   };
   let entries;
   try {

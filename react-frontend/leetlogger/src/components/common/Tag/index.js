@@ -1,6 +1,6 @@
 import React from "react";
 import "./tag.scss";
-import { typeToTitleMap } from "utils/typeToTitleMap";
+import { typeToTitleMap } from "utils/titleAndTypeMaps";
 import { capitalizeFirstCharacters } from "lib/text-helpers";
 
 const Tag = ({ tag, size, isDefault }) => {

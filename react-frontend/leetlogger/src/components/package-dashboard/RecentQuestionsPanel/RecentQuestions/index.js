@@ -1,37 +1,26 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import RecentQuestion from "./RecentQuestion";
+import { milisecondsToDateStringWithoutWeekDay } from "utils/dateHelpers";
 import "./recentQuestions.scss";
 
 const RecentQuestions = () => {
-  return (
-    <div className="RecentsQuestions">
-      <RecentQuestion
-        difficulty="easy"
-        title="Add Pagination"
-        date="Jan 9, 2021"
-      />
-      <RecentQuestion
-        difficulty="easy"
-        title="Implement Mergesort"
-        date="Jan 14, 2021"
-      />
-      <RecentQuestion
-        difficulty="medium"
-        title="Reverse a Binary Tree"
-        date="Jan 15, 2021"
-      />
-      <RecentQuestion
-        difficulty="hard"
-        title="Add Truncation To Title"
-        date="Jan 21, 2021"
-      />
-      <RecentQuestion
-        difficulty="hard"
-        title="Add Truncation To Title"
-        date="Jan 21, 2021"
-      />
-    </div>
+  const recentQuestionsFromRedux = useSelector(({ entryData }) => {
+    return entryData.recentEntries;
+  });
+
+  const recentQuestions = (recentQuestionsFromRedux || []).map(
+    ({ title, submittedAt, difficulty }) => {
+      return (
+        <RecentQuestion
+          difficulty={difficulty}
+          title={title}
+          date={milisecondsToDateStringWithoutWeekDay(submittedAt)}
+        />
+      );
+    }
   );
+  return <div className="RecentsQuestions">{recentQuestions}</div>;
 };
 
 export default RecentQuestions;

@@ -51,11 +51,6 @@ const _checkIfEntryDateIsInTimeFrame = (date, timeFrame) => {
       break;
   }
   const dateOfEntryInMiliseconds = getStartOfDayInMiliseconds(date);
-  console.log(
-    timeFrame,
-    milisecondsToDateString(dateOfEntryInMiliseconds),
-    milisecondsToDateString(timeFrameFilterDate.getTime())
-  );
   return dateOfEntryInMiliseconds >= timeFrameFilterDate.getTime();
 };
 const entryBarGraphDataFunctionMap = {
@@ -79,7 +74,6 @@ const _generateAllEntryData = (entries) => {
   resData.calendarData = {};
   resData.statistics = {};
   resData.history = {};
-  console.log("entries", entries);
   entries.forEach((entry) => {
     const { difficulty, questionType, submittedAt } = entry;
     const dateSubmittedInMiliseconds = getStartOfDayInMiliseconds(submittedAt);
@@ -89,6 +83,7 @@ const _generateAllEntryData = (entries) => {
       if (entryBarGraphDataFunctionMap[barData](submittedAt)) {
         resData[barData][questionType] =
           resData[barData][questionType] + 1 || 1;
+        resData[barData]["count"] = resData[barData]["count"] + 1 || 1;
       }
     }
 
@@ -110,8 +105,6 @@ const _generateAllEntryData = (entries) => {
     }
     // * generate history data
     resData.statistics[difficulty] = resData.statistics[difficulty] + 1 || 1;
-    resData.statistics["entryCount"] =
-      resData.statistics["entryCount"] + 1 || 1;
   });
   return resData;
 };
@@ -122,15 +115,10 @@ const _checkIfFormattedStringDatesAreOneDayApart = (
 ) => {
   const date2 = new Date(date2String);
   date2.setDate(date2.getDate() + 1);
-  console.log(milisecondsToDateString(date2.getTime()));
   return dateString1 === milisecondsToDateString(date2.getTime());
 };
 
 const _calculateStreaks = (history) => {
-  const sortedEntryHistoryDescending = history.sort(
-    (a, b) => new Date(b) - new Date(a)
-  );
-  console.log(sortedEntryHistoryDescending);
   let currStreakOver = false;
   let currStreakCount = 0;
   let longestStreakCount = 1;
@@ -139,10 +127,7 @@ const _calculateStreaks = (history) => {
   let yesterday = getYesterdaysDateInFormattedString();
   let counter = 1;
 
-  if (
-    sortedEntryHistoryDescending[0] === today ||
-    sortedEntryHistoryDescending[0] === yesterday
-  ) {
+  if (history[0] === today || history[0] === yesterday) {
     currStreakCount++;
   } else {
     currStreakOver = true;
@@ -155,11 +140,10 @@ const _calculateStreaks = (history) => {
       return [1, 1];
     }
   }
-  console.log("hi");
 
   while (counter < history.length) {
-    const date1 = sortedEntryHistoryDescending[counter - 1];
-    const date2 = sortedEntryHistoryDescending[counter];
+    const date1 = history[counter - 1];
+    const date2 = history[counter];
     if (_checkIfFormattedStringDatesAreOneDayApart(date1, date2)) {
       if (!currStreakOver) {
         currStreakCount++;
@@ -171,14 +155,47 @@ const _calculateStreaks = (history) => {
     }
     longestStreakCount = Math.max(longestStreakCount, currLongestStreak);
     counter++;
-    console.log(counter);
   }
   return [currStreakCount, longestStreakCount];
 };
 
-const _applyStatisticsData = (stats, history) => {
+const _applyStatisticsData = (
+  stats,
+  history,
+  weekCount,
+  monthCount,
+  entryCount
+) => {
   const [currentStreak, longestStreak] = _calculateStreaks(history);
-  return { ...stats, currentStreak, longestStreak };
+  return {
+    ...stats,
+    currentStreak,
+    longestStreak,
+    weekCount,
+    monthCount,
+    entryCount,
+  };
+};
+
+const _applyRecentData = (allEntries) => {
+  let recentData = [];
+  if (allEntries.length <= 5) {
+    recentData = (allEntries || []).map(
+      ({ title, submittedAt, difficulty }) => {
+        return {
+          title,
+          submittedAt,
+          difficulty,
+        };
+      }
+    );
+  } else {
+    for (let i = 0; i < 5; i++) {
+      const { title, submittedAt, difficulty } = allEntries[i];
+      recentData.push({ title, submittedAt, difficulty });
+    }
+  }
+  return recentData;
 };
 
 export const loadEntries = () => async (dispatch, getState) => {
@@ -189,9 +206,12 @@ export const loadEntries = () => async (dispatch, getState) => {
       const entryMapData = _generateAllEntryData(res.data);
       entryMapData.statistics = _applyStatisticsData(
         entryMapData.statistics,
-        Object.keys(entryMapData.history)
+        Object.keys(entryMapData.history),
+        entryMapData.weekEntryBarGraphData.count,
+        entryMapData.monthEntryBarGraphData.count,
+        entryMapData.allTimeBarGraphData.count
       );
-      console.log("j", entryMapData);
+      entryMapData.recentEntries = _applyRecentData(res.data);
       dispatch(setMappedEntryData(entryMapData));
     })
     .catch((err) => console.log(err.message));

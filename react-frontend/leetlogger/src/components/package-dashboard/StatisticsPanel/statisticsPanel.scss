@@ -98,7 +98,7 @@
       height: 100%;
       transition: all 0.8s;
       border-radius: 1rem;
-      background-color: rgba($logo-purple, 0.25);
+      background-color: rgba($theme-blue, 0.2);
     }
 
     &-back {
@@ -106,7 +106,8 @@
       margin-top: -8rem;
       transition: all 0.8s;
       border-radius: 1rem;
-      background-color: rgba($logo-purple, 0.25);
+      background-color: rgba($theme-blue, 0.2);
+
       transform: rotateX(180deg);
     }
 
@@ -126,7 +127,7 @@
       height: 100%;
       transition: all 0.8s;
       border-radius: 1rem;
-      background-color: rgba($theme-blue, 0.2);
+      background-color: rgba($logo-purple, 0.25);
     }
 
     &-back {
@@ -134,7 +135,7 @@
       margin-top: -8rem;
       transition: all 0.8s;
       border-radius: 1rem;
-      background-color: rgba($theme-blue, 0.2);
+      background-color: rgba($logo-purple, 0.25);
       transform: rotateX(180deg);
     }
 

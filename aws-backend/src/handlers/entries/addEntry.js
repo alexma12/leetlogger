@@ -17,6 +17,8 @@ async function handler(event, context) {
     difficulty,
     content,
     revisionDate,
+    solvedWithSolution,
+    url,
   } = convertEntryToDBStruct(event.body);
 
   const entryID = uuid.v4();
@@ -33,6 +35,8 @@ async function handler(event, context) {
       revisionDate,
       approxCompletionMins,
       difficulty,
+      solvedWithSolution,
+      url,
     },
   };
 

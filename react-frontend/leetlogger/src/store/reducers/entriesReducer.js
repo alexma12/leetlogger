@@ -19,6 +19,9 @@ const allEntriesReducer = (state = initialState, action) => {
         sixMonthEntryBarGraphData,
         yearEntryBarGraphData,
         allTimeBarGraphData,
+        statistics,
+        history,
+        recentEntries,
       } = action.data;
 
       return {
@@ -30,6 +33,9 @@ const allEntriesReducer = (state = initialState, action) => {
         sixMonthEntryBarGraphData,
         yearEntryBarGraphData,
         allTimeBarGraphData,
+        statistics,
+        history,
+        recentEntries,
       };
 
     default:

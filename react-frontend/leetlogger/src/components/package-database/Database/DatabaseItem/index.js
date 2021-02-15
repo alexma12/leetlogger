@@ -1,6 +1,6 @@
 import React from "react";
 import "./databaseItem.scss";
-import { typeToTitleMap } from "utils/typeToTitleMap";
+import { typeToTitleMap } from "utils/titleAndTypeMaps";
 import { NavLink } from "react-router-dom";
 
 const DatabaseItem = ({ type, location }) => {

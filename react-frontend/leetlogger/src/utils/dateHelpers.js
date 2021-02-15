@@ -15,12 +15,22 @@ export const milisecondsToDateString = (date) => {
   return resDate.toLocaleDateString("en-US", options);
 };
 
+export const milisecondsToDateStringWithoutWeekDay = (date) => {
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  const resDate = new Date(date);
+  return resDate.toLocaleDateString("en-US", options);
+};
+
 export const getTodaysDateInFormattedString = () => {
   return milisecondsToDateString(getStartOfDayInMiliseconds(new Date()));
 };
 
 export const getYesterdaysDateInFormattedString = () => {
-  return milisecondsToDateString(
-    getStartOfDayInMiliseconds(new Date().getDate() - 1)
-  );
+  const today = new Date();
+  const yesterday = today.setDate(today.getDate() - 1);
+  return milisecondsToDateString(getStartOfDayInMiliseconds(yesterday));
 };
