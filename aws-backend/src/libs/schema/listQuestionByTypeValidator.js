@@ -1,20 +1,16 @@
-const schema = { 
-    properties: { 
-        queryStringParameters: {
-            type: "object",
-            properties: {
-                questionType: { 
-                    type: "string",
-                }
-            },
-            required: [
-                "questionType"
-            ]
+const schema = {
+  properties: {
+    queryStringParameters: {
+      type: "object",
+      properties: {
+        questionType: {
+          type: "string",
         },
+      },
+      required: ["questionType"],
     },
-    required: [
-        "queryStringParameters"
-    ]
-}
+  },
+  required: ["queryStringParameters"],
+};
 
 export default schema;

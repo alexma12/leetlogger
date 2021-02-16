@@ -94,7 +94,7 @@ async function handler(event, context) {
           userID: "123",
           questionID,
           title,
-          questionType: convertArrayToString(questionType),
+          questionType: questionType,
           revisionDate: revisionDate || -1,
           difficulty,
           entryCount: 1,

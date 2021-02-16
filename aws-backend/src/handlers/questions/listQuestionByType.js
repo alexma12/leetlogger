@@ -8,21 +8,21 @@ import dynamoDB from "../../libs/dynamodb-lib";
 async function handler(event, context) {
   const params = {
     TableName: process.env.questionTable,
-    KeyConditionExpression: "userID = :userID",
-    FilterExpression: "contains(questionType, :type)",
+    IndexName: "userID-questionType-index",
+    KeyConditionExpression: "userID = :userID and questionType = :questionType",
     ExpressionAttributeValues: {
       ":userID": "123",
-      ":type": event.queryStringParameters.questionType,
+      ":questionType": event.pathParameters.questionType,
     },
   };
+  console.log(event);
   let questions;
 
   try {
     questions = await dynamoDB.query(params);
-  } catch {
-    throw new createError.InternalServerError(
-      "Error occurred when querying for your questions"
-    );
+  } catch (e) {
+    console.log(e);
+    throw new createError.InternalServerError(JSON.stringify(e));
   }
 
   return {
@@ -35,4 +35,4 @@ async function handler(event, context) {
   };
 }
 
-export const main = middleware(handler).use(validator({ inputSchema: schema }));
+export const main = middleware(handler);

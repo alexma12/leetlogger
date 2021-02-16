@@ -32,7 +32,7 @@ listQuestionByType:
   handler: src/handlers/questions/listQuestionByType.main
   events:
     - http:
-        path: questions/list/{type}
+        path: questions/list/type/{questionType}
         method: get
         cors: true
 
