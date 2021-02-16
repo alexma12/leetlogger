@@ -12,7 +12,7 @@ const Question = ({
   subtypes,
   completionTimeHrs,
   completionTimeMins,
-  solved,
+  solvedWithSolution,
   questionType,
   difficulty,
 }) => {
@@ -30,7 +30,7 @@ const Question = ({
         Completion Time:
         <span className="Question-solvedRecap-completionTime-time">{` ${completionTimeHrs} hrs ${completionTimeMins} mins`}</span>
       </div>
-      {solved ? (
+      {!solvedWithSolution ? (
         <div className="Question-solvedRecap-withoutSolution">
           solved without solution
         </div>
@@ -55,11 +55,11 @@ const Question = ({
   );
   return (
     <div className="Question">
-      <div className="Question-title"> {capitalizeFirstCharacters(title)} </div>
+      <div className="Question-title"> {title} </div>
       {isRevisionQuestion && revisionReviewDate}
       <div className="Question-tags">
-        <Tag tag={difficulty} size="sm" />
-        <Tag tag={questionType} size="sm" />
+        <Tag tag={difficulty || ""} size="sm" />
+        <Tag tag={questionType || ""} size="sm" />
         {subTypes}
       </div>
       {isQuestion && solvedRecap}

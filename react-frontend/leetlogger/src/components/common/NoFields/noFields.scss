@@ -1,0 +1,23 @@
+@import "../../variables.scss";
+
+.NoFields {
+  &-box {
+    display: flex;
+    justify-content: center;
+  }
+  padding: 2.5rem;
+  border-radius: 2rem;
+  background-color: rgba($light-gray, 0.5);
+  text-align: center;
+  font-size: 2rem;
+  width: 70%;
+  margin-top: 6rem;
+  height: inherit;
+
+  &-lg {
+    margin-top: 12rem;
+    padding: 4rem;
+    font-size: 2.5rem;
+    width: 80%;
+  }
+}

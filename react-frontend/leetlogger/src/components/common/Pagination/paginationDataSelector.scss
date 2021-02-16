@@ -1,0 +1,47 @@
+@import "../../variables.scss";
+.PaginationDataSelector {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  &-icon {
+    height: 1.8rem;
+    width: 1.8rem;
+    padding: -2rem;
+    transition: 0.2s;
+  }
+
+  &-icon path {
+    fill: rgba(black, 0.6);
+  }
+
+  &-page {
+    display: inline-block;
+    font-size: 2rem;
+    margin: -1.4rem 2rem;
+    border-radius: 50%;
+    padding: 1rem 1.8rem;
+    background-color: rgba($light-gray, 0.5);
+  }
+
+  &-page-sm {
+  }
+
+  &-icon-sm {
+  }
+
+  &-icon-disabled path {
+    fill: rgba(gray, 0.3);
+  }
+
+  &-page-box {
+    display: inline-block;
+    margin-bottom: 2rem;
+    margin: 0 2rem;
+  }
+
+  &-page-active {
+    background-color: rgba($theme-blue, 0.3);
+  }
+}

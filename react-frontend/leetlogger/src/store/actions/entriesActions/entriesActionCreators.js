@@ -132,6 +132,9 @@ const _calculateStreaks = (history) => {
   } else {
     currStreakOver = true;
   }
+  if (history.length === 0) {
+    return [0, 0];
+  }
 
   if (history.length === 1) {
     if (currStreakOver) {

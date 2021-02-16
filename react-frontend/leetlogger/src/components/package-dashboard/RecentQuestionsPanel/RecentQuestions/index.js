@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import RecentQuestion from "./RecentQuestion";
+import NoFields from "components/common/NoFields";
 import { milisecondsToDateStringWithoutWeekDay } from "utils/dateHelpers";
 import "./recentQuestions.scss";
 
@@ -9,17 +10,20 @@ const RecentQuestions = () => {
     return entryData.recentEntries;
   });
 
-  const recentQuestions = (recentQuestionsFromRedux || []).map(
-    ({ title, submittedAt, difficulty }) => {
-      return (
-        <RecentQuestion
-          difficulty={difficulty}
-          title={title}
-          date={milisecondsToDateStringWithoutWeekDay(submittedAt)}
-        />
-      );
-    }
-  );
+  const recentQuestions =
+    recentQuestionsFromRedux && recentQuestionsFromRedux.length > 0 ? (
+      recentQuestionsFromRedux.map(({ title, submittedAt, difficulty }) => {
+        return (
+          <RecentQuestion
+            difficulty={difficulty}
+            title={title}
+            date={milisecondsToDateStringWithoutWeekDay(submittedAt)}
+          />
+        );
+      })
+    ) : (
+      <NoFields text="No entries" />
+    );
   return <div className="RecentsQuestions">{recentQuestions}</div>;
 };
 

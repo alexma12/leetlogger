@@ -1,92 +1,111 @@
-import React, { useState } from "react";
-
+import React, { useState, useMemo } from "react";
+import { useSelector } from "react-redux";
 import { ReactComponent as BackIcon } from "svg/back.svg";
 import { ReactComponent as NextIcon } from "svg/next.svg";
 import { milisecondsToDateString } from "utils/dateHelpers";
-import ReactPaginate from "react-paginate";
+import historyDataSelector from "../selectors/historyDataSelector";
+import NoFields from "components/common/NoFields";
+import PaginationDataSelector from "components/common/Pagination/PaginatedDataSelector";
+import { paginatedData } from "utils/paginatedData";
 import "./historyPanel.scss";
 import Question from "../../common/Question";
 
+const PAGINATION_MAX_ITEMS = 5;
+
 const HistoryPanel = () => {
-  const dateString = milisecondsToDateString(Date.now());
+  const [day, setDay] = useState(milisecondsToDateString(Date.now()));
+  const [paginationPage, setPaginationPage] = useState(1);
+
+  const historyData = useSelector((state) => {
+    return historyDataSelector(state);
+  });
+
+  const onPreviousDay = () => {
+    const currDay = new Date(day);
+    setDay(milisecondsToDateString(currDay.setDate(currDay.getDate() - 1)));
+  };
+
+  const onNextDay = () => {
+    const currDay = new Date(day);
+    setDay(milisecondsToDateString(currDay.setDate(currDay.getDate() + 1)));
+  };
+
+  const onPaginationNext = () => {
+    setPaginationPage((prevState) => {
+      console.log("prev", prevState);
+      return prevState + 1;
+    });
+  };
+
+  const onPagnationPrev = () => {
+    setPaginationPage((prevState) => prevState - 1);
+  };
+
+  const onPagaintionPageSelect = (event) => {
+    setPaginationPage(Number(event.target.id));
+  };
+
+  let paginatedHistoryData = useMemo(() => {
+    if (!historyData) return {};
+    return paginatedData(historyData[day], PAGINATION_MAX_ITEMS);
+  }, [historyData, day]);
+
+  console.log(paginatedHistoryData);
+  const questions =
+    Object.keys(paginatedHistoryData).length > 0 ? (
+      (paginatedHistoryData[paginationPage] || []).map((question) => {
+        return (
+          <Question
+            componentType="Question"
+            title={question.title}
+            date={milisecondsToDateString(question.submittedAt)}
+            solvedWithSolution={question.solvedWithSolution}
+            completionTimeHrs={question.approxCompletionHrs}
+            completionTimeMins={question.approxCompletionMins}
+            questionType={question.questionType}
+            difficulty={question.difficulty}
+            subtypes={question.tags}
+          />
+        );
+      })
+    ) : (
+      <NoFields text={`No Entries`} lg />
+    );
   return (
     <div className="HistoryPanel-wrapper">
       <div className="HistoryPanel">
         <div className="HistoryPanel-header">
-          <BackIcon className="HistoryPanel-header-prev HistoryPanel-header-arrow-icon" />
-          {dateString}
-          <NextIcon className="HistoryPanel-header-next HistoryPanel-header-arrow-icon HistoryPanel-header-arrow-icon-disabled" />
+          <BackIcon
+            onClick={onPreviousDay}
+            className="HistoryPanel-header-prev HistoryPanel-header-arrow-icon"
+          />
+          {day}
+          <NextIcon
+            onClick={
+              day === milisecondsToDateString(Date.now()) ? null : onNextDay
+            }
+            className={`HistoryPanel-header-next HistoryPanel-header-arrow-icon 
+              ${
+                day === milisecondsToDateString(Date.now())
+                  ? "HistoryPanel-header-arrow-icon-disabled"
+                  : ""
+              }`}
+          />
         </div>
-        <div className="HistoryPanel-questions">
-          <Question
-            componentType="Question"
-            title="Reverse a Linked List"
-            date="January 15, 2021"
-            solved={true}
-            completionTimeHrs={0}
-            completionTimeMins={30}
-            questionType="stack"
-            difficulty="easy"
-            subtypes={["recursion", "bfs", "dfs"]}
+        <div className="HistoryPanel-questions">{questions}</div>
+        <div className="HistoryPanel-pagination">
+          <PaginationDataSelector
+            numPages={
+              historyData && historyData[day]
+                ? Math.floor(historyData[day].length / PAGINATION_MAX_ITEMS) + 1
+                : 0
+            }
+            currPage={paginationPage}
+            onNext={onPaginationNext}
+            onPrev={onPagnationPrev}
+            onPageSelect={onPagaintionPageSelect}
+            top={"77rem"}
           />
-          <Question
-            componentType="Question"
-            title="In Order Traversal of A Binary Tree"
-            date="January 29, 2021"
-            solved={false}
-            completionTimeHrs={0}
-            completionTimeMins={30}
-            questionType="tree"
-            difficulty="medium"
-            subtypes={["recursion", "bfs", "dfs"]}
-          />
-          <Question
-            componentType="Question"
-            title="Number of Connected Components in an Undirected Graph"
-            date="February 22, 2021"
-            solved={false}
-            completionTimeHrs={0}
-            completionTimeMins={30}
-            questionType="graph"
-            difficulty="hard"
-            subtypes={["recursion", "bfs", "dfs"]}
-          />
-          <Question
-            componentType="Question"
-            title="Maximum Subarray"
-            date="February 27, 2021"
-            solved={false}
-            completionTimeHrs={0}
-            completionTimeMins={30}
-            questionType="backtracking"
-            difficulty="easy"
-            subtypes={["recursion", "bfs", "dfs"]}
-          />
-          <Question
-            componentType="Question"
-            title="Median of Two Sorted Arrays"
-            date="March 3, 2021"
-            solved={false}
-            completionTimeHrs={0}
-            completionTimeMins={30}
-            questionType="dc"
-            difficulty="medium"
-            subtypes={["recursion", "bfs", "dfs"]}
-          />
-
-          {/* <ReactPaginate
-            previousLabel={"previous"}
-            nextLabel={"next"}
-            breakLabel={"..."}
-            breakClassName={"break-me"}
-            pageCount={this.state.pageCount}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={5}
-            onPageChange={this.handlePageClick}
-            containerClassName={"pagination"}
-            subContainerClassName={"pages pagination"}
-            activeClassName={"active"}
-          /> */}
         </div>
       </div>
     </div>
