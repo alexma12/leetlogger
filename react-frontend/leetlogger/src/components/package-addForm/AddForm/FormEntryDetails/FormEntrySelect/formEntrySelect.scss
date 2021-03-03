@@ -33,7 +33,10 @@
     font-size: 2.2rem;
     transform: translateY(2rem);
     margin-left: 2rem;
-    border: 0.1rem solid rgba($theme-blue, 0.4);
+    border: 0.2rem solid rgba($theme-blue, 0.4);
+    border-radius: 1.5rem;
+    cursor: pointer;
+    transform: translateY(1.4rem);
   }
 
   &-placeholder {
@@ -42,7 +45,9 @@
   }
 
   &-menu {
-    border: 0.1rem solid rgba($theme-green, 0.6);
+    border: 0.2rem solid rgba($theme-green, 0.4);
+    border-radius: 1.5rem;
+    cursor: pointer;
   }
   &-menu .is-selected {
     background-color: rgba($theme-green, 0.1);
@@ -50,6 +55,12 @@
 
   &-option:hover {
     background-color: rgba($theme-green, 0.1);
+  }
+
+  &-control {
+    border-width: 0px;
+    border-radius: 1.5rem;
+    cursor: pointer;
   }
 }
 
@@ -59,5 +70,5 @@
 }
 
 .is-open {
-  border: 0.1rem solid rgba($theme-green, 0.6);
+  border: 0.2rem solid rgba($theme-green, 0.4);
 }

@@ -3,7 +3,7 @@
   width: 90%;
   padding: 1.2rem 1rem 0rem 1rem;
   margin-left: 2rem;
-  margin-top: 0.8rem;
+  margin-top: 1.2rem;
   box-sizing: border-box;
   border-bottom: 0.1rem solid rgba(gray, 0.4);
   &-label {
@@ -21,11 +21,23 @@
     width: 3rem;
     height: 3rem;
     margin-left: 2rem;
-    transform: translateY(0.8rem);
     &-label {
       margin-left: 1rem;
       font-size: 2.2rem;
       padding-right: 2rem;
+      cursor: pointer;
+    }
+    &-button {
+      display: inline-block;
+      height: 2.3rem;
+      width: 2.3rem;
+      border-radius: 50%;
+      border: 0.1rem solid rgba(black, 0.2);
+      margin-left: 1.6rem;
+      transform: translateY(0.6rem);
+      &-selected {
+        background-color: rgba($theme-blue, 0.3);
+      }
     }
   }
 }

@@ -53,7 +53,6 @@ const NavItem = ({ title }) => {
       navItem = (
         <NavLink
           to="/database"
-          exact
           className="NavItem"
           activeClassName="NavItem-enabled"
         >

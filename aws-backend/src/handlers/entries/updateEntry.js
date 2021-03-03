@@ -64,8 +64,10 @@ async function handler(event, context) {
     const upload = s3.upload(s3UploadParams);
 
     await Promise.all([upload, updatedEntry]);
-  } catch (error) {
-    throw new createError.InternalServerError(error);
+  } catch {
+    throw new createError.InternalServerError(
+      "Error occured when updating your entry"
+    );
   }
 
   return {

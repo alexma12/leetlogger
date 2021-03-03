@@ -27,24 +27,19 @@ const _checkIfEntryDateIsInTimeFrame = (date, timeFrame) => {
 
   switch (timeFrame) {
     case "week":
-      timeFrameFilterDate.setDate(
-        timeFrameFilterDate.getDate() - timeFrameFilterDate.getDay()
-      );
+      timeFrameFilterDate.setDate(timeFrameFilterDate.getDate() - 7);
       break;
     case "month":
-      timeFrameFilterDate.setDate(1);
+      timeFrameFilterDate.setMonth(timeFrameFilterDate.getMonth() - 1);
       break;
     case "3-month":
-      timeFrameFilterDate.setDate(1);
-      timeFrameFilterDate.setMonth(timeFrameFilterDate.getMonth() - 2);
+      timeFrameFilterDate.setMonth(timeFrameFilterDate.getMonth() - 3);
       break;
     case "6-month":
-      timeFrameFilterDate.setDate(1);
-      timeFrameFilterDate.setMonth(timeFrameFilterDate.getMonth() - 5);
+      timeFrameFilterDate.setMonth(timeFrameFilterDate.getMonth() - 6);
       break;
     case "year":
-      timeFrameFilterDate.setDate(1);
-      timeFrameFilterDate.setMonth(0);
+      timeFrameFilterDate.setMonth(timeFrameFilterDate.getMonth() - 12);
       break;
     default:
       timeFrameFilterDate.setFullYear(0);
@@ -74,8 +69,9 @@ const _generateAllEntryData = (entries) => {
   resData.calendarData = {};
   resData.statistics = {};
   resData.history = {};
+  resData.entriesByTitleMap = {};
   entries.forEach((entry) => {
-    const { difficulty, questionType, submittedAt } = entry;
+    const { difficulty, questionType, submittedAt, title } = entry;
     const dateSubmittedInMiliseconds = getStartOfDayInMiliseconds(submittedAt);
     // * generate bar graph data data
 
@@ -85,6 +81,14 @@ const _generateAllEntryData = (entries) => {
           resData[barData][questionType] + 1 || 1;
         resData[barData]["count"] = resData[barData]["count"] + 1 || 1;
       }
+    }
+
+    // * generate entries by question title map
+
+    if (resData.entriesByTitleMap[title]) {
+      resData.entriesByTitleMap[title].push(entry);
+    } else {
+      resData.entriesByTitleMap[title] = [entry];
     }
 
     // * generate calendar data
@@ -202,7 +206,7 @@ const _applyRecentData = (allEntries) => {
 };
 
 export const loadEntries = () => async (dispatch, getState) => {
-  axiosAWSInstance
+  await axiosAWSInstance
     .get("/entries/list")
     .then((res) => {
       dispatch(setEntries(res.data));

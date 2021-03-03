@@ -7,8 +7,10 @@ import AddForm from "../package-addForm/AddForm";
 import History from "../package-history/HistoryPanel";
 import Database from "../package-database/Database";
 import DatabaseQuestion from "../package-database/Database/DatabaseQuestion";
+import QuestionPanel from "../package-database/QuestionPanel";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 import * as entryActions from "store/actions/entriesActions/entriesActionCreators";
+import * as questionActions from "store/actions/questionsActions/questionsActionCreators";
 import "./layout.scss";
 
 const Layout = () => {
@@ -16,6 +18,7 @@ const Layout = () => {
 
   useEffect(() => {
     dispatch(entryActions.loadEntries());
+    dispatch(questionActions.loadQuestions());
   }, []);
 
   return (
@@ -32,7 +35,10 @@ const Layout = () => {
             exact
             component={DatabaseQuestion}
           />
-          <Route path="/database/:questionType/:entryId" />
+          <Route
+            path="/database/:questionType/:questionId"
+            component={QuestionPanel}
+          />
           <Route path="/" component={Dashboard} />
         </Switch>
       </BrowserRouter>

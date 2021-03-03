@@ -3,7 +3,7 @@ import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import "./formEntrySelect.scss";
 
-const FormEntrySelect = ({ label }) => {
+const FormEntrySelect = ({ label, value, onChange }) => {
   let optionsMap;
   let placeholder;
 
@@ -47,6 +47,8 @@ const FormEntrySelect = ({ label }) => {
         }
         options={options}
         placeholder={placeholder}
+        value={value}
+        onChange={onChange}
       />
     </div>
   );

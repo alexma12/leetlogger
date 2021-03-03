@@ -19,6 +19,71 @@
     border: 0.2rem solid rgba($logo-purple, 0.4);
     border-radius: 1.2rem;
     min-height: 86%;
+    .rdw {
+      &-option {
+        &-wrapper {
+          border-radius: 1rem;
+
+          &:hover {
+            box-shadow: none;
+            background-color: rgba($logo-purple, 0.14);
+          }
+        }
+        &-active {
+          box-shadow: none;
+          background-color: rgba($logo-purple, 0.3);
+          &:hover {
+            background-color: rgba($logo-purple, 0.3);
+          }
+        }
+      }
+      &-dropdown {
+        &-wrapper {
+          border-radius: 1rem;
+          box-shadow: none;
+          &:hover {
+            box-shadow: none;
+            background-color: rgba($logo-purple, 0.14);
+          }
+        }
+        &-carettoopen {
+          border-top-width: 4px;
+          border-left-width: 3px;
+          border-right-width: 3px;
+        }
+        &-carettoclose {
+          border-bottom-width: 4px;
+          border-left-width: 3px;
+          border-right-width: 3px;
+        }
+      }
+      &-dropdownoption {
+        &-active {
+          background-color: rgba($logo-purple, 0.2);
+        }
+        &-default {
+          &:hover {
+            background-color: rgba($logo-purple, 0.1);
+          }
+        }
+      }
+      &-colorpicker {
+        &-cube {
+          border-radius: 0.6rem;
+          opacity: 0.8;
+          box-shadow: none;
+        }
+        &-modal {
+          &-style {
+            &-label {
+              &-active {
+                border-color: rgba($logo-purple, 0.6);
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 .public-DraftEditorPlaceholder-inner {

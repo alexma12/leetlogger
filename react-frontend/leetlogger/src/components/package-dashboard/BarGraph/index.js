@@ -82,12 +82,18 @@ const BarGraph = () => {
     },
     fill: {
       colors: [
-        "#C8CFEA",
-        "#b5ead7",
-        "#e2f0cb",
-        "#ffdac1",
-        "#ffb7b2",
-        "#f4acca",
+        "#cde3f8",
+        "#f7d5d5",
+        "#ddf5ca",
+        "#f5def8",
+        "#ebd5f8",
+        "#ffd6e5",
+        "#c4f3eb",
+        "#f4f5ba",
+        "#c8f1da",
+        "#c3f0fc",
+        "#ffe6c8",
+        "#e2def8",
       ],
     },
     xaxis: {
@@ -132,19 +138,19 @@ const BarGraph = () => {
   let title;
   switch (barGraphView) {
     case "weekEntryBarGraphData":
-      title = "Entries This Past Week";
+      title = "Entries In The Past Week";
       break;
     case "monthEntryBarGraphData":
-      title = "Entries This Past Month";
+      title = "Entries In The Past Month";
       break;
     case "threeMonthEntryBarGraphData":
-      title = "Entries These Past Three Months";
+      title = "Entries In The Past Three Months";
       break;
     case "sixMonthEntryBarGraphData":
-      title = "Entries These Past Six Months";
+      title = "Entries In The Past Six Months";
       break;
     case "yearEntryBarGraphData":
-      title = "Entries This Past Year";
+      title = "Entries In The Past Twelve Months";
       break;
     case "allTimeBarGraphData":
       title = "All Entries";
@@ -188,7 +194,7 @@ const BarGraph = () => {
           }`}
           name="threeMonthEntryBarGraphData"
         >
-          3-month
+          3-months
         </button>
         <button
           onClick={onClickHandler}
@@ -199,7 +205,7 @@ const BarGraph = () => {
           }`}
           name="sixMonthEntryBarGraphData"
         >
-          6-month
+          6-months
         </button>
         <button
           onClick={onClickHandler}
@@ -210,7 +216,7 @@ const BarGraph = () => {
           }`}
           name="yearEntryBarGraphData"
         >
-          year
+          12-months
         </button>
         <button
           onClick={onClickHandler}

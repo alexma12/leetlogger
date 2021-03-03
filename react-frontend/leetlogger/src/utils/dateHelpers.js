@@ -1,3 +1,4 @@
+import moment from "moment";
 export const getStartOfDayInMiliseconds = (date) => {
   const retDate = new Date(date);
   retDate.setHours(0, 0, 0, 0);
@@ -15,14 +16,14 @@ export const milisecondsToDateString = (date) => {
   return resDate.toLocaleDateString("en-US", options);
 };
 
-export const milisecondsToDateStringWithoutWeekDay = (date) => {
-  const options = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
+export const milisecondsToDateStringWithTime = (date) => {
   const resDate = new Date(date);
-  return resDate.toLocaleDateString("en-US", options);
+  return moment(resDate).format("LLLL");
+};
+
+export const milisecondsToDateStringWithoutWeekDay = (date) => {
+  const resDate = new Date(date);
+  return moment(resDate).format("ll");
 };
 
 export const getTodaysDateInFormattedString = () => {

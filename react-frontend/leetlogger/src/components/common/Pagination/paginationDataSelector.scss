@@ -8,7 +8,6 @@
   &-icon {
     height: 1.8rem;
     width: 1.8rem;
-    padding: -2rem;
     transition: 0.2s;
   }
 
@@ -23,22 +22,28 @@
     border-radius: 50%;
     padding: 1rem 1.8rem;
     background-color: rgba($light-gray, 0.5);
+
+    &-box {
+      display: flex;
+      margin: 0 2rem;
+      margin-bottom: 2rem;
+      align-items: center;
+    }
   }
 
   &-page-sm {
+    padding: 0.7rem 1.4rem;
+    font-size: 1.6rem;
   }
 
   &-icon-sm {
+    height: 1.5rem;
+    width: 1.5rem;
+    transform: translateY(-0.4rem);
   }
 
   &-icon-disabled path {
     fill: rgba(gray, 0.3);
-  }
-
-  &-page-box {
-    display: inline-block;
-    margin-bottom: 2rem;
-    margin: 0 2rem;
   }
 
   &-page-active {

@@ -1,0 +1,105 @@
+@import "../../../variables.scss";
+
+.DatabaseQuestion {
+  margin: 2rem;
+  background-color: white;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  position: relative;
+  overflow-y: scroll;
+
+  &-alphabeticalSelector {
+    margin-top: 3.2rem;
+    color: rgba(black, 0.6);
+    display: flex;
+    justify-content: center;
+
+    &-letter {
+      cursor: pointer;
+      padding: 0.9rem 1.5rem;
+      font-size: 1.7rem;
+      text-transform: uppercase;
+      border: solid $light-gray 0.1rem;
+      border-right: none;
+
+      &-inactive {
+        background-color: rgba($light-gray, 0.4);
+      }
+
+      &-array {
+        &:hover {
+          background-color: rgba($array, 0.8);
+        }
+      }
+
+      &-dp {
+        &:hover {
+          background-color: rgba($dp, 0.8);
+        }
+      }
+
+      &-dc {
+        &:hover {
+          background-color: rgba($dc, 0.8);
+        }
+      }
+
+      &-linkedlist {
+        &:hover {
+          background-color: rgba($linkedlist, 0.8);
+        }
+      }
+
+      &-string {
+        &:hover {
+          background-color: rgba($string, 0.8);
+        }
+      }
+
+      &-graph {
+        &:hover {
+          background-color: rgba($graph, 0.8);
+        }
+      }
+
+      &-stack {
+        &:hover {
+          background-color: rgba($stack, 0.8);
+        }
+      }
+
+      &-queue {
+        &:hover {
+          background-color: rgba($queue, 0.8);
+        }
+      }
+
+      &-tree {
+        &:hover {
+          background-color: rgba($tree, 0.8);
+        }
+      }
+
+      &-bit {
+        &:hover {
+          background-color: rgba($bit, 0.8);
+        }
+      }
+
+      &-backtracking {
+        &:hover {
+          background-color: rgba($backtracking, 0.8);
+        }
+      }
+
+      &-greedy {
+        &:hover {
+          background-color: rgba($greedy, 0.8);
+        }
+      }
+    }
+    &-letter:last-child {
+      border-right: solid $light-gray 0.1rem;
+    }
+  }
+}

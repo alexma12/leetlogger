@@ -29,11 +29,6 @@
       fill: rgba(black, 0.4);
     }
 
-    &-arrow-icon:hover {
-      height: 2.8rem;
-      width: 2.8rem;
-    }
-
     &-arrow-icon-disabled path {
       fill: rgba(gray, 0.2);
     }
@@ -44,10 +39,19 @@
     }
 
     &-prev {
+      cursor: pointer;
       float: left;
+      transition: 0.3s;
+      &:hover {
+        transform: translateX(-0.5rem);
+      }
     }
     &-next {
+      cursor: pointer;
       float: right;
+      &:hover {
+        transform: translateX(0.5rem);
+      }
     }
   }
 

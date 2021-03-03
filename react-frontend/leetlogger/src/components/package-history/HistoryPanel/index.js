@@ -32,7 +32,6 @@ const HistoryPanel = () => {
 
   const onPaginationNext = () => {
     setPaginationPage((prevState) => {
-      console.log("prev", prevState);
       return prevState + 1;
     });
   };
@@ -50,7 +49,6 @@ const HistoryPanel = () => {
     return paginatedData(historyData[day], PAGINATION_MAX_ITEMS);
   }, [historyData, day]);
 
-  console.log(paginatedHistoryData);
   const questions =
     Object.keys(paginatedHistoryData).length > 0 ? (
       (paginatedHistoryData[paginationPage] || []).map((question) => {

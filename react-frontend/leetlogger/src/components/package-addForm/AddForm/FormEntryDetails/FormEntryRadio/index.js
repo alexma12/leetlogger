@@ -1,25 +1,38 @@
 import React, { useState } from "react";
 import "./formEntryRadio.scss";
 
-const FormEntryRadioDropdown = ({ label }) => {
+const FormEntryRadioDropdown = ({ label, onBoolChange, value }) => {
   return (
     <div className="FormEntryRadio">
       <div className="FormEntryRadio-label"> {label} </div>
-      <label className="FormEntryRadio-radio-label">
+      <label
+        className="FormEntryRadio-radio-label"
+        onClick={!value && onBoolChange}
+        id="withSolution"
+      >
         With Solution
-        <input type="radio" className="FormEntryRadio-radio" name="radio" />
-        <span className="checkmark"></span>
+        <span
+          className={`FormEntryRadio-radio-button ${
+            value && "FormEntryRadio-radio-button-selected"
+          }`}
+          onClick={!value && onBoolChange}
+          id="withSolution"
+        ></span>
       </label>
-      <label className="FormEntryRadio-radio-label">
+      <label
+        className="FormEntryRadio-radio-label"
+        onClick={value && onBoolChange}
+        id="withoutSolution"
+      >
         Without Solution
-        <input
-          type="radio"
-          className="FormEntryRadio-radio"
-          checked="checked"
-          name="radio"
-        />
+        <span
+          className={`FormEntryRadio-radio-button ${
+            !value && "FormEntryRadio-radio-button-selected"
+          }`}
+          onClick={value && onBoolChange}
+          id="withoutSolution"
+        ></span>
       </label>
-      <span clasName="checkmark" name="radio"></span>
     </div>
   );
 };

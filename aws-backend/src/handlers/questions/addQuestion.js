@@ -24,6 +24,7 @@ async function handler(event, context) {
     difficulty,
     entryID,
     content,
+    url,
   } = JSON.parse(entry);
   try {
     const question = await queryQuestionByTitle(
@@ -98,6 +99,7 @@ async function handler(event, context) {
           revisionDate: revisionDate || -1,
           difficulty,
           entryCount: 1,
+          url,
         },
       };
 

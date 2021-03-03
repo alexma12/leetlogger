@@ -54,8 +54,10 @@ async function handler(event, context) {
     );
 
     await Promise.all([put, snsPublish]);
-  } catch (error) {
-    throw new createError.InternalServerError(error);
+  } catch {
+    throw new createError.InternalServerError(
+      "An Error Occured While Adding Your Entry"
+    );
   }
   return {
     statusCode: 201,

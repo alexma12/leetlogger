@@ -38,14 +38,6 @@ listEntriesAll:
         method: get
         cors: true
 
-listEntriesBySubmittedAt:
-  handler: src/handlers/entries/listEntriesBySubmittedAt.main
-  events:
-    - http:
-        path: entries/list/entriesInTwoDays
-        method: get
-        cors: true
-
 listEntriesByTitle:
   handler: src/handlers/entries/listEntriesByTitle.main
   events:

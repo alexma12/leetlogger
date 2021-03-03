@@ -1,43 +1,54 @@
 import React, { useState } from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
-import moment from "moment";
 import "./formEntryRadioDropdown.scss";
 import "react-datepicker/dist/react-datepicker.css";
 
-const FormEntryRadioDropdown = ({ label }) => {
-  //! useMemo
-
-  registerLocale("moment", moment);
-  const [startDate, setStartDate] = useState(new Date());
-  let datepicker = (
+const FormEntryRadioDropdown = ({
+  label,
+  onBoolChange,
+  reviewLater,
+  reviewDate,
+  onDateChange,
+}) => {
+  let datepicker = reviewLater ? (
     <DatePicker
-      selected={startDate}
-      onChange={(date) => setStartDate(date)}
+      selected={reviewDate}
+      onChange={onDateChange}
       local="moment"
+      name="review"
       dateFormat="MMMM d, yyyy"
     />
-  );
+  ) : null;
   return (
     <div className="FormEntryRadioDropdown">
       <div className="FormEntryRadioDropdown-label"> {label} </div>
-      <label className="FormEntryRadioDropdown-radio-label">
+      <label
+        className="FormEntryRadioDropdown-radio-label"
+        onClick={!reviewLater && onBoolChange}
+        id="willReview"
+      >
         Yes
-        <input
-          type="radio"
-          className="FormEntryRadioDropdown-radio"
-          name="solvedWithoutSolution"
-        />
-        <span className="checkmark"></span>
+        <span
+          className={`FormEntryRadioDropdown-radio-button ${
+            reviewLater && "FormEntryRadioDropdown-radio-button-selected"
+          }`}
+          onClick={!reviewLater && onBoolChange}
+          id="willReview"
+        ></span>
       </label>
-      <label className="FormEntryRadioDropdown-radio-label">
+      <label
+        className="FormEntryRadioDropdown-radio-label"
+        onClick={reviewLater && onBoolChange}
+        id="wontReview"
+      >
         No
-        <input
-          type="radio"
-          className="FormEntryRadioDropdown-radio"
-          checked="checked"
-          name="solvedWithoutSolution"
-        />
-        <span clasName="checkmark" n name="solvedWithoutSolution"></span>
+        <span
+          className={`FormEntryRadioDropdown-radio-button ${
+            !reviewLater && "FormEntryRadioDropdown-radio-button-selected"
+          }`}
+          onClick={reviewLater && onBoolChange}
+          id="wontReview"
+        ></span>
       </label>
       {datepicker}
     </div>

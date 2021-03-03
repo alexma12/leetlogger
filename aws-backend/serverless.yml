@@ -49,18 +49,13 @@ functions:
   getEntry: ${file(functions/entryApiFunctions.yml):getEntry}
   deleteEntry: ${file(functions/entryApiFunctions.yml):deleteEntry}
   listEntriesAll: ${file(functions/entryApiFunctions.yml):listEntriesAll}
-  listEntriesBySubmittedAt: ${file(functions/entryApiFunctions.yml):listEntriesBySubmittedAt}
   listEntriesByTitle: ${file(functions/entryApiFunctions.yml):listEntriesByTitle}
 
   addQuestion: ${file(functions/questionApiFunctions.yml):addQuestion}
   deleteQuestion: ${file(functions/questionApiFunctions.yml):deleteQuestion}
   getQuestion: ${file(functions/questionApiFunctions.yml):getQuestion}
   listQuestionAll: ${file(functions/questionApiFunctions.yml):listQuestionAll}
-  listQuestionByType: ${file(functions/questionApiFunctions.yml):listQuestionByType}
-  listSortedRevisionQuestions: ${file(functions/questionApiFunctions.yml):listSortedRevisionQuestions}
-  expediteRevisionDate: ${file(functions/questionApiFunctions.yml):expediteRevisionDate}
-  postponeRevisionDate: ${file(functions/questionApiFunctions.yml):postponeRevisionDate}
-  completeRevisionQuestion: ${file(functions/questionApiFunctions.yml):completeRevisionQuestion}
+
   loginUserS3Create: ${file(functions/loginApiFunctions.yml):loginUserS3Create}
 
 custom:

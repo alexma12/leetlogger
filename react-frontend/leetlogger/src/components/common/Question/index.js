@@ -2,7 +2,6 @@ import React from "react";
 import RevisionButtons from "./RevisionButtons";
 import Tag from "../Tag";
 import "./question.scss";
-import { capitalizeFirstCharacters } from "../../../lib/text-helpers";
 
 const Question = ({
   componentType,
@@ -15,6 +14,8 @@ const Question = ({
   solvedWithSolution,
   questionType,
   difficulty,
+  dbType,
+  entryCount,
 }) => {
   const isRevisionQuestion = componentType === "RevisionQuestion";
   const isQuestion = componentType === "Question";
@@ -50,11 +51,20 @@ const Question = ({
 
   const revisionReviewDate = (
     <div className="Question-date">
-      review on: <span className="Question-date-content">{` ${date}`}</span>
+      review on:{" "}
+      <span
+        className={`Question-date-content ${
+          due && "Question-date-content-due"
+        }`}
+      >{` ${date}`}</span>
     </div>
   );
   return (
-    <div className="Question">
+    <div
+      className={`Question ${
+        dbType && `Question-dbQuestion Question-${dbType}`
+      }`}
+    >
       <div className="Question-title"> {title} </div>
       {isRevisionQuestion && revisionReviewDate}
       <div className="Question-tags">
@@ -64,6 +74,11 @@ const Question = ({
       </div>
       {isQuestion && solvedRecap}
       {isRevisionQuestion && revisionButtons}
+      {entryCount && (
+        <div className="Question-dbQuestion-entryCount">
+          {`Logged Entries: ${entryCount}`}
+        </div>
+      )}
     </div>
   );
 };

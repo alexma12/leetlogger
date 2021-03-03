@@ -1,8 +1,7 @@
 import React from "react";
 import "./tag.scss";
 import { typeToTitleMap } from "utils/titleAndTypeMaps";
-import { capitalizeFirstCharacters } from "lib/text-helpers";
-
+import { lowercaseFirstCharacters } from "lib/text-helpers";
 const Tag = ({ tag, size, isDefault }) => {
   const title = typeToTitleMap[tag];
 
@@ -12,7 +11,7 @@ const Tag = ({ tag, size, isDefault }) => {
   }
 
   return (
-    <div className={classNames}>{title || capitalizeFirstCharacters(tag)}</div>
+    <div className={classNames}>{lowercaseFirstCharacters(title) || tag}</div>
   );
 };
 

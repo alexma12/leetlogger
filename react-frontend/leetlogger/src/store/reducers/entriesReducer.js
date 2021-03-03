@@ -2,7 +2,7 @@ import * as actionTypes from "../actions/entriesActions/entriesActionTypes";
 
 const initialState = {};
 
-const allEntriesReducer = (state = initialState, action) => {
+const entriesReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SET_ALL_ENTRIES:
       return {
@@ -22,6 +22,7 @@ const allEntriesReducer = (state = initialState, action) => {
         statistics,
         history,
         recentEntries,
+        entriesByTitleMap,
       } = action.data;
 
       return {
@@ -36,6 +37,7 @@ const allEntriesReducer = (state = initialState, action) => {
         statistics,
         history,
         recentEntries,
+        entriesByTitleMap,
       };
 
     default:
@@ -43,4 +45,4 @@ const allEntriesReducer = (state = initialState, action) => {
   }
 };
 
-export default allEntriesReducer;
+export default entriesReducer;

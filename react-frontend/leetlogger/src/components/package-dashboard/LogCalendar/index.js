@@ -17,7 +17,6 @@ const LogCalendar = () => {
     const calendarEventsArr = [];
     for (let event in calendarData) {
       const eventObj = {};
-      console.log(event.split("-"));
       const [date, difficulty] = event.split("-");
       let timeString;
       if (difficulty === "easy") timeString = "20:00:00";

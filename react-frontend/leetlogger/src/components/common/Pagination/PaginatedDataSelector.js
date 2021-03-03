@@ -10,17 +10,17 @@ const PaginatedDataSelector = ({
   onNext,
   top,
   currPage,
+  sm,
 }) => {
-  console.log("currPage", currPage);
   const componentArr = [];
   if (numPages !== 0) {
     for (let i = 1; i <= numPages; i++) {
       componentArr.push(
         <span
           id={i}
-          className={`PaginationDataSelector-page ${
-            i === currPage ? "PaginationDataSelector-page-active" : ""
-          }`}
+          className={`PaginationDataSelector-page  ${
+            sm && "PaginationDataSelector-page-sm"
+          } ${i === currPage ? "PaginationDataSelector-page-active" : ""}`}
           onClick={onPageSelect}
         >
           {i}
@@ -33,15 +33,15 @@ const PaginatedDataSelector = ({
       <div className="PaginationDataSelector" style={{ top }}>
         <BackIcon
           className={`PaginationDataSelector-icon ${
-            currPage === 1 ? "PaginationDataSelector-icon-disabled" : ""
-          }`}
+            sm && "PaginationDataSelector-icon-sm"
+          } ${currPage === 1 ? "PaginationDataSelector-icon-disabled" : ""}`}
           onClick={currPage === 1 ? null : onPrev}
         />
         <span className="PaginationDataSelector-page-box">{componentArr}</span>
         <NextIcon
           className={`PaginationDataSelector-icon ${
-            currPage === numPages ? "PaginationDataSelector-icon-disabled" : ""
-          }`}
+            sm && "PaginationDataSelector-icon-sm"
+          } ${currPage === numPages && "PaginationDataSelector-icon-disabled"}`}
           onClick={currPage === numPages ? null : onNext}
         />
       </div>
