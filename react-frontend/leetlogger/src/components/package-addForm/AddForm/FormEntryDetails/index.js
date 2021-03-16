@@ -15,8 +15,8 @@ const FormEntryDetails = ({
   onTimeChange,
   onBoolChange,
   onReviewDateChange,
-  onAddSubType,
-  onRemoveSubType,
+  onAddTag,
+  onRemoveTag,
 }) => {
   const {
     url,
@@ -27,16 +27,16 @@ const FormEntryDetails = ({
     reviewDate,
     title,
     questionType,
-    subTypes,
+    tags,
     difficulty,
-    subTypeInput,
+    tagInput,
   } = formGetters;
 
   return (
     <div className="FormEntryDetails">
       <FormEntryText
         label="Url"
-        placeholder="Enter Leetcode Question Url"
+        placeholder="leetcode.com/problems/two-sum"
         value={url}
         onChange={onStringChange}
       />
@@ -56,11 +56,11 @@ const FormEntryDetails = ({
         onChange={onTypeChange}
       />
       <FormEntryTags
-        subTypes={subTypes}
-        inputValue={subTypeInput}
+        tags={tags}
+        inputValue={tagInput}
         onInputChange={onStringChange}
-        onAddSubType={onAddSubType}
-        onRemoveSubType={onRemoveSubType}
+        onAddTag={onAddTag}
+        onRemoveTag={onRemoveTag}
       />
       <FormEntryRadio
         label="Solved"

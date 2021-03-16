@@ -1,8 +1,8 @@
 import React from "react";
 import "./tag.scss";
 import { typeToTitleMap } from "utils/titleAndTypeMaps";
-import { lowercaseFirstCharacters } from "lib/text-helpers";
-const Tag = ({ tag, size, isDefault }) => {
+import { lowercaseFirstCharacters } from "utils/textHelpers";
+const Tag = ({ tag, size, isDefault, id }) => {
   const title = typeToTitleMap[tag];
 
   let classNames = `Tag Tag-${tag}`;
@@ -11,7 +11,9 @@ const Tag = ({ tag, size, isDefault }) => {
   }
 
   return (
-    <div className={classNames}>{lowercaseFirstCharacters(title) || tag}</div>
+    <div id={id} className={classNames}>
+      {lowercaseFirstCharacters(title) || tag}
+    </div>
   );
 };
 

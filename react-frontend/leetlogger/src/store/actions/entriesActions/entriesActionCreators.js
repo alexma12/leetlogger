@@ -1,4 +1,5 @@
 import * as actionTypes from "./entriesActionTypes";
+import { loadQuestions } from "../questionsActions/questionsActionCreators";
 import {
   getStartOfDayInMiliseconds,
   milisecondsToDateString,
@@ -222,4 +223,22 @@ export const loadEntries = () => async (dispatch, getState) => {
       dispatch(setMappedEntryData(entryMapData));
     })
     .catch((err) => console.log(err.message));
+};
+
+export const saveEntry = (entry) => {
+  return async (dispatch, getState) => {
+    await axiosAWSInstance
+      .post("/entries", entry)
+      .then((res) => {
+        console.log(res);
+        dispatch(loadEntries());
+
+        setTimeout(() => {
+          dispatch(loadQuestions());
+        }, 1000);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
 };

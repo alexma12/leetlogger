@@ -8,9 +8,11 @@
   box-sizing: border-box;
   border-bottom: 0.1rem solid rgba(gray, 0.4);
 
-  &-subTypes {
+  &-tags {
+    display: inline-block;
     margin: 2rem;
     margin-top: 0rem;
+    margin-bottom: 1rem;
     border-radius: 1.5rem;
     background-color: rgba($theme-blue, 0.2);
     padding: 0.7rem 1.5rem;
@@ -30,7 +32,7 @@
       cursor: pointer;
       color: transparent;
       transform: translateY(-0.1rem);
-      transition: 0.2s;
+      transition: color 0.2s;
     }
   }
   &-label {

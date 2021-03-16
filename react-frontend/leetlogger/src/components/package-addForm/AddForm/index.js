@@ -1,14 +1,18 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import FormEntryDetails from "./FormEntryDetails";
 import FormEntryNotes from "./FormEntryNotes";
 import { v4 as uuidv4 } from "uuid";
-import { EditorState, convertFromRaw, convertToRaw } from "draft-js";
-import { capitalizeFirstCharacters } from "lib/text-helpers";
-import { stateToHTML } from "draft-js-export-html";
-import draftToHtml from "draftjs-to-html";
+import { capitalizeFirstCharacters } from "utils/textHelpers";
+import { saveEntry } from "store/actions/entriesActions/entriesActionCreators";
+import {
+  setValidation,
+  removeValidation,
+} from "store/actions/validationActions/validationActionCreators";
+import { validateValues, formatEntryBody } from "utils/addFormHelpers";
 import "./addForm.scss";
 
-const AddForm = () => {
+const AddForm = (props) => {
   const [url, setUrl] = useState("");
   const [solved, setSolved] = useState(false);
   const [completionHrs, setCompletionHrs] = useState(null);
@@ -17,10 +21,11 @@ const AddForm = () => {
   const [reviewDate, setReviewDate] = useState(new Date());
   const [title, setTitle] = useState("");
   const [questionType, setQuestionType] = useState("");
-  const [subTypes, setSubTypes] = useState([]);
+  const [tags, setTags] = useState([]);
   const [difficulty, setDifficulty] = useState("");
-  const [subTypeInput, setSubTypeInput] = useState("");
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const [tagInput, setTagInput] = useState("");
+  const [notesState, setNotesState] = useState("");
+
   const formDetailValues = {
     url,
     solved,
@@ -30,10 +35,12 @@ const AddForm = () => {
     reviewDate,
     title,
     questionType,
-    subTypes,
+    tags,
     difficulty,
-    subTypeInput,
+    tagInput,
   };
+
+  const dispatch = useDispatch();
 
   const handleStringInputChange = (e) => {
     const value = e.target.value;
@@ -59,8 +66,8 @@ const AddForm = () => {
           setTitle(title);
         }
         break;
-      case "subTypes":
-        setSubTypeInput(e.target.value);
+      case "tags":
+        setTagInput(e.target.value);
         break;
       default:
         break;
@@ -110,23 +117,43 @@ const AddForm = () => {
     setQuestionType(e.value);
   };
 
-  const handleAddSubType = () => {
-    if (subTypeInput === "") return;
-    setSubTypes((currSubTypes) => {
-      return [...currSubTypes, { title: subTypeInput, id: uuidv4() }];
+  const handleAddTag = () => {
+    if (tagInput === "") return;
+    setTags((currTags) => {
+      return [...currTags, { title: tagInput, id: uuidv4() }];
     });
-    setSubTypeInput("");
+    setTagInput("");
   };
 
-  const handleRemoveSubType = (e) => {
-    setSubTypes((currSubTypes) => {
-      return currSubTypes.filter((subType) => subType.id !== e.target.id);
+  const handleRemoveTag = (e) => {
+    setTags((currTags) => {
+      return currTags.filter((tag) => tag.id !== e.target.id);
     });
   };
 
-  const onEditorStateChange = (edtiorState) => {
-    console.log(draftToHtml(convertToRaw(editorState.getCurrentContent())));
-    setEditorState(edtiorState);
+  const onNotesStateChange = (value) => {
+    setNotesState(value);
+  };
+
+  const onHandleSubmitEntry = async () => {
+    const validation = validateValues(formDetailValues);
+    if (validation !== true) {
+      dispatch(
+        setValidation({
+          message: validation,
+          isError: true,
+        })
+      );
+
+      setTimeout(() => {
+        dispatch(removeValidation());
+      }, 15000);
+      return;
+    }
+
+    const formattedEntry = formatEntryBody(formDetailValues, notesState);
+    await dispatch(saveEntry(formattedEntry));
+    props.history.replace("/");
   };
   return (
     <div className="AddForm-wrapper">
@@ -140,14 +167,17 @@ const AddForm = () => {
           onTimeChange={handleTimeChange}
           onBoolChange={handleBooleanInputChange}
           onReviewDateChange={setReviewDate}
-          onAddSubType={handleAddSubType}
-          onRemoveSubType={handleRemoveSubType}
+          onAddTag={handleAddTag}
+          onRemoveTag={handleRemoveTag}
         />
         <FormEntryNotes
-          editorState={editorState}
-          onEditorStateChange={onEditorStateChange}
+          notesState={notesState}
+          onNotesStateChange={onNotesStateChange}
         />
-        <button className="AddForm-submit"> Submit Entry</button>
+        <button className="AddForm-submit" onClick={onHandleSubmitEntry}>
+          {" "}
+          Submit Entry
+        </button>
         <div className="AddForm-empty"></div>
       </div>
     </div>

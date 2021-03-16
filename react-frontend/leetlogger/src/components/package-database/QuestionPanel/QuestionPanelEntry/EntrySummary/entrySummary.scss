@@ -1,0 +1,121 @@
+@import "../../../../variables.scss";
+.EntrySummary {
+  width: 86%;
+  padding: 2rem;
+  padding-bottom: 1.4rem;
+  font-size: 1.5rem;
+  border-radius: 0.6rem;
+  background-color: rgba($light-gray, 0.1);
+  box-shadow: 0.1rem 0.1rem 0.4rem rgba(black, 0.2);
+  border-bottom: 0.6rem solid transparent;
+  transition: 0.3s;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  &-header {
+    font-size: 2rem;
+    margin-left: 1rem;
+    margin-bottom: 3rem;
+    font-weight: 800;
+    color: rgb(126, 126, 126);
+  }
+
+  &-time {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: rgb(99, 99, 99);
+    margin-bottom: 2rem;
+  }
+  &-tags {
+    font-weight: 600;
+    color: rgb(179, 179, 179);
+    &-empty {
+      transform: translateY(0.6rem);
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  &-completion {
+    font-weight: 600;
+    color: rgb(179, 179, 179);
+    margin-bottom: 1rem;
+    &-array {
+      color: $array-font;
+    }
+
+    &-dp {
+      color: $dp-font;
+    }
+
+    &-dc {
+      color: $dc-font;
+    }
+
+    &-linkedlist {
+      color: $linkedlist-font;
+    }
+
+    &-string {
+      color: $string-font;
+    }
+
+    &-graph {
+      color: $graph-font;
+    }
+
+    &-stack {
+      color: $stack-font;
+    }
+
+    &-queue {
+      color: $queue-font;
+    }
+
+    &-tree {
+      color: $tree-font;
+    }
+
+    &-bit {
+      color: $bit-font;
+    }
+
+    &-backtracking {
+      color: $backtracking-font;
+    }
+
+    &-greedy {
+      color: $greedy-font;
+    }
+  }
+
+  &-solved {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: rgb(179, 179, 179);
+    &-withSolution {
+      margin-left: 0.5rem;
+      color: rgba($difficulty-hard, 0.4);
+    }
+    &-withoutSolution {
+      margin-left: 0.5rem;
+      color: rgba($difficulty-easy, 0.6);
+    }
+  }
+
+  &-easy {
+    &:hover {
+      border-color: rgba($difficulty-easy, 0.3);
+    }
+  }
+
+  &-medium {
+    &:hover {
+      border-color: rgba($difficulty-medium, 0.2);
+    }
+  }
+
+  &-hard {
+    &:hover {
+      border-color: rgba($difficulty-hard, 0.2);
+    }
+  }
+}

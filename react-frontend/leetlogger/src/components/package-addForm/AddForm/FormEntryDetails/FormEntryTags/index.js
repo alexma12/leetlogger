@@ -2,20 +2,20 @@ import React from "react";
 import "./formEntryTags.scss";
 import { ReactComponent as AddButton } from "svg/button.svg";
 const FormEntryTags = ({
-  subTypes = [],
+  tags = [],
   inputValue,
   onInputChange,
-  onAddSubType,
-  onRemoveSubType,
+  onAddTag,
+  onRemoveTag,
 }) => {
-  const formSubTypes = subTypes.map((subType) => {
+  const formTags = tags.map((tag) => {
     return (
-      <span className="FormEntryTags-subTypes">
-        {subType.title}
+      <span className="FormEntryTags-tags">
+        {tag.title}
         <span
-          className="FormEntryTags-subTypes-delete"
-          onClick={onRemoveSubType}
-          id={subType.id}
+          className="FormEntryTags-tags-delete"
+          onClick={onRemoveTag}
+          id={tag.id}
         >
           x
         </span>
@@ -25,20 +25,20 @@ const FormEntryTags = ({
 
   return (
     <div className="FormEntryTags">
-      <div className="FormEntryTags-label"> Subtypes </div>
+      <div className="FormEntryTags-label"> Tags </div>
       <input
         className="FormEntryTags-input"
-        placeholder="Add A Question Subtype"
-        name="subTypes"
+        placeholder="Add An Entry Tag"
+        name="tags"
         value={inputValue}
         autocomplete="off"
         onChange={onInputChange}
       />
       <span className="FormEntryTags-addButton-box">
-        <AddButton className="FormEntryTags-addButton" onClick={onAddSubType} />
+        <AddButton className="FormEntryTags-addButton" onClick={onAddTag} />
       </span>
-      {subTypes.length !== 0 && (
-        <div className="FormEntryTags-subTypes-box">{formSubTypes}</div>
+      {tags.length !== 0 && (
+        <div className="FormEntryTags-tags-box">{formTags}</div>
       )}
     </div>
   );

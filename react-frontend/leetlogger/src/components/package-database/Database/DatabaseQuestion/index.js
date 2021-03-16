@@ -6,6 +6,7 @@ import { getQuestionDataByTypeSelector } from "./selectors/getQuestionDataByType
 import { typeToTitleMap } from "utils/titleAndTypeMaps";
 import { alphabetArray } from "utils/alphabetArray";
 import { alphabeticalSort } from "utils/alphabeticalSort";
+import NoFields from "components/common/NoFields";
 import "./databaseQuestion.scss";
 
 const DatabaseQuestion = (props) => {
@@ -14,7 +15,7 @@ const DatabaseQuestion = (props) => {
   const questionsDataByType = useSelector((state) =>
     getQuestionDataByTypeSelector(state, questionType)
   );
-  console.log(props);
+
   const alphabeticalRefs = {
     a: useRef(),
     b: useRef(),
@@ -84,6 +85,21 @@ const DatabaseQuestion = (props) => {
   });
 
   const title = typeToTitleMap[questionType];
+
+  const questionDataRender =
+    Object.keys(alphabeticalSortedQuestionData).length > 0 ? (
+      <div>
+        <div className="DatabaseQuestion-alphabeticalSelector">
+          {alphabeticalSelector}
+        </div>
+        <div className="DatabaseQuestion-questions">
+          {alphabeticalSortedComponents}
+        </div>
+      </div>
+    ) : (
+      <NoFields text={`No Questions Logged`} lg />
+    );
+
   return (
     <div className="DatabaseQuestion">
       <QuestionTypeTitle
@@ -91,12 +107,7 @@ const DatabaseQuestion = (props) => {
         onBack={() => props.history.push("/database")}
         title={`${title} Questions`}
       />
-      <div className="DatabaseQuestion-alphabeticalSelector">
-        {alphabeticalSelector}
-      </div>
-      <div className="DatabaseQuestion-questions">
-        {alphabeticalSortedComponents}
-      </div>
+      {questionDataRender}
     </div>
   );
 };

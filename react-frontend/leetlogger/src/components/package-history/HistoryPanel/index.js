@@ -62,7 +62,6 @@ const HistoryPanel = () => {
             completionTimeMins={question.approxCompletionMins}
             questionType={question.questionType}
             difficulty={question.difficulty}
-            subtypes={question.tags}
           />
         );
       })
@@ -95,7 +94,10 @@ const HistoryPanel = () => {
           <PaginationDataSelector
             numPages={
               historyData && historyData[day]
-                ? Math.floor(historyData[day].length / PAGINATION_MAX_ITEMS) + 1
+                ? historyData[day].length % PAGINATION_MAX_ITEMS === 0
+                  ? Math.floor(historyData[day].length / PAGINATION_MAX_ITEMS)
+                  : Math.floor(historyData[day].length / PAGINATION_MAX_ITEMS) +
+                    1
                 : 0
             }
             currPage={paginationPage}

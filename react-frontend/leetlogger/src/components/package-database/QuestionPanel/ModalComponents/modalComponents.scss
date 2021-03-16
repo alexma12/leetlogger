@@ -1,0 +1,93 @@
+@import "../../../variables.scss";
+.ModalComponent {
+  z-index: 1001;
+  background-color: white;
+  border-radius: 0.5rem;
+  position: fixed;
+  box-sizing: content-box;
+  left: 50%;
+  top: 50%;
+  padding: 2rem;
+  padding-bottom: 0rem;
+  transform: translate(-50%, -50%);
+
+  &-withScroll {
+    overflow-y: scroll;
+  }
+
+  &-header {
+    font-size: 3rem;
+    font-weight: 600;
+    color: rgba(black, 0.6);
+    margin-bottom: 1.5rem;
+    margin-left: 1rem;
+  }
+
+  &-close {
+    font-size: 2rem;
+    font-weight: 600;
+    float: right;
+    transform: translate(-0.3rem, -0.4rem);
+    cursor: pointer;
+    color: rgb(190, 44, 44);
+  }
+}
+
+.ReviewDateEditModal {
+  font-size: 2rem;
+  padding: 3rem;
+  text-align: center;
+  padding-top: 2rem;
+
+  &-buttons {
+    float: right;
+  }
+
+  &-date {
+    margin-top: 1rem;
+  }
+
+  &-button {
+    margin: 2rem 1rem;
+    padding: 1rem 6rem;
+    border: none;
+    outline: none;
+    border-radius: 1rem;
+    color: rgba(black, 0.7);
+    opacity: 0.6;
+    transition: 0.3s;
+    cursor: pointer;
+    &-yes {
+      background-color: rgba(rgb(65, 189, 65), 0.4);
+    }
+    &-no {
+      background-color: rgba(rgb(189, 65, 65), 0.4);
+    }
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.NoteModal {
+  &-editor {
+    margin-bottom: 3rem;
+  }
+
+  &-save {
+    padding: 1.7rem 12rem;
+    margin: 2rem 1rem;
+    float: right;
+    background-color: rgba($theme-blue, 0.3);
+    outline: none;
+    color: rgba(black, 0.5);
+    border-radius: 1rem;
+    border: none;
+    opacity: 0.6;
+    transition: 0.3s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

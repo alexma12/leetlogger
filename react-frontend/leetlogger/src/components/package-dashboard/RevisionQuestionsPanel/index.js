@@ -61,7 +61,9 @@ const RevisionQuestionPanel = () => {
         top="74.5rem"
         numPages={
           revisionQuestions
-            ? Math.floor(revisionQuestions.length / PAGINATION_MAX_ITEMS) + 1
+            ? revisionQuestions.length % PAGINATION_MAX_ITEMS === 0
+              ? Math.floor(revisionQuestions.length / PAGINATION_MAX_ITEMS)
+              : Math.floor(revisionQuestions.length / PAGINATION_MAX_ITEMS) + 1
             : 0
         }
         currPage={paginationPage}

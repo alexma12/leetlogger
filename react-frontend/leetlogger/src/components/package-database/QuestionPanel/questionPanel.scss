@@ -8,18 +8,83 @@
   padding: 2rem;
   overflow-y: scroll;
 
+  &-scrollOff {
+    overflow: hidden;
+  }
+
   &-box {
+    margin: 4rem;
+
+    &-header {
+      font-size: 2rem;
+      margin-left: 1rem;
+      margin-bottom: 3rem;
+      font-weight: 800;
+      color: rgb(126, 126, 126);
+    }
+  }
+
+  &-entries {
     margin-top: 3rem;
     display: grid;
-    grid-template-columns: 100%;
+    grid-template-columns: 33% 33% 33%;
+    margin: 2rem;
     justify-content: center;
     justify-items: center;
+  }
+
+  &-revision {
+    grid-column: 2/3;
+    font-size: 2rem;
+    margin: 1rem 0 1rem 10rem;
+    padding: 1.6rem 5rem;
+    position: relative;
+
+    &-label {
+      display: inline-block;
+      transform: translateY(0.4rem);
+    }
+
+    &-remove {
+      display: inline-block;
+      position: absolute;
+      font-size: 1.7rem;
+      top: 1rem;
+      left: 78% !important;
+      cursor: pointer;
+      color: transparent;
+      transition: 0.3s;
+      font-weight: 600;
+
+      &-withSave {
+        left: 82% !important;
+      }
+    }
+
+    &-save {
+      cursor: pointer;
+      height: 1.4rem;
+      position: absolute;
+      top: 1.6rem;
+      left: 78% !important;
+      path {
+        transition: 0.3s;
+        fill: transparent;
+      }
+    }
+
+    &:hover &-save path {
+      fill: green;
+    }
+    &:hover &-remove {
+      color: rgb(228, 23, 23);
+    }
   }
 
   &-info {
     display: inline-block;
     margin: 3rem 0 1rem 3rem;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     border-radius: 1.3rem;
     letter-spacing: 0.1rem;
     font-weight: 500;
@@ -43,12 +108,12 @@
     width: 26rem;
 
     &:hover &-icon {
-      transform: translateX(0.3rem);
+      transform: translateX(0.4rem);
     }
     &-icon {
       position: absolute;
-      top: 1.8rem;
-      left: 26rem;
+      top: 1.9rem;
+      left: 27rem;
       height: 1.6rem;
       width: 1.6rem;
       transition: 0.3s;

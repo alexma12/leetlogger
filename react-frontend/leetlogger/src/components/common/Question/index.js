@@ -8,7 +8,7 @@ const Question = ({
   title,
   date,
   due,
-  subtypes,
+  tags,
   completionTimeHrs,
   completionTimeMins,
   solvedWithSolution,
@@ -43,10 +43,10 @@ const Question = ({
     </div>
   );
 
-  const subTypes =
-    subtypes &&
-    subtypes.map((subtype) => {
-      return <Tag tag={subtype} size="sm" isDefault />;
+  const tagComponents =
+    tags &&
+    tags.map((tag) => {
+      return <Tag tag={tag} size="sm" isDefault />;
     });
 
   const revisionReviewDate = (
@@ -70,7 +70,7 @@ const Question = ({
       <div className="Question-tags">
         <Tag tag={difficulty || ""} size="sm" />
         <Tag tag={questionType || ""} size="sm" />
-        {subTypes}
+        {tagComponents}
       </div>
       {isQuestion && solvedRecap}
       {isRevisionQuestion && revisionButtons}

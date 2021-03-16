@@ -10,6 +10,39 @@
     letter-spacing: 0.1rem;
   }
 
+  &-addNote {
+    color: rgba(black, 0.6);
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    outline: none;
+    top: 4.1rem;
+    left: 88%;
+    font-size: 1.6rem;
+    background-color: rgb(247, 245, 245);
+    box-shadow: 0.2rem 0.2rem 0.3rem rgba(black, 0.09);
+    padding: 1rem;
+    padding-top: 1.3rem;
+    padding-left: 2rem;
+    border-radius: 1rem;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    &-icon {
+      height: 1.6rem;
+      width: 1.29rem;
+      margin-left: 1.2rem;
+      margin-right: 1rem;
+      transform: translateY(0.18rem);
+      path {
+        fill: rgba(black, 0.5);
+      }
+    }
+
+    &:hover {
+      background-color: rgb(240, 240, 240);
+    }
+  }
+
   &-goback {
     color: rgba(black, 0.6);
     background-color: transparent;
