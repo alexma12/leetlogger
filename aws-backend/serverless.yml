@@ -55,6 +55,8 @@ functions:
   deleteQuestion: ${file(functions/questionApiFunctions.yml):deleteQuestion}
   getQuestion: ${file(functions/questionApiFunctions.yml):getQuestion}
   listQuestionAll: ${file(functions/questionApiFunctions.yml):listQuestionAll}
+  modifyQuestionNotes: ${file(functions/questionApiFunctions.yml):modifyQuestionNotes}
+  modifyQuestionRevisionDate: ${file(functions/questionApiFunctions.yml):modifyQuestionRevisionDate}
 
   loginUserS3Create: ${file(functions/loginApiFunctions.yml):loginUserS3Create}
 

@@ -20,6 +20,14 @@ getQuestion:
         method: get
         cors: true
 
+modifyQuestionNotes:
+  handler: src/handlers/questions/modifyQuestionNotes.main
+  events:
+    - http:
+        path: questions/modifyQuestionNotes
+        method: post
+        cors: true
+
 listQuestionAll:
   handler: src/handlers/questions/listQuestionAll.main
   events:
@@ -36,34 +44,10 @@ listQuestionByType:
         method: get
         cors: true
 
-listSortedRevisionQuestions:
-  handler: src/handlers/questions/listSortedRevisionQuestions.main
+modifyQuestionRevisionDate:
+  handler: src/handlers/questions/modifyQuestionRevisionDate.main
   events:
     - http:
-        path: questions/list/revisionQuestions
-        method: get
-        cors: true
-
-expediteRevisionDate:
-  handler: src/handlers/questions/expediteRevisionDate.main
-  events:
-    - http:
-        path: questions/{questionId}/expedite
-        method: post
-        cors: true
-
-postponeRevisionDate:
-  handler: src/handlers/questions/postponeRevisionDate.main
-  events:
-    - http:
-        path: questions/{questionId}/postpone
-        method: post
-        cors: true
-
-completeRevisionQuestion:
-  handler: src/handlers/questions/completeRevisionQuestion.main
-  events:
-    - http:
-        path: questions/{questionId}/complete
-        method: post
+        path: questions/{questionId}/modifyQuestionRevisionDate
+        method: put
         cors: true

@@ -1,7 +1,5 @@
 import * as uuid from "uuid";
 import createError from "http-errors";
-
-import { convertArrayToString } from "../../libs/helpers-lib";
 import queryQuestionByTitle from "../../libs/queryQuestionByTitle";
 import dynamoDB from "../../libs/dynamoDB-lib";
 import middleware from "../../libs/middleware";

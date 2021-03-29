@@ -33,7 +33,7 @@ async function handler(event, context) {
       ":tags": tags || [],
       ":completion": approxCompletionMins || 0,
       ":difficulty": difficulty || "",
-      ":lastUpdated": currentDate,
+      ":lastUpdated": Date.now(),
     },
     ReturnValues: "ALL_NEW",
   };

@@ -7,14 +7,15 @@ import s3 from "../../libs/s3-lib";
 
 const deleteObjFromS3Data = async (s3GetParams, entryID) => {
   const s3Obj = await s3.get(s3GetParams);
-  const jsonData = JSON.parse(s3Obj.Body.toString());
-  for (let i in jsonData) {
-    if (jsonData[i].entryID === entryID) {
-      jsonData[i] = null;
-      return jsonData;
-    }
+  let jsonData = JSON.parse(s3Obj.Body.toString());
+  const originalLength = jsonData.length;
+  jsonData = jsonData.filter((entryNote) => {
+    return entryNote.entryID !== entryID;
+  });
+  if (jsonData.length === originalLength) {
+    throw new createError.NotFound();
   }
-  throw new createError.NotFound();
+  return jsonData;
 };
 
 async function handler(event, context) {

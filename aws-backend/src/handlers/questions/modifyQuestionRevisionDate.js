@@ -1,18 +1,27 @@
 import createError from "http-errors";
-
-import middleware from "../../libs/middleware";
 import dynamoDB from "../../libs/dynamoDB-lib";
 
+import middleware from "../../libs/middleware";
+import validator from "@middy/validator";
+import schema from "../../libs/schema/modifyQuestionRevisionDateValidator";
+
 async function handler(event, context) {
+  const { revisionDate } = event.body;
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  if (revisionDate !== -1 && revisionDate < today.getTime())
+    throw new createError.Forbidden("Invalid Revision Date");
+
   const params = {
     TableName: process.env.questionTable,
     Key: {
       userID: "123",
       questionID: event.pathParameters.questionId,
     },
-    UpdateExpression: "SET revisionDate = :noRevision",
+    UpdateExpression: "SET revisionDate = :newRevisionDate",
     ExpressionAttributeValues: {
-      ":noRevision": -1,
+      ":newRevisionDate": revisionDate,
     },
     ReturnValues: "ALL_NEW",
   };
@@ -21,9 +30,9 @@ async function handler(event, context) {
 
   try {
     updatedQuestion = await dynamoDB.update(params);
-  } catch {
+  } catch (e) {
     throw new createError.InternalServerError(
-      "Error occured when updating your question"
+      "Error Occured When Updating Your Question's Review Date"
     );
   }
 
@@ -37,4 +46,4 @@ async function handler(event, context) {
   };
 }
 
-export const main = middleware(handler);
+export const main = middleware(handler).use(validator({ inputSchema: schema }));
