@@ -11,6 +11,8 @@ const ModalComponent = (props) => {
       style={{
         width: `${props.width}`,
         height: `${props.height}`,
+        padding: `${props.paddingTop}`,
+        paddingBottom: "1rem",
       }}
     >
       <div

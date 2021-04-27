@@ -9,14 +9,37 @@
   box-shadow: 0.1rem 0.1rem 0.4rem rgba(black, 0.2);
   border-bottom: 0.6rem solid transparent;
   transition: 0.3s;
+  position: relative;
   margin-bottom: 2rem;
   cursor: pointer;
+
+  &:hover &-delete {
+    opacity: 1;
+  }
   &-header {
     font-size: 2rem;
     margin-left: 1rem;
     margin-bottom: 3rem;
     font-weight: 800;
     color: rgb(126, 126, 126);
+  }
+
+  &-delete {
+    position: absolute;
+    top: 1rem;
+    left: 93%;
+    color: rgb(194, 86, 86);
+    font-weight: 600;
+    opacity: 0;
+    transition: 0.3s;
+    padding: 0rem 0.4rem;
+  }
+
+  &-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: rgb(99, 99, 99);
+    margin-bottom: 2rem;
   }
 
   &-time {
@@ -116,6 +139,107 @@
   &-hard {
     &:hover {
       border-color: rgba($difficulty-hard, 0.2);
+    }
+  }
+}
+.NoteEntry {
+  position: relative;
+  &-lastUpdated {
+    margin-top: 2.8rem;
+    margin-right: 0.4rem;
+
+    float: right;
+    color: rgb(136, 136, 136);
+  }
+
+  &:hover &-delete {
+    opacity: 1;
+  }
+
+  &-delete {
+    position: absolute;
+    top: 1rem;
+    left: 93%;
+    color: rgb(194, 86, 86);
+    font-weight: 600;
+    opacity: 0;
+    transition: 0.3s;
+    padding: 0rem 0.4rem;
+  }
+}
+
+.EntrySummary.NoteEntry {
+  height: 6rem;
+  padding-bottom: 4.6rem;
+
+  &-array-note {
+    &:hover {
+      border-color: $array;
+    }
+  }
+
+  &-dp-note {
+    &:hover {
+      border-color: $dp;
+    }
+  }
+
+  &-dc-note {
+    &:hover {
+      border-color: $dc;
+    }
+  }
+
+  &-linkedlist-note {
+    &:hover {
+      border-color: $linkedlist;
+    }
+  }
+
+  &-string-note {
+    &:hover {
+      border-color: $string;
+    }
+  }
+
+  &-graph-note {
+    &:hover {
+      border-color: $graph-font;
+    }
+  }
+  &-stack-note {
+    &:hover {
+      border-color: $stack;
+    }
+  }
+
+  &-queue-note {
+    &:hover {
+      border-color: $queue;
+    }
+  }
+
+  &-tree-note {
+    &:hover {
+      border-color: $tree;
+    }
+  }
+
+  &-bit-note {
+    &:hover {
+      border-color: $bit;
+    }
+  }
+
+  &-backtracking-note {
+    &:hover {
+      border-color: $backtracking;
+    }
+  }
+
+  &-greedy-note {
+    &:hover {
+      border-color: $greedy;
     }
   }
 }

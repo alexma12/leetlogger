@@ -9,6 +9,7 @@ import { revisionQuestionsSelector } from "./selectors/revisionQuestionsSelector
 import PaginationSelector from "components/common/Pagination/PaginatedDataSelector";
 import { paginatedData } from "utils/paginatedData";
 import "./revisionQuestionsPanel.scss";
+import NoFields from "components/common/NoFields";
 
 const PAGINATION_MAX_ITEMS = 5;
 
@@ -36,23 +37,27 @@ const RevisionQuestionPanel = () => {
     return paginatedData(revisionQuestions, PAGINATION_MAX_ITEMS);
   }, [revisionQuestions]);
 
-  const questionsArr = (paginatedRevisionQuestions[paginationPage] || []).map(
-    (q) => {
-      return (
-        <Question
-          componentType="RevisionQuestion"
-          title={q.title}
-          date={milisecondsToDateStringWithoutWeekDay(q.revisionDate)}
-          questionType={q.questionType}
-          difficulty={q.difficulty}
-          due={
-            getStartOfDayInMiliseconds(Date.now()) >
-            getStartOfDayInMiliseconds(q.revisionDate)
-          }
-        />
-      );
-    }
-  );
+  const questionsArr =
+    revisionQuestions && revisionQuestions.length > 0 ? (
+      (paginatedRevisionQuestions[paginationPage] || []).map((q) => {
+        return (
+          <Question
+            componentType="RevisionQuestion"
+            title={q.title}
+            date={milisecondsToDateStringWithoutWeekDay(q.revisionDate)}
+            questionType={q.questionType}
+            difficulty={q.difficulty}
+            due={
+              getStartOfDayInMiliseconds(Date.now()) >
+              getStartOfDayInMiliseconds(q.revisionDate)
+            }
+            questionID={q.questionID}
+          />
+        );
+      })
+    ) : (
+      <NoFields text="You Have No Questions To Reivew" />
+    );
   return (
     <div className="RevisionQuestionsPanel">
       <div className="RevisionQuestionsPanel-title"> Questions To Review </div>

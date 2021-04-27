@@ -6,14 +6,6 @@ addEntry:
         method: post
         cors: true
 
-updateEntry:
-  handler: src/handlers/entries/updateEntry.main
-  events:
-    - http:
-        path: entries/{entryId}/{questionId}
-        method: put
-        cors: true
-
 getEntry:
   handler: src/handlers/entries/getEntry.main
   events:

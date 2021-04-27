@@ -1,6 +1,8 @@
 import React from "react";
 import { milisecondsToDateStringWithTime } from "utils/dateHelpers";
+import { useDispatch } from "react-redux";
 import Tag from "components/common/Tag";
+import { openModal } from "store/actions/modalActions/modalActionCreators";
 import "./entrySummary.scss";
 const EntrySummary = ({
   tags,
@@ -12,10 +14,19 @@ const EntrySummary = ({
   solvedWithSolution,
   id,
   onEntryClick,
+  title,
+  setEntryToDelete,
 }) => {
+  const dispatch = useDispatch();
   const tagComponents = tags.map((tag) => {
     return <Tag id={id} isDefault tag={tag} />;
   });
+
+  const openDeleteEntryModal = () => {
+    dispatch(openModal("delete entry"));
+    setEntryToDelete(id);
+  };
+
   return (
     <div
       id={id}
@@ -53,6 +64,9 @@ const EntrySummary = ({
       >
         Tags:{" "}
         {tagComponents.length === 0 ? " N/A" : <span>{tagComponents}</span>}
+      </div>
+      <div className="EntrySummary-delete" onClick={openDeleteEntryModal}>
+        x
       </div>
     </div>
   );

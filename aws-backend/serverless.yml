@@ -45,7 +45,6 @@ resources:
 
 functions:
   addEntry: ${file(functions/entryApiFunctions.yml):addEntry}
-  updateEntry: ${file(functions/entryApiFunctions.yml):updateEntry}
   getEntry: ${file(functions/entryApiFunctions.yml):getEntry}
   deleteEntry: ${file(functions/entryApiFunctions.yml):deleteEntry}
   listEntriesAll: ${file(functions/entryApiFunctions.yml):listEntriesAll}

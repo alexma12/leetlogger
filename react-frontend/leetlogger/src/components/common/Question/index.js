@@ -1,5 +1,7 @@
 import React from "react";
-import RevisionButtons from "./RevisionButtons";
+import { useHistory } from "react-router-dom";
+import {} from "store/actions/questionsActions/questionsActionCreators";
+import { openModal } from "store/actions/modalActions/modalActionCreators";
 import Tag from "../Tag";
 import "./question.scss";
 
@@ -15,13 +17,23 @@ const Question = ({
   questionType,
   difficulty,
   dbType,
+  questionID,
   entryCount,
+  onClick,
 }) => {
+  const history = useHistory();
+
   const isRevisionQuestion = componentType === "RevisionQuestion";
   const isQuestion = componentType === "Question";
   const revisionButtons = (
     <div className="Question-buttons">
-      <RevisionButtons />
+      <Tag
+        tag="review"
+        size="sm"
+        onClick={() => {
+          history.push("/database/" + questionType + "/" + questionID);
+        }}
+      />
     </div>
   );
 
@@ -64,6 +76,7 @@ const Question = ({
       className={`Question ${
         dbType && `Question-dbQuestion Question-${dbType}`
       }`}
+      onClick={onClick}
     >
       <div className="Question-title"> {title} </div>
       {isRevisionQuestion && revisionReviewDate}

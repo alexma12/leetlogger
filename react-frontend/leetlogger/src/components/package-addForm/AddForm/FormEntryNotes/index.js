@@ -1,4 +1,4 @@
-import React, { createRef } from "react";
+import React from "react";
 import "./formEntryNotes.scss";
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -7,6 +7,7 @@ const FormEntryNotes = ({
   notesState,
   onNotesStateChange,
   type,
+  showToolBar,
   readOnly = false,
 }) => {
   const Size = Quill.import("formats/size");
@@ -26,7 +27,10 @@ const FormEntryNotes = ({
     >
       {!type && <div className="FormEntryNotes-title">Notes</div>}
       <div className="FormEntryNotes-editor">
-        <div id="toolbar" className={readOnly && "hide-toolbar"}>
+        <div
+          id="toolbar"
+          className={readOnly && !showToolBar && "hide-toolbar"}
+        >
           <span className="ql-formats">
             <button id="bold" className="ql-bold" />
             <button id="italic" className="ql-italic" />
@@ -60,7 +64,7 @@ const FormEntryNotes = ({
 
         <ReactQuill
           onChange={onNotesStateChange}
-          placeholder={!readOnly && "Type Notes Here"}
+          placeholder={readOnly ? "" : "Type Notes Here"}
           value={notesState}
           modules={modules}
           readOnly={readOnly}

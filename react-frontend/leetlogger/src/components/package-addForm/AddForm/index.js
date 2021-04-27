@@ -135,16 +135,15 @@ const AddForm = (props) => {
     setNotesState(value);
   };
 
-  const onHandleSubmitEntry = async () => {
+  const onHandleSubmitEntry = async (e) => {
+    e.preventDefault();
     const validation = validateValues(formDetailValues);
     if (validation !== true) {
       dispatch(
         setValidation({
           message: validation,
-          isError: true,
         })
       );
-
       setTimeout(() => {
         dispatch(removeValidation());
       }, 15000);
@@ -157,7 +156,7 @@ const AddForm = (props) => {
   };
   return (
     <div className="AddForm-wrapper">
-      <div className="AddForm">
+      <form className="AddForm" onSubmit={onHandleSubmitEntry}>
         <div className="AddForm-title">Log A New Entry</div>
         <FormEntryDetails
           formGetters={formDetailValues}
@@ -174,12 +173,12 @@ const AddForm = (props) => {
           notesState={notesState}
           onNotesStateChange={onNotesStateChange}
         />
-        <button className="AddForm-submit" onClick={onHandleSubmitEntry}>
+        <button className="AddForm-submit" type="submit">
           {" "}
           Submit Entry
         </button>
         <div className="AddForm-empty"></div>
-      </div>
+      </form>
     </div>
   );
 };

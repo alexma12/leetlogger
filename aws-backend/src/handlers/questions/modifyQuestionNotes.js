@@ -26,8 +26,7 @@ async function handler(event, context) {
           isQuestionNote: true,
           content,
           title: title,
-          submittedAt: Date.now(),
-          lastUpdated: -1,
+          lastUpdated: Date.now(),
           noteID: uuid.v4(),
         };
         jsonData.push(s3NoteObject);

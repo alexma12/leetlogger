@@ -8,12 +8,13 @@
   top: 8.5rem;
   left: 26rem;
   padding: 2rem 0;
-  z-index: 1000;
+  z-index: 900;
   border: 0.2rem solid rgba(134, 204, 149, 0.658);
   border-radius: 0.4rem;
   font-size: 1.8rem;
   color: rgba(black, 0.6);
   &-exit {
+    cursor: pointer;
     float: right;
     transform: translateX(-2rem) translateY(-0.2rem);
   }

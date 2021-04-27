@@ -7,7 +7,8 @@ import {
   getYesterdaysDateInFormattedString,
 } from "utils/dateHelpers";
 import { axiosAWSInstance } from "../../../axios";
-
+import { setValidation } from "../validationActions/validationActionCreators";
+import { closeModal } from "store/actions/modalActions/modalActionCreators";
 export const setEntries = (data) => {
   return {
     type: actionTypes.SET_ALL_ENTRIES,
@@ -222,7 +223,7 @@ export const loadEntries = () => async (dispatch, getState) => {
       entryMapData.recentEntries = _applyRecentData(res.data);
       dispatch(setMappedEntryData(entryMapData));
     })
-    .catch((err) => console.log(err.message));
+    .catch((err) => dispatch(setValidation(err)));
 };
 
 export const saveEntry = (entry) => {
@@ -230,15 +231,27 @@ export const saveEntry = (entry) => {
     await axiosAWSInstance
       .post("/entries", entry)
       .then((res) => {
-        console.log(res);
         dispatch(loadEntries());
 
         setTimeout(() => {
           dispatch(loadQuestions());
-        }, 1000);
+        }, 2000);
       })
       .catch((err) => {
-        console.log(err.response);
+        dispatch(setValidation(err));
       });
+  };
+};
+
+export const deleteEntry = (entryId) => {
+  return async (dispatch, getState) => {
+    console.log(entryId);
+    await axiosAWSInstance.delete(`/entries/${entryId}`).then((res) => {
+      dispatch(closeModal());
+      dispatch(loadEntries());
+      setTimeout(() => {
+        dispatch(loadQuestions());
+      }, 2000);
+    });
   };
 };
