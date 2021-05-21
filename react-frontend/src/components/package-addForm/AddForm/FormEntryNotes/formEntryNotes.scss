@@ -1,0 +1,216 @@
+@import "../../../variables.scss";
+
+.FormEntryNotes {
+  padding: 0.5rem;
+  font-size: 2rem;
+  width: 100%;
+  @media only screen and (max-width: 1360px) {
+    grid-column: 1/-1;
+    justify-self: center;
+  }
+  &-title {
+    font-size: 1.6rem;
+    color: rgba($logo-purple, 0.8);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-left: 1rem;
+    margin-top: 4rem;
+    @media only screen and (max-width: 1850px) {
+      font-size: 1.2rem;
+    }
+    @media only screen and (max-width: 1360px) {
+      font-size: 1.5rem;
+      margin-top: 8rem;
+      margin-left: 4.2rem;
+    }
+
+    @media only screen and (max-width: 915px) {
+      margin-top: 14rem;
+    }
+  }
+
+  &-noteModal &-editor {
+    margin-top: 1rem;
+    padding: 1.5rem;
+    border-radius: 1.2rem;
+    height: 57rem;
+  }
+
+  &-entryModal &-editor {
+    margin-top: 1rem;
+    padding: 1.5rem;
+    border-radius: 1.2rem;
+    height: 60rem;
+  }
+
+  &-addform &-editor {
+    margin-top: 1rem;
+    margin-right: 2rem;
+    padding: 1.5rem;
+    border-radius: 1.2rem;
+    height: 72rem;
+
+    @media only screen and (max-width: 1850px) {
+      height: 60rem;
+    }
+    @media only screen and (max-width: 1360px) {
+      margin-bottom: 2rem;
+      width: 90%;
+      margin-left: 3.5%;
+      margin-top: 1.5rem;
+    }
+  }
+
+  .ql-snow .ql-picker-options .ql-picker-item {
+    color: darkgray !important;
+
+    &:hover {
+      color: $logo-purple !important;
+    }
+  }
+
+  .hide-toolbar {
+    display: none;
+  }
+
+  .ql-formats select {
+    padding: 0 2rem !important;
+  }
+  .ql-formats {
+    padding: 0 1.2rem;
+    margin-right: 2rem !important;
+    @media only screen and (max-width: 2100px) {
+      margin-right: 1rem !important;
+    }
+    @media only screen and (max-width: 1850px) {
+      margin-right: 0.32rem !important;
+    }
+
+    #bold,
+    #italic,
+    #underline,
+    #list-1,
+    #list-2,
+    #indent-1,
+    #indent-2,
+    #image,
+    #code-block {
+      path,
+      line,
+      rect,
+      circle,
+      polyline {
+        stroke: darkgray;
+      }
+
+      &:hover {
+        path,
+        line,
+        rect,
+        circle,
+        polyline {
+          stroke: #dec1e2 !important;
+        }
+      }
+
+      &.ql-active {
+        path,
+        line,
+        rect,
+        circle,
+        polyline {
+          stroke: $logo-purple !important;
+        }
+      }
+    }
+
+    #align,
+    #background,
+    #size,
+    #color {
+      :focus {
+        outline: none !important;
+      }
+    }
+
+    #size {
+      color: $logo-purple !important;
+
+      polygon {
+        stroke: darkgray !important;
+      }
+    }
+
+    #background,
+    #color,
+    #size {
+      &:hover {
+        path,
+        line,
+        circle,
+        polygon,
+        polyline {
+          stroke: #dec1e2 !important;
+        }
+      }
+
+      &.ql-active {
+        path,
+        line,
+        circle,
+        polygon,
+        polyline {
+          stroke: $logo-purple !important;
+        }
+      }
+    }
+  }
+
+  .ql-editor {
+    height: 100% !important;
+    font-family: Quicksand;
+    color: rgba(black, 0.6);
+  }
+  .ql-container {
+    height: 91% !important;
+  }
+  .quill {
+    height: 100% !important;
+  }
+
+  .ql-syntax {
+    background-color: rgb(245, 245, 245) !important;
+    color: $logo-purple !important;
+    font-size: 1.5rem !important;
+  }
+}
+
+.ql-snow.ql-toolbar button:hover,
+.ql-snow .ql-toolbar button:hover,
+.ql-snow.ql-toolbar button:focus,
+.ql-snow .ql-toolbar button:focus,
+.ql-snow.ql-toolbar button.ql-active,
+.ql-snow .ql-toolbar button.ql-active,
+.ql-snow.ql-toolbar .ql-picker-label:hover,
+.ql-snow .ql-toolbar .ql-picker-label:hover,
+.ql-snow.ql-toolbar .ql-picker-label.ql-active,
+.ql-snow .ql-toolbar .ql-picker-label.ql-active,
+.ql-snow.ql-toolbar .ql-picker-item:hover,
+.ql-snow .ql-toolbar .ql-picker-item:hover,
+.ql-snow.ql-toolbar .ql-picker-item.ql-selected,
+.ql-snow .ql-toolbar .ql-picker-item.ql-selected {
+  color: $logo-purple !important;
+}
+
+#align span.ql-picker-item:hover {
+  line {
+    stroke: $logo-purple !important;
+  }
+}
+
+#align .ql-snow .ql-color-picker .ql-picker-label svg,
+.ql-snow .ql-icon-picker .ql-picker-label {
+  line {
+    stroke: $logo-purple !important;
+  }
+}

@@ -1,0 +1,270 @@
+@import "../../variables.scss";
+
+.QuestionPanel {
+  margin: 2rem;
+  border-radius: 1.5rem;
+  background-color: white;
+  position: relative;
+  padding: 2rem;
+  min-height: 90%;
+
+  &-wrapper {
+    overflow-y: scroll;
+    @media only screen and (max-width: 1660px) {
+      border-left: 0.7rem solid rgba($logo-purple, 0.2);
+      border-bottom-left-radius: 1.5rem;
+    }
+  }
+
+  &-scrollOff {
+    overflow: hidden;
+  }
+
+  &-box {
+    margin: 4rem;
+
+    &-header {
+      font-size: 2rem;
+      margin-left: 1rem;
+      margin-bottom: 3rem;
+      font-weight: 800;
+      color: rgb(126, 126, 126);
+    }
+  }
+
+  &-datepicker {
+    input {
+      font-size: 2.2rem;
+      width: 22rem;
+      padding: 1rem;
+      margin-left: 2rem;
+      transform: translateY(0.6rem);
+      color: rgba(black, 0.5);
+      font-family: inherit;
+      border: 0.2rem solid rgba(#2e67b3, 0.35);
+      border-radius: 1.5rem;
+    }
+  }
+  &-entries {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    justify-content: space-evenly;
+    @media only screen and (max-width: 1700px) {
+      grid-template-columns: 30% 30% 30%;
+    }
+    @media only screen and (max-width: 1115px) {
+      grid-template-columns: 49% 49%;
+    }
+    @media only screen and (max-width: 920px) {
+      grid-template-columns: 47% 47%;
+    }
+    @media only screen and (max-width: 870px) {
+      grid-template-columns: 45% 45%;
+    }
+    margin: 2rem;
+  }
+
+  &-revision {
+    font-size: 2rem;
+    margin: 1rem 0 1rem 0rem;
+    padding: 0.5rem 3rem;
+    position: relative;
+    background-color: rgba($light-gray, 0.4);
+    border-radius: 1rem;
+    width: 45rem;
+    padding-bottom: 2rem;
+    @media only screen and (max-width: 1700px) {
+      grid-column: span 2;
+      grid-row: 2;
+      justify-self: center;
+    }
+    &-label {
+      display: inline-block;
+      transform: translateY(0.5rem);
+    }
+
+    &-remove {
+      cursor: pointer;
+      height: 1.63rem;
+      position: absolute;
+      top: 1rem;
+      left: 86% !important;
+      width: 1.6rem;
+      path {
+        transition: 0.3s;
+        fill: rgb(207, 115, 115);
+      }
+      cursor: pointer;
+      transition: 0.3s;
+
+      &-withSave {
+        left: 92% !important;
+      }
+    }
+
+    &-save {
+      cursor: pointer;
+      height: 1.6rem;
+      width: 1.6rem;
+      position: absolute;
+      top: 1.1rem;
+      left: 86% !important;
+      path {
+        transition: 0.3s;
+        fill: rgb(71, 194, 71);
+      }
+    }
+  }
+
+  &-info {
+    display: inline-block;
+    align-self: center;
+    font-size: 1.7rem;
+    border-radius: 1.3rem;
+    letter-spacing: 0.1rem;
+    font-weight: 500;
+    width: 20rem;
+    padding: 1.6rem 5rem;
+    text-align: center;
+
+    &-bar {
+      display: flex;
+      justify-content: space-between;
+      height: 9.4rem;
+
+      @media only screen and (max-width: 1500px) {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 9.4rem 9.4rem;
+        margin-bottom: 10rem;
+      }
+    }
+  }
+
+  &-url {
+    background-color: rgba($dp, 0.8);
+    color: black;
+    text-decoration: none;
+    position: relative;
+    padding-left: 2rem;
+    width: 26rem;
+    margin-right: 3rem;
+    justify-self: end;
+    @media only screen and (max-width: 1500px) {
+      grid-column: 2/3;
+      grid-row: 1;
+      margin-right: 11rem;
+    }
+    @media only screen and (max-width: 900px) {
+      margin-right: 3rem;
+    }
+
+    &:hover &-icon {
+      transform: translateX(0.4rem);
+    }
+    &-icon {
+      position: absolute;
+      top: 1.9rem;
+      left: 27rem;
+      height: 1.6rem;
+      width: 1.6rem;
+      transition: 0.3s;
+    }
+  }
+
+  &-array {
+    background-color: rgba($array, 0.8);
+  }
+
+  &-dp {
+    background-color: rgba($dp, 0.8);
+  }
+
+  &-dc {
+    background-color: rgba($dc, 0.8);
+  }
+
+  &-linkedlist {
+    background-color: rgba($linkedlist, 0.8);
+  }
+
+  &-string {
+    background-color: rgba($string, 0.8);
+  }
+
+  &-graph {
+    background-color: rgba($graph, 0.8);
+  }
+
+  &-stack {
+    background-color: rgba($stack, 0.8);
+  }
+
+  &-queue {
+    background-color: rgba($queue, 0.8);
+  }
+
+  &-tree {
+    background-color: rgba($tree, 0.8);
+  }
+
+  &-bit {
+    background-color: rgba($bit, 0.8);
+  }
+
+  &-backtracking {
+    background-color: rgba($backtracking, 0.8);
+  }
+
+  &-greedy {
+    background-color: rgba($greedy, 0.8);
+  }
+
+  &-easy {
+    background-color: rgba($difficulty-easy, 0.25);
+    margin-left: 3rem;
+    @media only screen and (max-width: 1500px) {
+      grid-column: 1/2;
+      grid-row: 1;
+      margin-left: 11rem;
+    }
+    @media only screen and (max-width: 900px) {
+      margin-left: 3rem;
+    }
+  }
+
+  &-medium {
+    background-color: rgba($difficulty-medium, 0.3);
+    margin-left: 3rem;
+    @media only screen and (max-width: 1500px) {
+      grid-column: 1/2;
+      grid-row: 1;
+      margin-left: 11rem;
+    }
+    @media only screen and (max-width: 900px) {
+      margin-left: 3rem;
+    }
+  }
+
+  &-hard {
+    background-color: rgba($difficulty-hard, 0.2);
+    margin-left: 3rem;
+    @media only screen and (max-width: 1500px) {
+      grid-column: 1/2;
+      grid-row: 1;
+      margin-left: 11rem;
+    }
+    @media only screen and (max-width: 900px) {
+      margin-left: 3rem;
+    }
+  }
+}
+
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: 700ms;
+}

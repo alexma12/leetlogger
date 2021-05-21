@@ -1,0 +1,51 @@
+@import "../../../variables.scss";
+
+.RecentQuestion {
+  font-size: 2rem;
+  margin: 2rem 4rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  box-shadow: 0rem 0.3rem 1.2rem #0000001f;
+
+  margin-top: 2rem;
+  padding: 1.7rem;
+  @media only screen and (max-width: 2100px) {
+    padding: 1.2rem;
+  }
+  padding-left: 0;
+
+  &-easy {
+    border-top: solid 0.5rem rgba($difficulty-easy, 0.7);
+    border-radius: 0.5rem;
+    border-width: 0.5rem;
+  }
+
+  &-medium {
+    border-top: solid 0.5rem rgba($difficulty-medium, 0.5);
+    border-radius: 0.5rem;
+    border-width: 0.5rem;
+  }
+
+  &-hard {
+    border-top: solid 0.5rem rgba($difficulty-hard, 0.5);
+    border-radius: 0.5rem;
+
+    border-width: 0.5rem;
+  }
+
+  &-title {
+    padding-left: 1rem;
+    @media only screen and (max-width: 2100px) {
+      padding-left: 0rem;
+    }
+    display: inline-block;
+    padding-top: 0;
+  }
+
+  &-date {
+    float: right;
+    font-size: 1.3rem;
+    margin-top: -1rem;
+  }
+}

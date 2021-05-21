@@ -1,0 +1,272 @@
+@import "../../../variables.scss";
+.ModalComponent {
+  z-index: 1001;
+  background-color: white;
+  border-radius: 0.5rem;
+  position: fixed;
+  box-sizing: content-box;
+  left: 50%;
+  top: 50%;
+  padding: 2rem;
+  padding-bottom: 0rem;
+  transform: translate(-50%, -50%);
+  min-width: 70rem;
+
+  &-withScroll {
+    overflow-y: scroll;
+  }
+
+  &-header {
+    font-size: 3rem;
+    font-weight: 600;
+    color: rgba(black, 0.6);
+    margin-bottom: 1.5rem;
+    margin-left: 1rem;
+  }
+
+  &-close {
+    font-size: 2rem;
+    font-weight: 600;
+    float: right;
+    transform: translate(-0.4rem, -0.4rem);
+    cursor: pointer;
+    color: rgb(190, 44, 44);
+  }
+}
+
+.ReviewDateEditModal {
+  font-size: 2rem;
+  padding: 3rem;
+  text-align: center;
+  padding-top: 2rem;
+
+  &-spinner {
+    margin-right: 1.6rem;
+    margin-top: 2rem;
+  }
+  &-buttons {
+    float: right;
+  }
+
+  &-date {
+    display: inline-block;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: rgba(black, 0.7);
+  }
+
+  &-button {
+    margin: 2rem 1rem;
+    padding: 1rem 6rem;
+    border: none;
+    outline: none;
+    border-radius: 1rem;
+    color: rgba(black, 0.7);
+    opacity: 0.6;
+    transition: 0.3s;
+    cursor: pointer;
+    &-yes {
+      background-color: rgba(rgb(65, 189, 65), 0.4);
+    }
+    &-no {
+      background-color: rgba(rgb(189, 65, 65), 0.4);
+    }
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.EntryModal {
+  margin-top: 3rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: rgba(black, 0.8);
+
+  &-editor {
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -3.8rem;
+  }
+
+  &-solved {
+    text-align: center;
+    font-weight: 600;
+    padding: 1.8rem 0rem;
+    color: rgba(black, 0.8);
+    border-radius: 1.5rem;
+    grid-column: 1/2;
+  }
+  &-solvedWithSolution {
+    background-color: rgba($difficulty-hard, 0.1);
+  }
+
+  &-solvedWithoutSolution {
+    background-color: rgba($difficulty-easy, 0.2);
+  }
+
+  &-completionTime {
+    text-align: center;
+    background-color: rgba($theme-blue, 0.2);
+    grid-column: 3/-1;
+    border-radius: 1.5rem;
+    padding: 1.8rem 0rem;
+    font-weight: 600;
+    color: rgba(black, 0.8);
+    &-time {
+      color: #5c8fd3;
+      margin-left: 2rem;
+    }
+  }
+
+  &-tags {
+    display: inline-block;
+    color: rgba(rgb(43, 43, 43), 0.55);
+    margin-left: 1rem;
+
+    &-box {
+      font-weight: 600;
+      color: rgba(black, 0.8);
+      text-align: center;
+      background-color: rgba(lightgray, 0.3);
+      padding: 1.8rem 5rem;
+      border-radius: 1.5rem;
+      grid-row: 2;
+      grid-column: span 3;
+      margin-top: 2rem;
+    }
+
+    &-empty {
+      margin-top: 1rem;
+      padding: 1rem 1.5rem;
+      font-size: 1.5rem;
+      background-color: rgba(lightgray, 0.45);
+      color: rgba(black, 0.5);
+      border-radius: 2rem;
+      width: 80%;
+      display: inline-block;
+    }
+  }
+}
+
+.NoteModal {
+  &-editor {
+    grid-column: 1/-1;
+    grid-row: 2;
+    align-self: center;
+  }
+
+  &-box {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 8% 1fr;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+  }
+
+  &-info {
+    grid-column: 1/-1;
+    grid-row: 1;
+    display: flex;
+    padding: 0 5rem;
+
+    margin-top: 3rem;
+    font-size: 2rem;
+    margin-top: 10rem;
+    display: grid;
+    grid-template-columns: 41% 4% 55%;
+    grid-row: 48% 48%;
+
+    @media only screen and (max-width: 975px) {
+      font-size: 1.6rem;
+    }
+  }
+
+  &-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: rgba(black, 0.4);
+    margin-top: 1.4rem;
+    margin-left: 8rem;
+    color: rgba($logo-purple, 0.5);
+
+    &-input {
+      margin-bottom: 0.3rem;
+      font-size: 2.4rem;
+      padding: 1rem 1.5rem;
+      min-width: 82%;
+      margin-left: 3rem;
+      outline: none;
+      color: rgba(black, 0.5);
+      transform: translateY(0.2rem);
+      border: none;
+      border-radius: 0.5rem;
+
+      @media only screen and (max-width: 1360px) {
+        min-width: 70%;
+      }
+
+      &:focus {
+        background-color: rgba(lightgray, 0.21);
+      }
+      &::placeholder {
+        font-style: italic;
+        font-size: 2.1rem;
+        color: rgba(black, 0.2);
+      }
+      &-invalid {
+        border-bottom: solid 0.24rem rgba(rgb(223, 92, 92), 0.5);
+      }
+    }
+  }
+
+  &-spinner {
+    float: right;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  &-button {
+    padding: 1.7rem 12rem;
+    margin: 1rem 1rem;
+    @media only screen and (max-width: 866px) {
+      margin-top: 2.4rem;
+    }
+    float: right;
+    outline: none;
+    color: rgba(black, 0.5);
+    border-radius: 1rem;
+    border: none;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &-save {
+      color: gray;
+      opacity: 0.6;
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+  }
+  &-spinner {
+    margin-bottom: 3rem;
+  }
+
+  &-save {
+    background-color: rgba($theme-blue, 0.3);
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &-edit {
+    background-color: rgba(rgb(241, 160, 8), 0.3);
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

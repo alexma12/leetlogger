@@ -1,0 +1,109 @@
+@import "../../../../variables.scss";
+.FormEntryTags {
+  width: 90%;
+  padding: 1rem 1rem;
+  padding-bottom: 0rem;
+  margin-left: 2rem;
+  margin-top: 0.8rem;
+  box-sizing: border-box;
+  border-bottom: 0.1rem solid rgba(gray, 0.4);
+
+  &-tags {
+    display: inline-block;
+    margin: 2rem;
+    margin-top: 0rem;
+    color: rgb(49, 49, 49);
+    margin-bottom: 1rem;
+    border-radius: 1.5rem;
+    background-color: rgba($theme-blue, 0.2);
+    padding: 0.7rem 1.5rem;
+
+    &:hover &-delete {
+      color: inherit;
+    }
+    &-box {
+      padding: 2rem;
+      padding-top: 0.5rem;
+      font-size: 1.4rem;
+      display: relative;
+    }
+    &-delete {
+      display: inline-block;
+      margin-left: 1.2rem;
+      cursor: pointer;
+      color: transparent;
+      transform: translateY(-0.1rem);
+      transition: color 0.2s;
+    }
+  }
+  &-label {
+    width: 15%;
+    font-size: 1.5rem;
+    color: rgba($theme-blue, 0.65);
+    margin-right: 2rem;
+    text-transform: uppercase;
+    height: 5rem;
+    transform: translateY(-0.8rem);
+    display: inline-block;
+    font-weight: 600;
+    @media only screen and (max-width: 1850px) {
+      margin-right: 1rem;
+      font-size: 1.2rem;
+      height: 4rem;
+    }
+    @media only screen and (max-width: 1360px) {
+      font-size: 1.5rem;
+      margin-right: 2.3rem;
+    }
+  }
+  &-input {
+    font-size: 2.2rem;
+    @media only screen and (max-width: 1850px) {
+      font-size: 1.9rem;
+      width: 50%;
+      height: 5rem;
+    }
+    @media only screen and (max-width: 1360px) {
+      height: 6rem;
+    }
+    font-family: inherit;
+    margin-left: 1rem;
+    margin-bottom: 2rem;
+    border: none;
+    width: 60%;
+    height: 6rem;
+    outline: none;
+    border-radius: 1.5rem;
+    padding: 0 1rem;
+    color: rgb(100, 99, 99);
+    &:focus {
+      background-color: rgba(grey, 0.06);
+    }
+    &::placeholder {
+      color: rgba(grey, 0.6);
+      font-style: italic;
+    }
+  }
+
+  &-addButton {
+    font-size: 2.2rem;
+    text-align: center;
+
+    height: 3.5rem;
+    margin-left: 2rem;
+    transform: translateY(1rem);
+    @media only screen and (max-width: 1850px) {
+      height: 3rem;
+      margin-bottom: 0.2rem;
+      margin-left: 2.5rem;
+    }
+  }
+
+  &-addButton-box:hover &-addButton path {
+    fill: rgba(#2e67b3, 0.6);
+  }
+
+  &-addButton path {
+    fill: rgba(#2e67b3, 0.35);
+  }
+}

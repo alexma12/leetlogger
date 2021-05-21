@@ -1,0 +1,277 @@
+@import "../../variables.scss";
+
+.StatisticsPanel {
+  font-size: 2.4rem;
+  @media only screen and (max-width: 1950px) {
+    font-size: 2.3rem;
+  }
+  @media only screen and (max-width: 1850px) {
+    font-size: 2.1rem;
+  }
+
+  grid-column: span 3;
+  grid-row: 3 / 2;
+
+  display: flex;
+  justify-content: space-between;
+
+  @media only screen and (max-width: 1100px) {
+    flex-direction: column;
+    margin-left: 2rem;
+    width: 100%;
+    justify-content: space-around;
+  }
+  perspective: 1600rem;
+  -moz-perspective: 1600rem;
+  position: relative;
+
+  &-fireicon {
+    width: 4rem;
+    height: 4rem;
+    margin-right: 1rem;
+    transform: translateY(-0.4rem);
+    @media only screen and (max-width: 1950px) {
+      width: 3.7rem;
+      height: 3.7rem;
+    }
+    @media only screen and (max-width: 1850px) {
+      width: 3.4rem;
+      height: 3.4rem;
+    }
+
+    & path {
+      fill: rgba(black, 0.4);
+    }
+  }
+
+  &-firsticon {
+    width: 4.5rem;
+    height: 4.5rem;
+    margin-right: 0.3rem;
+    transform: translateY(-0.5rem);
+    @media only screen and (max-width: 1950px) {
+      width: 4.2rem;
+      height: 4.2rem;
+    }
+    @media only screen and (max-width: 1850px) {
+      width: 4rem;
+      height: 4rem;
+    }
+    & path {
+      fill: rgba(black, 0.5);
+    }
+  }
+
+  &-reporticon {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-right: 1.2rem;
+    transform: translateY(-0.4rem);
+    @media only screen and (max-width: 1950px) {
+      width: 3.2rem;
+      height: 3.2rem;
+    }
+    @media only screen and (max-width: 1850px) {
+      width: 3rem;
+      height: 3rem;
+    }
+
+    & path {
+      fill: rgba(black, 0.4);
+    }
+  }
+
+  &-clipboardicon {
+    width: 4.5rem;
+    height: 4.5rem;
+    margin-right: 1.2rem;
+    transform: translateY(-0.8rem);
+    @media only screen and (max-width: 1950px) {
+      width: 4.2rem;
+      height: 4.2rem;
+    }
+    @media only screen and (max-width: 1850px) {
+      width: 4rem;
+      height: 4rem;
+    }
+
+    & path {
+      fill: rgba(black, 0.5);
+    }
+  }
+
+  &-weekicon {
+    width: 4.5rem;
+    height: 4.5rem;
+    margin-right: 1rem;
+    transform: translateY(-0.4rem);
+    @media only screen and (max-width: 1950px) {
+      width: 4.2rem;
+      height: 4.2rem;
+    }
+    @media only screen and (max-width: 1850px) {
+      width: 4rem;
+      height: 4rem;
+    }
+
+    & path {
+      fill: rgba(black, 0.5);
+    }
+  }
+
+  &-monthicon {
+    width: 4.5rem;
+    height: 4.5rem;
+    margin-right: 1.5rem;
+    transform: translateY(-0.6rem);
+    @media only screen and (max-width: 1950px) {
+      width: 4.2rem;
+      height: 4.2rem;
+    }
+    @media only screen and (max-width: 1850px) {
+      width: 4rem;
+      height: 4rem;
+    }
+    & path {
+      fill: rgba(black, 0.5);
+    }
+  }
+
+  &-item {
+    box-sizing: border-box;
+    padding-top: 2.5rem;
+    text-align: center;
+    border-radius: 1.5rem;
+    height: 9rem;
+    backface-visibility: hidden;
+  }
+
+  &-streak {
+    padding-top: 2rem;
+    width: 32%;
+    @media only screen and (max-width: 1100px) {
+      width: 91%;
+      height: 18%;
+    }
+    &-front {
+      height: 100%;
+      transition: all 0.8s;
+      border-radius: 1.5rem;
+      display: flex;
+      justify-content: center;
+      background-color: rgba($theme-blue, 0.2);
+      @media only screen and (max-width: 1100px) {
+        padding-top: 3.4rem;
+      }
+    }
+
+    &-back {
+      height: 100%;
+      margin-top: -6rem;
+      transition: all 0.8s;
+      border-radius: 1.5rem;
+      background-color: rgba($theme-blue, 0.2);
+      display: flex;
+      justify-content: center;
+      transform: rotateX(180deg);
+      @media only screen and (max-width: 1100px) {
+        margin-top: -10rem;
+        padding-top: 3.4rem;
+      }
+    }
+
+    &:hover &-front {
+      transform: rotateX(180deg);
+    }
+
+    &:hover &-back {
+      transform: rotateX(0);
+    }
+  }
+
+  &-total {
+    padding-top: 2rem;
+    width: 32%;
+    @media only screen and (max-width: 1100px) {
+      width: 91%;
+      height: 18%;
+    }
+    &-front {
+      height: 100%;
+      transition: all 0.8s;
+      border-radius: 1.5rem;
+      display: flex;
+      justify-content: center;
+      background-color: rgba($logo-purple, 0.25);
+      @media only screen and (max-width: 1100px) {
+        padding-top: 3.4rem;
+      }
+    }
+
+    &-back {
+      height: 100%;
+      margin-top: -8rem;
+      transition: all 0.8s;
+      border-radius: 1.5rem;
+      background-color: rgba($logo-purple, 0.25);
+      transform: rotateX(180deg);
+      display: flex;
+      justify-content: center;
+      @media only screen and (max-width: 1100px) {
+        margin-top: -10rem;
+        padding-top: 3.4rem;
+      }
+    }
+
+    &:hover &-front {
+      transform: rotateX(180deg);
+    }
+
+    &:hover &-back {
+      transform: rotateX(0);
+    }
+  }
+
+  &-month {
+    @media only screen and (max-width: 1100px) {
+      width: 91%;
+      height: 18%;
+    }
+    padding-top: 2rem;
+    width: 32%;
+    &-front {
+      height: 100%;
+      transition: all 0.8s;
+      border-radius: 1.5rem;
+      background-color: rgba($theme-green, 0.25);
+      display: flex;
+      justify-content: center;
+      @media only screen and (max-width: 1100px) {
+        padding-top: 3.4rem;
+      }
+    }
+
+    &-back {
+      height: 100%;
+      margin-top: -8rem;
+      transition: all 0.8s;
+      border-radius: 1.5rem;
+      background-color: rgba($theme-green, 0.25);
+      transform: rotateX(180deg);
+      display: flex;
+      justify-content: center;
+      @media only screen and (max-width: 1100px) {
+        margin-top: -10rem;
+        padding-top: 3.4rem;
+      }
+    }
+
+    &:hover &-front {
+      transform: rotateX(180deg);
+    }
+
+    &:hover &-back {
+      transform: rotateX(0);
+    }
+  }
+}

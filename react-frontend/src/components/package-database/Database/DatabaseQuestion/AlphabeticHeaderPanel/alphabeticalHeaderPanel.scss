@@ -1,0 +1,82 @@
+@import "../../../../variables.scss";
+.AlphabeticalHeaderPanel {
+  margin: 5rem 8rem;
+  display: flex;
+  position: relative;
+  background-color: rgba($light-gray, 0.18);
+  padding: 2rem;
+  border-radius: 1.5rem;
+
+  &-navlink {
+    text-decoration: none;
+    color: black;
+  }
+
+  &-questions {
+    &-box {
+      margin-top: 2.5rem;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 50% 50%;
+      justify-content: space-around;
+      @media only screen and (max-width: 1000px) {
+        grid-template-columns: 100%;
+      }
+    }
+  }
+  &-letter {
+    border-radius: 50%;
+    height: 2.5rem;
+    padding: 1.4rem 2rem;
+    align-items: center;
+    font-size: 2rem;
+
+    &-array {
+      background-color: rgba($array, 0.8);
+    }
+
+    &-dp {
+      background-color: rgba($dp, 0.8);
+    }
+
+    &-dc {
+      background-color: rgba($dc, 0.8);
+    }
+
+    &-linkedlist {
+      background-color: rgba($linkedlist, 0.8);
+    }
+
+    &-string {
+      background-color: rgba($string, 0.8);
+    }
+
+    &-graph {
+      background-color: rgba($graph, 0.8);
+    }
+
+    &-stack {
+      background-color: rgba($stack, 0.8);
+    }
+
+    &-queue {
+      background-color: rgba($queue, 0.8);
+    }
+
+    &-tree {
+      background-color: rgba($tree, 0.8);
+    }
+
+    &-bit {
+      background-color: rgba($bit, 0.8);
+    }
+
+    &-backtracking {
+      background-color: rgba($backtracking, 0.8);
+    }
+
+    &-greedy {
+      background-color: rgba($greedy, 0.8);
+    }
+  }
+}

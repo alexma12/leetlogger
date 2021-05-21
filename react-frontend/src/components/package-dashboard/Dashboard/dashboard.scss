@@ -1,0 +1,36 @@
+@import "../../variables.scss";
+.Dashboard {
+  border-bottom-right-radius: 2rem;
+  padding: 2rem;
+  padding-bottom: 2rem;
+  display: grid;
+  grid-template-columns: 48.5% 12.8% 38.7%;
+  @media only screen and (max-width: 10000px) {
+    grid-template-rows: 55rem 10rem 1fr;
+  }
+  @media only screen and (max-width: 2100px) {
+    grid-template-rows: 50rem 10rem 1fr;
+  }
+  @media only screen and (max-width: 1850px) {
+    grid-template-rows: 50rem 9.6rem 1fr;
+  }
+  @media only screen and (max-width: 1100px) {
+    grid-template-columns: 55% 45%;
+    grid-template-rows: 49rem 52rem 79rem 1fr;
+  }
+
+  @media only screen and (max-width: 1660px) {
+    border-left: 0.7rem solid rgba($logo-purple, 0.2);
+    border-bottom-left-radius: 1.5rem;
+  }
+  overflow-y: scroll;
+  overflow-x: hidden;
+  &-empty {
+    display: inline-block;
+    float: left;
+    height: 1rem;
+    margin: 0;
+    text-align: center;
+    width: 2rem;
+  }
+}

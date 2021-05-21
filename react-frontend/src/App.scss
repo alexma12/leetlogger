@@ -1,0 +1,23 @@
+.App {
+  margin: 0;
+  font-size: 100%;
+  padding: 3vh 7rem;
+  height: 100vh;
+  background-color: rgba(rgb(191, 212, 231), 0.2);
+}
+
+html {
+  font-size: 62.5%;
+  width: 100vw;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  @media only screen and (max-width: 1300px) {
+    font-size: 57%;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    font-size: 50%;
+  }
+}

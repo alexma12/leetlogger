@@ -1,0 +1,28 @@
+@import "../variables.scss";
+.Layout {
+  &-modal {
+    background-color: rgba(black, 0.5) !important;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+  &-content {
+    display: grid;
+    max-height: 94vh;
+    box-shadow: 2rem 2rem 2rem rgba(black, 0.1);
+    grid-template-columns: 19rem 1fr;
+    grid-template-rows: 6rem 88vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    @media only screen and (max-width: 1660px) {
+      grid-template-columns: minmax(80rem, 1fr);
+      grid-template-rows: 6rem 5.1rem 79vh;
+    }
+    border-radius: 1.5rem;
+    background-color: rgb(247, 247, 247);
+  }
+  overflow-x: hidden;
+}

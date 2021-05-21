@@ -1,0 +1,7 @@
+.NavItems {
+  margin: 0;
+  @media only screen and (max-width: 1660px) {
+    display: flex;
+    justify-content: space-evenly;
+  }
+}

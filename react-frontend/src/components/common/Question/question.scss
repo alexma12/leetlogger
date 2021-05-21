@@ -1,0 +1,158 @@
+@import "../../variables.scss";
+
+.Question {
+  margin: 2rem;
+  border-top: 0.7rem solid rgba(#b5cbe4, 0.7);
+  padding: 1rem;
+  border-radius: 0.4rem;
+  display: grid;
+  grid-template-rows: 3.7rem 1fr;
+  grid-template-columns: 100%;
+  box-shadow: 0rem 0.3rem 1.3rem #0000002c;
+
+  &-tags {
+    display: flex;
+    align-items: flex-end;
+  }
+  &-dbQuestion {
+    opacity: 0.7;
+    transition: 0.3s;
+    &:hover {
+      opacity: 1;
+      transform: translateY(-0.3rem);
+    }
+
+    &-entryCount {
+      font-size: 1.3rem;
+      text-align: center;
+      padding: 1rem 7rem;
+      border-radius: 2rem;
+      background-color: rgba($light-gray, 0.5);
+      margin-right: 1rem;
+      @media only screen and (max-width: 1400px) {
+        padding: 1rem 5rem;
+      }
+      @media only screen and (max-width: 1030px) {
+        padding: 1rem 4rem;
+      }
+    }
+  }
+  &-array {
+    border-color: $array;
+  }
+
+  &-dp {
+    border-color: $dp;
+  }
+
+  &-dc {
+    border-color: $dc;
+  }
+
+  &-linkedlist {
+    border-color: $linkedlist;
+  }
+
+  &-string {
+    border-color: $string;
+  }
+
+  &-graph {
+    border-color: $graph;
+  }
+
+  &-stack {
+    border-color: $stack;
+  }
+
+  &-queue {
+    border-color: $queue;
+  }
+
+  &-tree {
+    border-color: $tree;
+  }
+
+  &-bit {
+    border-color: $bit;
+  }
+
+  &-backtracking {
+    border-color: $backtracking;
+  }
+
+  &-greedy {
+    border-color: $greedy;
+  }
+  &-title {
+    font-size: 2rem;
+    margin-right: 2rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    grid-column: span 3;
+    margin-left: 0.2rem;
+  }
+
+  &-row {
+    display: flex;
+    justify-content: space-between;
+    &-1 {
+      grid-column: 1/-1;
+      grid-row: 1/-1;
+      align-self: start;
+    }
+
+    &-2 {
+      grid-column: 1/-1;
+      grid-row: 2/-1;
+      align-self: end;
+    }
+  }
+
+  &-date {
+    margin-right: 2%;
+    font-size: 1.2rem;
+    font-weight: 600;
+    &-content {
+      color: rgb(91, 121, 206);
+      &-due {
+        color: rgba($difficulty-hard, 0.7);
+      }
+    }
+  }
+
+  &-buttons {
+    display: block;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  &:hover &-buttons {
+    opacity: 1;
+  }
+
+  &-solvedRecap {
+    &-withoutSolution {
+      font-size: 1.7rem;
+      padding: 1rem 6rem;
+      text-align: center;
+      background-color: rgba($difficulty-easy, 0.2);
+      border-radius: 1rem;
+    }
+    &-withSolution {
+      font-size: 1.7rem;
+      padding: 1rem 7.2rem;
+      text-align: center;
+      background-color: rgba($difficulty-hard, 0.2);
+      border-radius: 1rem;
+    }
+    &-completionTime {
+      font-size: 1.7rem;
+      text-align: end;
+      &-time {
+        color: $theme-blue;
+        margin-right: 1rem;
+      }
+    }
+  }
+}

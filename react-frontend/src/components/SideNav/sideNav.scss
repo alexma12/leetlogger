@@ -1,0 +1,21 @@
+@import "../variables.scss";
+
+.SideNav {
+  background-color: rgba(white, 0.9);
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  border-bottom-left-radius: 1.5rem;
+  @media only screen and (max-width: 1660px) {
+    height: 5.4rem;
+    display: flex;
+    justify-content: center;
+    border-right: none;
+    border-left: 0.7rem solid rgba($logo-purple, 0.26);
+    border-radius: 0;
+    border-bottom: solid 0.4rem #eeeeee;
+  }
+  padding-left: 0.2rem;
+  padding-top: 1rem;
+  border-right: 0.3rem solid rgba($theme-blue, 0.1);
+}

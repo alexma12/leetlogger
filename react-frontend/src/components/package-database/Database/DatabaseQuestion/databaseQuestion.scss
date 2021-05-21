@@ -1,0 +1,129 @@
+@import "../../../variables.scss";
+
+.DatabaseQuestion {
+  margin: 2rem;
+  background-color: white;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  position: relative;
+  min-height: 90%;
+
+  &-wrapper {
+    overflow-y: scroll;
+    @media only screen and (max-width: 1660px) {
+      border-left: 0.7rem solid rgba($logo-purple, 0.2);
+      border-bottom-left-radius: 1.5rem;
+    }
+  }
+
+  &-alphabeticalSelector {
+    margin-top: 3.2rem;
+    color: rgba(black, 0.6);
+    display: flex;
+    justify-content: center;
+
+    &-letter {
+      cursor: pointer;
+      padding: 0.9rem 1.5rem;
+      font-size: 1.7rem;
+
+      @media only screen and (max-width: 1430px) {
+        font-size: 1.4rem;
+      }
+      @media only screen and (max-width: 1375px) {
+        padding: 0.9rem 1.3rem;
+      }
+      @media only screen and (max-width: 1050px) {
+        font-size: 1.2rem;
+        color: rgba(black, 0.9);
+      }
+
+      @media only screen and (max-width: 975px) {
+        padding: 0.7rem 1.1rem;
+      }
+
+      text-transform: uppercase;
+      border: solid $light-gray 0.1rem;
+      border-right: none;
+
+      &-inactive {
+        background-color: rgba($light-gray, 0.4);
+      }
+
+      &-array {
+        &:hover {
+          background-color: rgba($array, 0.8);
+        }
+      }
+
+      &-dp {
+        &:hover {
+          background-color: rgba($dp, 0.8);
+        }
+      }
+
+      &-dc {
+        &:hover {
+          background-color: rgba($dc, 0.8);
+        }
+      }
+
+      &-linkedlist {
+        &:hover {
+          background-color: rgba($linkedlist, 0.8);
+        }
+      }
+
+      &-string {
+        &:hover {
+          background-color: rgba($string, 0.8);
+        }
+      }
+
+      &-graph {
+        &:hover {
+          background-color: rgba($graph, 0.8);
+        }
+      }
+
+      &-stack {
+        &:hover {
+          background-color: rgba($stack, 0.8);
+        }
+      }
+
+      &-queue {
+        &:hover {
+          background-color: rgba($queue, 0.8);
+        }
+      }
+
+      &-tree {
+        &:hover {
+          background-color: rgba($tree, 0.8);
+        }
+      }
+
+      &-bit {
+        &:hover {
+          background-color: rgba($bit, 0.8);
+        }
+      }
+
+      &-backtracking {
+        &:hover {
+          background-color: rgba($backtracking, 0.8);
+        }
+      }
+
+      &-greedy {
+        &:hover {
+          background-color: rgba($greedy, 0.8);
+        }
+      }
+    }
+    &-letter:last-child {
+      border-right: solid $light-gray 0.1rem;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+@import "../../variables.scss";
+.Database {
+  background-color: white;
+  border-radius: 1.5rem;
+  margin: 2rem;
+  padding: 2rem;
+  padding-bottom: 2rem;
+  position: relative;
+  min-height: 90%;
+
+  &-wrapper {
+    overflow-y: scroll;
+    @media only screen and (max-width: 1660px) {
+      border-left: 0.7rem solid rgba($logo-purple, 0.2);
+      border-bottom-left-radius: 1.5rem;
+    }
+  }
+
+  &-items {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-items: center;
+    @media only screen and (max-width: 1175px) {
+      grid-template-columns: 100%;
+    }
+  }
+}

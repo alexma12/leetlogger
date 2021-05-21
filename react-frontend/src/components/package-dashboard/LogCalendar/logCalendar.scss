@@ -1,0 +1,122 @@
+@import "react-big-calendar/lib/sass/styles";
+@import "../../variables.scss";
+
+.LogCalendar {
+  background-color: white;
+  padding: 2rem;
+  grid-row: 1 / 2;
+  grid-column: 1/ 3;
+  border-radius: 1rem;
+  overflow: hidden;
+  @media only screen and (max-width: 1100px) {
+    grid-row: 1 / 2;
+    grid-column: 1/-1;
+  }
+}
+
+.LogCalendar .rbc {
+  &-toolbar {
+    font-size: 3rem;
+    background-color: rgba($theme-green, 0.25);
+    padding: 0.2rem 0.4rem;
+    padding-right: 18rem;
+  }
+  &-event {
+    height: 1rem;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 5px;
+    background-color: transparent;
+    outline: none;
+    &-content {
+      overflow: unset !important;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &-row {
+    &-segment {
+      display: inline-block;
+    }
+  }
+
+  &-active {
+    color: black;
+  }
+
+  &-month-view {
+    border-radius: 0.2rem;
+    overflow: hidden;
+  }
+
+  &-off-range-bg {
+    background-color: rgba(gray, 0.2);
+  }
+
+  &-header {
+    border: solid 0.25rem $theme-green;
+    font-size: 2rem;
+    color: $theme-green;
+  }
+
+  &-btn {
+    &-group {
+      padding: 0 2rem;
+      padding-bottom: 1rem;
+    }
+    &-group button {
+      color: black;
+      margin-top: 0.4rem;
+      font-size: 1.2rem;
+      outline: none;
+      border: none;
+
+      &:hover {
+        color: $theme-green;
+        background-color: white;
+      }
+
+      &:active &:visited &:focus {
+        background-color: $theme-green;
+        &:hover {
+          color: $theme-green;
+          background-color: $light-gray;
+        }
+      }
+    }
+  }
+
+  &-day {
+    color: $theme-green;
+    &-bg {
+      border: solid 0.15rem lightgray;
+      border-bottom: none;
+    }
+  }
+
+  &-month-row &-row-bg {
+    &:last-child {
+      border: solid 0.15rem lightgray;
+    }
+  }
+
+  &-month-view {
+    border-bottom: solid 0.15rem lightgray;
+  }
+
+  &-day,
+  &-today {
+    background-color: rgba($theme-green, 0.25);
+  }
+}
+
+.rbc-header + .rbc-header {
+  border-left: none !important;
+}
+
+.LogCalendar .rbc-event.rbc-selected {
+  background-color: transparent;
+}

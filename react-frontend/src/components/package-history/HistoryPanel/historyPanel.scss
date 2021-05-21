@@ -1,0 +1,87 @@
+@import "../../variables.scss";
+
+.HistoryPanel {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  position: relative;
+  min-height: 93%;
+
+  &-wrapper {
+    padding: 2rem;
+    overflow-y: scroll;
+    @media only screen and (max-width: 1660px) {
+      border-left: 0.7rem solid rgba($logo-purple, 0.2);
+      border-bottom-left-radius: 1.5rem;
+    }
+  }
+
+  &-header {
+    text-align: center;
+    font-size: 3.5rem;
+    letter-spacing: 0.2rem;
+    color: rgba(black, 0.5);
+    background-color: rgba($theme-blue, 0.3);
+    padding: 2rem;
+    border-radius: 1.5rem;
+    @media only screen and (max-width: 1660px) {
+      font-size: 2.8rem;
+      height: 3.4rem;
+    }
+    &-arrow-icon {
+      height: 2.5rem;
+      width: 2.5rem;
+      margin-top: 1.2rem;
+      transition: 0.4s;
+    }
+    &-arrow-icon path {
+      fill: rgba(black, 0.4);
+    }
+
+    &-arrow-icon-disabled path {
+      fill: rgba(gray, 0.2);
+    }
+
+    &-arrow-icon-disabled:hover {
+      height: 2.5rem;
+      width: 2.5rem;
+    }
+
+    &-prev {
+      cursor: pointer;
+      float: left;
+      transition: 0.3s;
+      @media only screen and (max-width: 1660px) {
+        margin-top: 0.5rem;
+      }
+      &:hover {
+        transform: translateX(-0.5rem);
+      }
+    }
+    &-next {
+      cursor: pointer;
+      float: right;
+      @media only screen and (max-width: 1660px) {
+        margin-top: 0.5rem;
+      }
+      &:hover {
+        transform: translateX(0.5rem);
+      }
+    }
+  }
+
+  &-questions {
+    padding: 5rem 16rem;
+    @media only screen and (max-width: 1375px) {
+      padding: 3rem 10rem;
+    }
+    @media only screen and (max-width: 880px) {
+      padding: 3rem 6rem;
+    }
+    padding-top: 1rem;
+    height: 90%;
+  }
+  &-pagination {
+    height: 4rem;
+  }
+}

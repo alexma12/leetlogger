@@ -1,0 +1,76 @@
+@import "../../../../variables.scss";
+
+.FormEntryText {
+  width: 90%;
+  padding: 2rem 1rem;
+  padding-bottom: 0rem;
+  margin-left: 2rem;
+  box-sizing: border-box;
+  border-bottom: 0.1rem solid rgba(gray, 0.4);
+  &-label {
+    width: 15%;
+    font-size: 1.5rem;
+    color: rgba($theme-blue, 0.65);
+    margin-right: 3rem;
+    text-transform: uppercase;
+    height: 5rem;
+    @media only screen and (max-width: 1850px) {
+      margin-right: 1rem;
+      font-size: 1.2rem;
+      height: 4rem;
+    }
+
+    @media only screen and (max-width: 1360px) {
+      margin-right: 3rem;
+      font-size: 1.5rem;
+      height: 5rem;
+    }
+
+    transform: translateY(-1rem);
+    font-weight: 600;
+    display: inline-block;
+  }
+
+  &-title {
+    display: inline-block;
+    font-size: 2.2rem;
+    @media only screen and (max-width: 1850px) {
+      font-size: 1.9rem;
+    }
+    font-family: inherit;
+    margin-top: 1.6rem;
+    margin-left: 0.8rem;
+    cursor: pointer;
+    &-placeholder {
+      color: rgba(grey, 0.6);
+      font-style: italic;
+    }
+  }
+
+  &-input {
+    font-size: 2.2rem;
+    @media only screen and (max-width: 1850px) {
+      font-size: 1.9rem;
+      width: 70%;
+      margin-bottom: 1.2rem;
+      height: 6rem;
+    }
+
+    font-family: inherit;
+    margin-left: 0rem;
+    border: none;
+    width: 74%;
+    height: 6rem;
+    outline: none;
+    border-radius: 1.5rem;
+    padding: 0 1.2rem;
+    color: rgb(100, 99, 99);
+    &:focus {
+      background-color: rgba(grey, 0.06);
+    }
+    &::placeholder {
+      color: rgba(grey, 0.6);
+      font-style: italic;
+    }
+  }
+}

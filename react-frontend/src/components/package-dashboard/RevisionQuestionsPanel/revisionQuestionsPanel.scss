@@ -1,0 +1,28 @@
+@import "../../variables.scss";
+.RevisionQuestionsPanel {
+  background-color: white;
+  border-radius: 1.5rem;
+  margin: 2rem;
+  margin-left: 0;
+  padding: 2rem;
+  min-height: 73rem;
+  position: relative;
+  @media only screen and (max-width: 1100px) {
+    grid-row: 4;
+    grid-column: 1/-1;
+    margin-top: 0rem;
+  }
+
+  &-title {
+    padding: 1rem;
+    color: $logo-purple;
+    font-size: 3rem;
+    @media only screen and (max-width: 1650px) {
+      font-size: 2.5rem;
+    }
+  }
+
+  &-pagination {
+    margin-top: 1rem;
+  }
+}
