@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate, useMatch } from "react-router-dom";
 import QuestionTypeTitle from "components/common/QuestionTypeTitle";
 import EntryModal from "./ModalComponents/EntryModal";
 import NoteModal from "./ModalComponents/NoteModal";
@@ -34,10 +34,10 @@ const QuestionPanel = (props) => {
   const [noteToDelete, setNoteToDelete] = useState({});
 
   const dispatch = useDispatch();
-  const history = useHistory();
-
-  const questionID = props.match.params.questionId;
-  const questionType = props.match.params.questionType;
+  const navigate = useNavigate();
+  const match = useMatch("/database/:questionType/:questionId");
+  const questionID = match.params.questionId;
+  const questionType = match.params.questionType;
 
   const retrieveData = async () => {
     await axiosAWSInstance
@@ -49,7 +49,7 @@ const QuestionPanel = (props) => {
         }
       })
       .catch((err) => {
-        history.replace("/");
+        navigate("/", { replace: true });
         dispatch(setValidation(err));
       });
   };
@@ -91,7 +91,8 @@ const QuestionPanel = (props) => {
   };
 
   const entryData = useMemo(() => {
-    if (!entries || Object.keys(entries) === 0) history.replace("/");
+    if (!entries || Object.keys(entries) === 0)
+      navigate("/", { replace: true });
 
     return (entries || []).map((entry) => {
       const {
@@ -278,7 +279,9 @@ const QuestionPanel = (props) => {
           <div>
             <QuestionTypeTitle
               title={questionData && questionData.title}
-              onBack={() => props.history.push(`/database/${questionType}`)}
+              onBack={() => {
+                navigate(`../database/${questionType}`);
+              }}
               type={questionType}
               onAdd={onAddNote}
             />

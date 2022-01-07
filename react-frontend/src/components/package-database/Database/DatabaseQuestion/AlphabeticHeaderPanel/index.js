@@ -13,7 +13,7 @@ const AlphabeticalHeaderPanel = ({ reference, letter, data, type }) => {
     .map((item) => {
       return (
         <NavLink
-          to={`${type}/${item.questionID}`}
+          to={`../database/${type}/${item.questionID}`}
           className="AlphabeticalHeaderPanel-navlink"
         >
           <Question

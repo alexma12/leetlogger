@@ -9,14 +9,14 @@ import "./navItem.scss";
 
 const NavItem = ({ title }) => {
   let navItem;
+  const activeClassName = "NavItem NavItem-enabled";
+  const className = "NavItem";
   switch (title) {
     case "home":
       navItem = (
         <NavLink
           to="/"
-          exact
-          className="NavItem"
-          activeClassName="NavItem-enabled"
+          className={({ isActive }) => (isActive ? activeClassName : className)}
         >
           <HomeIcon className="NavItem-icon" />
           <span> Home </span>
@@ -27,9 +27,7 @@ const NavItem = ({ title }) => {
       navItem = (
         <NavLink
           to="/new"
-          exact
-          className="NavItem"
-          activeClassName="NavItem-enabled"
+          className={({ isActive }) => (isActive ? activeClassName : className)}
         >
           <AddIcon className="NavItem-icon" />
           <span> New </span>
@@ -40,9 +38,7 @@ const NavItem = ({ title }) => {
       navItem = (
         <NavLink
           to="/history"
-          exact
-          className="NavItem"
-          activeClassName="NavItem-enabled"
+          className={({ isActive }) => (isActive ? activeClassName : className)}
         >
           <HistoryIcon className="NavItem-icon" />
           <span> History </span>
@@ -53,8 +49,7 @@ const NavItem = ({ title }) => {
       navItem = (
         <NavLink
           to="/database"
-          className="NavItem"
-          activeClassName="NavItem-enabled"
+          className={({ isActive }) => (isActive ? activeClassName : className)}
         >
           <ClipboardIcon className="NavItem-icon" />
           <span> Database </span>

@@ -1,5 +1,6 @@
 import React, { useMemo, useRef } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate, useMatch } from "react-router-dom";
 import AlphabeticalHeaderPanel from "./AlphabeticHeaderPanel";
 import QuestionTypeTitle from "components/common/QuestionTypeTitle";
 import { getQuestionDataByTypeSelector } from "./selectors/getQuestionDataByType";
@@ -10,8 +11,9 @@ import NoFields from "components/common/NoFields";
 import "./databaseQuestion.scss";
 
 const DatabaseQuestion = (props) => {
-  const questionType = props.match.params.questionType || "";
-
+  const match = useMatch("/database/:questionType");
+  const questionType = match.params.questionType || "";
+  const navigate = useNavigate();
   const questionsDataByType = useSelector((state) =>
     getQuestionDataByTypeSelector(state, questionType)
   );
@@ -106,7 +108,7 @@ const DatabaseQuestion = (props) => {
       <div className="DatabaseQuestion">
         <QuestionTypeTitle
           type={questionType}
-          onBack={() => props.history.push("/database")}
+          onBack={() => navigate("../database")}
           title={`${title} Questions`}
         />
         {questionDataRender}

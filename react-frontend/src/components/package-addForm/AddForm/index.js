@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import FormEntryDetails from "./FormEntryDetails";
 import FormEntryNotes from "./FormEntryNotes";
 import { v4 as uuidv4 } from "uuid";
@@ -47,6 +48,7 @@ const AddForm = (props) => {
     tagInput,
   };
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const isSubmitLoading = useSelector((state) => {
@@ -165,7 +167,7 @@ const AddForm = (props) => {
     const formattedEntry = formatEntryBody(formDetailValues, notesState);
     await dispatch(saveEntry(formattedEntry));
     dispatch(hideSpinner());
-    props.history.replace("/");
+    navigate("/", { replace: true });
   };
   return (
     <div className="AddForm-wrapper">

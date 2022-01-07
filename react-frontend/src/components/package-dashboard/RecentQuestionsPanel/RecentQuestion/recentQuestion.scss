@@ -3,8 +3,9 @@
 .RecentQuestion {
   font-size: 2rem;
   margin: 2rem 4rem;
-  text-overflow: ellipsis;
+
   overflow: hidden;
+
   white-space: nowrap;
   box-shadow: 0rem 0.3rem 1.2rem #0000001f;
 
@@ -35,6 +36,7 @@
   }
 
   &-title {
+    width: 10rem;
     padding-left: 1rem;
     @media only screen and (max-width: 2100px) {
       padding-left: 0rem;

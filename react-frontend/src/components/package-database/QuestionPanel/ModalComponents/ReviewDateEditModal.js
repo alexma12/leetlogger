@@ -4,7 +4,7 @@ import ModalComponent from "./ModalComponent";
 import "./modalComponents.scss";
 import { milisecondsToDateString } from "utils/dateHelpers";
 import { closeModal } from "store/actions/modalActions/modalActionCreators";
-import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import {
   editRevisionDate,
   removeRevisionDate,
@@ -20,15 +20,15 @@ const SPINNER_FORM_REVIEW_EDIT_MODAL = "SPINNER_FORM_REVIEW_EDIT_MODAL";
 
 const ReviewDateEditModal = ({ originalDate, date, isRemove, height }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const questionID = history.location.pathname.split("/")[3];
+  const location = useLocation();
+  const questionID = location.pathname.split("/")[3];
 
   const isReviewEditModalLoading = useSelector(
     (state) => state.spinner.spinnerType === SPINNER_FORM_REVIEW_EDIT_MODAL
   );
 
   const refresh = () => {
-    history.go(0);
+    window.location.reload();
   };
   const onClickYes = () => {
     if (isRemove) {

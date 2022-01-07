@@ -9,7 +9,7 @@ import Database from "../package-database/Database";
 import Validation from "../common/Validation";
 import DatabaseQuestion from "../package-database/Database/DatabaseQuestion";
 import QuestionPanel from "../package-database/QuestionPanel";
-import { Route, BrowserRouter, Switch } from "react-router-dom";
+import { Route, BrowserRouter, Routes } from "react-router-dom";
 import * as entryActions from "store/actions/entriesActions/entriesActionCreators";
 import * as questionActions from "store/actions/questionsActions/questionsActionCreators";
 import "./layout.scss";
@@ -34,21 +34,20 @@ const Layout = () => {
         <BrowserRouter>
           <Header />
           <SideNav />
-          <Switch>
-            <Route path="/new" component={AddForm} />
-            <Route path="/history" component={History} />
-            <Route path="/database" exact component={Database} />
+          <Routes>
+            <Route path="/new" element={<AddForm />} />
+            <Route path="/history" element={<History />} />
+            <Route path="/database" element={<Database />} />
             <Route
               path="/database/:questionType"
-              exact
-              component={DatabaseQuestion}
+              element={<DatabaseQuestion />}
             />
             <Route
               path="/database/:questionType/:questionId"
-              component={QuestionPanel}
+              element={<QuestionPanel />}
             />
-            <Route path="/" component={Dashboard} />
-          </Switch>
+            <Route path="/" element={<Dashboard />} />
+          </Routes>
         </BrowserRouter>
       </div>
     </div>

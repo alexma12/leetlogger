@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Tag from "../Tag";
 import "./question.scss";
 
@@ -19,7 +19,7 @@ const Question = ({
   entryCount,
   onClick,
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const isRevisionQuestion = componentType === "RevisionQuestion";
   const isQuestion = componentType === "Question";
@@ -29,7 +29,7 @@ const Question = ({
         tag="review"
         size="sm"
         onClick={() => {
-          history.push("/database/" + questionType + "/" + questionID);
+          navigate("../database/" + questionType + "/" + questionID);
         }}
       />
     </div>

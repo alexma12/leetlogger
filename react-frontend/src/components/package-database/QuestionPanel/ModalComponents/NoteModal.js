@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ModalComponent from "./ModalComponent";
 import FormEntryNotes from "components/package-addForm/AddForm/FormEntryNotes";
-import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { saveQuestionNote } from "store/actions/questionsActions/questionsActionCreators";
 import Spinner from "components/common/Spinner";
 import "./modalComponents.scss";
@@ -14,7 +14,7 @@ const NoteModal = ({ header, note, onSaveNote, retrieveData }) => {
   const [title, setTitle] = useState((note && note.title) || "");
   const [titleInvalid, setTitleInvalid] = useState(false);
 
-  const history = useHistory();
+  const location = useLocation();
   const dispatch = useDispatch();
   const inputRef = useRef();
   const modalType = useSelector((state) => state.modal.modalType);
@@ -23,7 +23,7 @@ const NoteModal = ({ header, note, onSaveNote, retrieveData }) => {
     return state.spinner.spinnerType === SPINNER_FOR_NOTE_MODAL;
   });
 
-  const questionID = history.location.pathname.split("/")[3];
+  const questionID = location.pathname.split("/")[3];
 
   const onNotesStateChange = (value) => {
     setNotesState(value);
