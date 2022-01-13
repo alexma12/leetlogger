@@ -1,5 +1,1 @@
-To run the application
-
-  1. cd into react-frontend 
-  2. run 
-      > npm start
+https://master.d253ad0xdjts2z.amplifyapp.com/
