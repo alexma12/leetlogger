@@ -44,7 +44,6 @@ const BarGraph = () => {
 
   const getScreenWidth = () => {
     const screenWidth = window.innerWidth;
-    console.log(window);
     if (screenWidth > 1000) {
       return "550px";
     }

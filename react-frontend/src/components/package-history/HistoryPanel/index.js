@@ -52,7 +52,6 @@ const HistoryPanel = () => {
   const questions =
     Object.keys(paginatedHistoryData).length > 0 ? (
       (paginatedHistoryData[paginationPage] || []).map((question) => {
-        console.log(question, "123");
         return (
           <Question
             componentType="Question"
